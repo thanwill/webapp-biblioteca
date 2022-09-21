@@ -34,15 +34,14 @@ class Program
         app.MapGet("/livros", (BibliotecaContext baselivro) => {
             return baselivro.Livros.ToList();
         });
-        var lista = (BibliotecaContext baselivro, Livro livro) =>
+
+        //cadastrar usuario
+        app.MapPost("/cadastrar", (BibliotecaContext baselivro, Livro livro) =>
         {
             baselivro.Livros.Add(livro);
             baselivro.SaveChanges();
             return "Usuário adicionado!";
-        };
-
-        //cadastrar usuario
-        app.MapPost("/cadastrar",  );
+        });
 
         app.Run();
     }
