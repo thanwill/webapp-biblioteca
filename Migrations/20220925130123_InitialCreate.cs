@@ -16,11 +16,28 @@ namespace Biblioteca.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Titulo = table.Column<string>(type: "TEXT", nullable: false),
                     Autor = table.Column<string>(type: "TEXT", nullable: false),
-                    Lancamento = table.Column<int>(type: "INTEGER", nullable: false)
+                    Lancamento = table.Column<int>(type: "INTEGER", nullable: false),
+                    Estoque = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Livros", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Usuarios",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Nome = table.Column<string>(type: "TEXT", nullable: false),
+                    CPF = table.Column<string>(type: "TEXT", nullable: false),
+                    Email = table.Column<string>(type: "TEXT", nullable: false),
+                    Telefone = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Usuarios", x => x.id);
                 });
         }
 
@@ -28,6 +45,9 @@ namespace Biblioteca.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Livros");
+
+            migrationBuilder.DropTable(
+                name: "Usuarios");
         }
     }
 }

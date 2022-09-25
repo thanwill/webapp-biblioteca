@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/jonathanpereira/Projects/Biblioteca/Biblioteca/Biblioteca.csproj": {}
+    "/Users/jonathanpereira/Projects/up-webapi-biblioteca/Biblioteca.csproj": {}
   },
   "projects": {
-    "/Users/jonathanpereira/Projects/Biblioteca/Biblioteca/Biblioteca.csproj": {
+    "/Users/jonathanpereira/Projects/up-webapi-biblioteca/Biblioteca.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jonathanpereira/Projects/Biblioteca/Biblioteca/Biblioteca.csproj",
+        "projectUniqueName": "/Users/jonathanpereira/Projects/up-webapi-biblioteca/Biblioteca.csproj",
         "projectName": "Biblioteca",
-        "projectPath": "/Users/jonathanpereira/Projects/Biblioteca/Biblioteca/Biblioteca.csproj",
+        "projectPath": "/Users/jonathanpereira/Projects/up-webapi-biblioteca/Biblioteca.csproj",
         "packagesPath": "/Users/jonathanpereira/.nuget/packages/",
-        "outputPath": "/Users/jonathanpereira/Projects/Biblioteca/Biblioteca/obj/",
+        "outputPath": "/Users/jonathanpereira/Projects/up-webapi-biblioteca/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/jonathanpereira/.nuget/NuGet/NuGet.Config"
@@ -46,15 +46,15 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[6.0.0, )"
+              "version": "[6.0.9, )"
             },
             "Microsoft.EntityFrameworkCore.InMemory": {
               "target": "Package",
-              "version": "[6.0.0, )"
+              "version": "[6.0.9, )"
             },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
-              "version": "[6.0.0, )"
+              "version": "[6.0.9, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",

@@ -1,4 +1,4 @@
-//criar projeto:
+/*criar projeto:
 //	dotnet new webabi -minimal -o NomeDoProjeto
 //entrar na pasta:
 //	cd NomeDoProjeto
@@ -8,10 +8,12 @@
 //	dotnet add package Microsoft.EntityFrameworkCore.Design --version 6.0
 //incluir namespace do entity framework:
 //	using Microsoft.EntityFrameworkCore;
-//antes de rodar o dotnet run pela primeira vez, rodar os seguintes comandos para iniciar a base de dados:
-//	dotnet ef migrations add InitialCreate
-//	dotnet ef database update
 
+    //antes de rodar o dotnet run pela primeira vez, rodar os seguintes comandos para iniciar a base de dados:
+
+	dotnet ef migrations add InitialCreate
+	dotnet ef database update
+*/
 using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
@@ -30,18 +32,13 @@ class Program
         builder.Services.AddSqlite<BibliotecaContext>(connectionString);
         var app = builder.Build();
 
-        //listar todos os usuarios
-        app.MapGet("/livros", (BibliotecaContext baselivro) => {
-            return baselivro.Livros.ToList();
-        });
+        Livro novo = new Livro();
 
-        //cadastrar usuario
-        app.MapPost("/cadastrar", (BibliotecaContext baselivro, Livro livro) =>
-        {
-            baselivro.Livros.Add(livro);
-            baselivro.SaveChanges();
-            return "Usuário adicionado!";
-        });
+
+        // Realiza uma listagem dos livros cadastrados
+        app.MapGet("/livros", novo.listarLivros);
+
+        app.MapPost("/cadastrar-livro", novo.cadastrarLivro);
 
         app.Run();
     }
