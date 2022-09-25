@@ -32,13 +32,13 @@ class Program
         builder.Services.AddSqlite<BibliotecaContext>(connectionString);
         var app = builder.Build();
 
+
+        // LIVRO
         Livro novo = new Livro();
-
-
-        // Realiza uma listagem dos livros cadastrados
-        app.MapGet("/livros", novo.listarLivros);
-
-        app.MapPost("/cadastrar-livro", novo.cadastrarLivro);
+        app.MapGet  ("/livros", novo.Listar);
+        app.MapPost ("/livros/cadastrar", novo.Cadastrar);
+        app.MapGet  ("/livros/deletar/{id}", novo.Excluir);
+        app.MapPost ("/livros/atualizar{id}", novo.Atualizar);
 
         app.Run();
     }

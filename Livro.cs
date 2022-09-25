@@ -17,20 +17,76 @@ public class Livro
     public int Estoque { get; set; } = 10;
 
     // passa como parâmetro o banco, e realiza a listagem da tabela livros com o Json formatado usando Newtonsoft.Json.
-    public string listarLivros(BibliotecaContext banco)
+    public string Listar(BibliotecaContext banco)
     {
         return JsonConvert.SerializeObject(banco.Livros.ToList(), Formatting.Indented);
     }
 
-    public string cadastrarLivro(BibliotecaContext banco, Livro novo)
+    /*
+        A função Cadastrar gera um id randomico,
+        a Validar verifica se esse id já foi cadastrado antes e entrega outro em caso posítivo,
+        ou permanece o primeiro gerado em caso negativo.
+     */
+
+
+    public string Cadastrar(BibliotecaContext banco, Livro novo)
     {
         Random rand = new Random();
         novo.id = rand.Next(100);
-        banco.Livros.Add(novo);
-        banco.SaveChanges();
+
+        var livro = banco.Livros.Find(novo.id);
+
+        if(!(livro == null))
+        {
+            while(novo.id == livro.id)
+            {
+                novo.id = rand.Next(100);
+                Console.WriteLine("O ID precisou ser alterado.");
+            }
+            banco.Livros.Add(novo);
+            banco.SaveChanges();
+        }
+        else
+        {
+            banco.Livros.Add(novo);
+            banco.SaveChanges();
+        }
+        return "O livro: " + novo.Titulo + ", foi cadastrado com sucesso!";
         // Atenção: ao cadastrar livro, não use id ou estoque no Body. Eles são implementados automaticamente.
         // Precisa fazer a validação de IDs iguais.
-        return "O livro: " + novo.Autor + ", foi cadastrado com sucesso!";
-    }     
+
+    }
+
+    public string Excluir(BibliotecaContext banco, int id)
+    {
+
+        var livro = banco.Livros.Find(id);
+        if(livro == null)
+        {
+            return "Não encontrado.";
+        }
+        else
+        {
+            banco.Livros.Remove(livro);
+            banco.SaveChanges();
+            return "Excluido com sucesso!";
+        }
+    }    
+
+    public string Atualizar(BibliotecaContext banco, int id)
+    {
+
+        var livro = banco.Livros.Find(id);
+
+        if(livro != null)
+        {
+
+            return "Something.";
+        }
+        else
+        {
+            return "Livro não encontrado!";
+        }        
+    }
        
 }
