@@ -1,0 +1,12 @@
+# Ambiente de desenvolvimento
+.vscode
+.vs
+
+# DOTNET
+bin
+obj
+
+# Base de dados
+*.db
+*.db-shm
+*.db-wal
