@@ -41,7 +41,7 @@ public class Livro
             while(novo.id == livro.id)
             {
                 novo.id = rand.Next(100);
-                Console.WriteLine("O ID precisou ser alterado.");
+                // realiza alteração do ID até achar algum disponível.                
             }
             banco.Livros.Add(novo);
             banco.SaveChanges();
@@ -73,18 +73,18 @@ public class Livro
         }
     }    
 
-    public string Atualizar(BibliotecaContext banco, int id)
+    public string Atualizar(BibliotecaContext banco, Livro atualizado, int id)
     {
 
         var livro = banco.Livros.Find(id);
 
-        if(livro != null)
+        if(livro == null)
         {
-
-            return "Something.";
+            return "Não encontrado.";
         }
         else
         {
+            
             return "Livro não encontrado!";
         }        
     }
