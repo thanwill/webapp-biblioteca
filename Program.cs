@@ -14,11 +14,7 @@
 	dotnet ef migrations add InitialCreate
 	dotnet ef database update
 */
-using System;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Biblioteca;
 
@@ -27,18 +23,25 @@ class Program
     static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-        
-        var connectionString = builder.Configuration.GetConnectionString("Livros") ?? "Data Source=Livros.db";
+
+        var connectionString = builder.Configuration.GetConnectionString("biblioteca") ?? "Data Source=biblioteca.db";
         builder.Services.AddSqlite<BibliotecaContext>(connectionString);
         var app = builder.Build();
 
 
-        // LIVRO
-        Livro novo = new Livro();
-        app.MapGet  ("/livros", novo.Listar);
-        app.MapPost ("/livros/cadastrar", novo.Cadastrar);
-        app.MapGet  ("/livros/deletar/{id}", novo.Excluir);
-        app.MapPost ("/livros/atualizar{id}", novo.Atualizar);
+        // Livro
+        Livro livro = new Livro();
+        app.MapGet("/livros", livro.Listar);
+        app.MapPost("/livros/cadastrar", livro.Cadastrar);
+        app.MapGet("/livros/deletar/{id}", livro.Excluir);
+        app.MapPost("/livros/atualizar/{id}", livro.Atualizar);
+
+        // Empréstimo
+        Emprestimo emprestimo = new Emprestimo();
+        // app.MapGet("/emprestimos", emprestimo.Listar);
+        // app.MapPost("/emprestimos", emprestimo.Cadastrar);
+        // app.MapPut("/emprestimos", emprestimo.Atualizar);
+        // app.MapDelete("/emprestimos", emprestimo.Excluir);
 
         app.Run();
     }
