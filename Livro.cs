@@ -21,6 +21,20 @@ public class Livro
     {
         return JsonConvert.SerializeObject(banco.Livros.ToList(), Formatting.Indented);
     }
+    public string ListarId(BibliotecaContext banco, int id)
+    {
+        var livro = banco.Livros.Find(id);
+
+        if (livro == null)
+        {
+            return "Não encontrado.";
+        }
+        else
+        {
+            return JsonConvert.SerializeObject(livro, Formatting.Indented);
+
+        }
+    }
 
     /*
         A função Cadastrar gera um id randomico,
@@ -57,7 +71,7 @@ public class Livro
 
     }
 
-    public string Excluir(BibliotecaContext banco, int id)
+    public string Deletar(BibliotecaContext banco, int id)
     {
 
         var livro = banco.Livros.Find(id);
@@ -84,7 +98,12 @@ public class Livro
         }
         else
         {
-            
+            livro.Titulo = atualizado.Titulo;
+            livro.Autor = atualizado.Autor;
+            livro.Lancamento = atualizado.Lancamento;
+
+            banco.SaveChanges();
+            return "Usuário atualizado com sucesso";
             return "Livro não encontrado!";
         }        
     }

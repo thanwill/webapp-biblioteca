@@ -20,7 +20,7 @@ public class BibliotecaContext: DbContext
     public DbSet<Livro> Livros { get; set; } = null!;
 
     // Cria a tabela Usuarios
-    public DbSet<Usuario> usuarios { get; set; } = null!;
+    public DbSet<Usuario> Usuarios { get; set; } = null!;
 
     // IMPORTANTES MÉTODOS
 

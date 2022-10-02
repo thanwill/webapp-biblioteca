@@ -16,27 +16,27 @@ public class Usuario
 
     public List<Usuario> listarUsuarios(BibliotecaContext banco)
     {
-        return banco.usuarios.ToList();
+        return banco.Usuarios.ToList();
     }
 
-    public Usuario listarUsuario(BibliotecaContext banco, int id)
+    public Usuario Listar(BibliotecaContext banco, int id)
     {
-        return banco.usuarios.Find(id);
+        return banco.Usuarios.Find(id);
     }
 
-    public string cadastrarUsuario(BibliotecaContext banco, Usuario usuario)
+    public string Cadastrar(BibliotecaContext banco, Usuario usuario)
     {
         int cont = 0;
 
         usuario.Id = cont++;
-        banco.usuarios.Add(usuario);
+        banco.Usuarios.Add(usuario);
         banco.SaveChanges();
         return "Usuário cadastrado com sucesso";
     }
 
-    public string atualizarUsuario(BibliotecaContext banco, Usuario atualizado, int id)
+    public string Atualizar(BibliotecaContext banco, Usuario atualizado, int id)
     {
-        var usuario = banco.usuarios.Find(id);
+        var usuario = banco.Usuarios.Find(id);
         usuario.Nome = atualizado.Nome;
         usuario.Email = atualizado.Email;
         usuario.Telefone = atualizado.Telefone;
@@ -45,9 +45,9 @@ public class Usuario
         return "Usuário atualizado com sucesso";
     }
 
-    public string deletarUsuario(BibliotecaContext banco, int id)
+    public string Deletar(BibliotecaContext banco, int id)
     {
-        var usuario = banco.usuarios.Find(id);
+        var usuario = banco.Usuarios.Find(id);
         banco.Remove(usuario);
         banco.SaveChanges();
         return "Usuario deletado";

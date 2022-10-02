@@ -28,17 +28,26 @@ class Program
     {
         var builder = WebApplication.CreateBuilder(args);
         
-        var connectionString = builder.Configuration.GetConnectionString("Livros") ?? "Data Source=Livros.db";
+        var connectionString = builder.Configuration.GetConnectionString("Biblioteca") ?? "Data Source=Biblioteca.db";
         builder.Services.AddSqlite<BibliotecaContext>(connectionString);
         var app = builder.Build();
 
-
+        
         // LIVRO
-        Livro novo = new Livro();
-        app.MapGet  ("/livros", novo.Listar);
-        app.MapPost ("/livros/cadastrar", novo.Cadastrar);
-        app.MapGet  ("/livros/deletar/{id}", novo.Excluir);
-        app.MapPost ("/livros/atualizar{id}", novo.Atualizar);
+        Livro newBook = new Livro();
+        app.MapGet  ("/books", newBook.Listar);
+        app.MapGet  ("/book/{id}", newBook.ListarId);
+        app.MapPost ("/cadastrar/book", newBook.Cadastrar);
+        app.MapGet  ("/deletar/book/{id}", newBook.Deletar);
+        //app.MapPost ("/atualizar/book/{id}", newBook.Atualizar);
+        app.MapPut("/atualizar/book/{id}", newBook.Atualizar);
+
+        // USUÁRIO
+        Usuario newUser = new Usuario();
+        app.MapGet  ("/user", newUser.Listar);
+        app.MapPost ("/cadastrar/user", newUser.Cadastrar);
+        app.MapGet  ("/deletar/user/{id}", newUser.Deletar);
+        app.MapPost ("/atualizar/user/{id}", newUser.Atualizar);
 
         app.Run();
     }
