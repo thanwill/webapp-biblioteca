@@ -38,10 +38,11 @@ class Program
 
         // Empréstimo
         Emprestimo emprestimo = new Emprestimo();
-        // app.MapGet("/emprestimos", emprestimo.Listar);
-        // app.MapPost("/emprestimos", emprestimo.Cadastrar);
-        // app.MapPut("/emprestimos", emprestimo.Atualizar);
-        // app.MapDelete("/emprestimos", emprestimo.Excluir);
+        app.MapGet("/emprestimos", emprestimo.Listar);
+        app.MapGet("/emprestimos/{id}", emprestimo.Buscar);
+        app.MapPost("/emprestimos", emprestimo.Cadastrar);
+        app.MapPut("/emprestimos", emprestimo.Atualizar);
+        app.MapDelete("/emprestimos/{id}", emprestimo.Excluir);
 
         app.Run();
     }
