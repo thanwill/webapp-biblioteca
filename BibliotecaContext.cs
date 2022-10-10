@@ -17,11 +17,7 @@ public class BibliotecaContext: DbContext
     //Se as propriedades DbSet<TEntity> tiverem um setter público, elas serão inicializadas automaticamente quando a instância do contexto derivado for criada.
 
     // Cria a tabela Livros. 
-    public DbSet<Livro> Livro { get; set; } = null!;
-    public DbSet<Editora> Editora { get; set; } = null!;
-
-    // Cria a tabela Editora. 
-    public DbSet<Editora> Editoras { get; set; } = null!;
+    public DbSet<Livro> Livros { get; set; } = null!;
 
     // Cria a tabela Usuarios
     public DbSet<Usuario> Usuarios { get; set; } = null!;
