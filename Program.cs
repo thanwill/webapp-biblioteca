@@ -31,28 +31,26 @@ class Program
 
         // LIVRO
         Livro livro = new Livro();
-        app.MapGet("/books", livro.Listar);
-        app.MapGet("/book/{id}", livro.ListarId);
-        app.MapPost("/cadastrar/book", livro.Cadastrar);
-        app.MapGet("/deletar/book/{id}", livro.Deletar);
-        //app.MapPost ("/atualizar/book/{id}", newBook.Atualizar);
+        app.MapGet("/livro", livro.Listar);
+        app.MapGet("/livro/{id}", livro.ListarId);
+        app.MapPut("/livro", livro.Cadastrar);
+        app.MapDelete("/livro", livro.Deletar);
         app.MapPut("/atualizar/book/{id}", livro.Atualizar);
 
         // Usuário
         Usuario usuario = new Usuario();
         app.MapGet("/usuario", usuario.Listar);
-        app.MapPost("/usuario", usuario.ListarId);
-        app.MapPut("/usuario", usuario.Cadastrar);
+        app.MapGet("/usuario/{id}", usuario.Buscar);
+        app.MapPost("/usuario", usuario.Cadastrar);
+        app.MapPut("/usuario", usuario.Atualizar);
         app.MapDelete("/usuario", usuario.Deletar);
-        app.MapPost("/atualizar/usuario/{id}", usuario.Atualizar);
 
         // Empréstimo
         Emprestimo emprestimo = new Emprestimo();
-        app.MapGet("/emprestimos", emprestimo.Listar);
-        app.MapPost("/emprestimos", emprestimo.Buscar);
-        app.MapPost("/emprestimos", emprestimo.Cadastrar);
-        app.MapPut("/emprestimos", emprestimo.Atualizar);
-        app.MapDelete("/emprestimos/{id}", emprestimo.Excluir);
+        app.MapGet("/emprestimo", emprestimo.Listar);
+        app.MapGet("/emprestimo/{id}", emprestimo.Buscar);
+        app.MapPost("/emprestimo", emprestimo.Cadastrar);
+        app.MapPut("/emprestimo", emprestimo.Atualizar);
 
         app.Run();
     }

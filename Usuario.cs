@@ -1,9 +1,4 @@
-﻿using System;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-
+﻿using Newtonsoft.Json
 namespace Biblioteca;
 
 public class Usuario
@@ -14,17 +9,17 @@ public class Usuario
     public string Email { get; set; }
     public string Telefone { get; set; }
 
-    public List<Usuario> Listar(BibliotecaContext banco)
+    public string Listar(BibliotecaContext banco)
     {
-        return banco.Usuarios.ToList();
+        return JsonConvert.SerializeObject(banco.Usuarios.ToList(), Formatting.Indented);
     }
 
-    public Usuario ListarId(BibliotecaContext banco, ListarId listarId)
+    public string Buscar(BibliotecaContext banco, int id)
     {
-        return banco.Usuarios.Find(listarId.Id);
+        return JsonConvert.SerializeObject(banco.Usuarios.Find(id));
     }
 
-    public string Cadastrar(BibliotecaContext banco, Usuario usuario)
+    public int Cadastrar(BibliotecaContext banco, Usuario usuario)
     {
         int cont = 0;
 

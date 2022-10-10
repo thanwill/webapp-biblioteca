@@ -49,7 +49,7 @@ public class Livro
         return banco.SaveChanges();
     }
 
-    public int Atualizar(BibliotecaContext banco, Atualizar atualizar)
+    public int Atualizar(BibliotecaContext banco, EmprestimoAtualizar atualizar)
     {
         var livro = banco.Livros.Find(atualizar.Id);
 
@@ -69,7 +69,7 @@ public class Deletar
     public int Id { get; set; }
 }
 
-public class Atualizar
+public class EmprestimoAtualizar
 {
     public int Id { get; set; }
     public Livro Livro { get; set; }
