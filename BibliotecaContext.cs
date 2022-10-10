@@ -19,6 +19,9 @@ public class BibliotecaContext: DbContext
     // Cria a tabela Livros. 
     public DbSet<Livro> Livros { get; set; } = null!;
 
+    // Cria a tabela Editora. 
+    public DbSet<Editora> Editoras { get; set; } = null!;
+
     // Cria a tabela Usuarios
     public DbSet<Usuario> Usuarios { get; set; } = null!;
 

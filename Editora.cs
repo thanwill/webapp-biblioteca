@@ -8,19 +8,17 @@ using Newtonsoft.Json;
 
 namespace Biblioteca;
 
-public class Livro
+public class Editora
 {
     public int id { get; set; }
     public string Titulo { get; set; }
-    public string Autor { get; set; }
-    public int Lancamento { get; set; }
-    public int Estoque { get; set; } = 10;
-
+    
     // passa como parâmetro o banco, e realiza a listagem da tabela livros com o Json formatado usando Newtonsoft.Json.
     public string Listar(BibliotecaContext banco)
     {
-        return JsonConvert.SerializeObject(banco.Livros.ToList(), Formatting.Indented);
+        return JsonConvert.SerializeObject(banco.Editoras.ToList(), Formatting.Indented);
     }
+
     public string ListarId(BibliotecaContext banco, int id)
     {
         var livro = banco.Livros.Find(id);
@@ -104,6 +102,7 @@ public class Livro
 
             banco.SaveChanges();
             return "Usuário atualizado com sucesso";
+            return "Livro não encontrado!";
         }        
     }
        

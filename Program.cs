@@ -34,20 +34,14 @@ class Program
 
         
         // LIVRO
-        Livro newBook = new Livro();
-        app.MapGet  ("/books", newBook.Listar);
-        app.MapGet  ("/book/{id}", newBook.ListarId);
-        app.MapPost ("/cadastrar/book", newBook.Cadastrar);
-        app.MapGet  ("/deletar/book/{id}", newBook.Deletar);
+        Livro livro = new Livro();
+        app.MapGet  ("/livros", livro.Listar);
+        app.MapGet  ("/livros/{id}", livro.ListarId);
+        app.MapPost ("/cadastrar/livros", livro.Cadastrar);
+        app.MapDelete("/deletar/livros/{id}", livro.Deletar);
         //app.MapPost ("/atualizar/book/{id}", newBook.Atualizar);
-        app.MapPut("/atualizar/book/{id}", newBook.Atualizar);
-
-        // USUÁRIO
-        Usuario newUser = new Usuario();
-        app.MapGet  ("/user", newUser.Listar);
-        app.MapPost ("/cadastrar/user", newUser.Cadastrar);
-        app.MapGet  ("/deletar/user/{id}", newUser.Deletar);
-        app.MapPost ("/atualizar/user/{id}", newUser.Atualizar);
+        app.MapPut("/atualizar/livros/{id}", livro.Atualizar);
+       
 
         app.Run();
     }
