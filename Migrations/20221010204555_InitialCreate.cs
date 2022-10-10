@@ -9,7 +9,7 @@ namespace Biblioteca.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Livros",
+                name: "Livro",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -21,11 +21,11 @@ namespace Biblioteca.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Livros", x => x.id);
+                    table.PrimaryKey("PK_Livro", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "usuarios",
+                name: "Usuarios",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -37,17 +37,17 @@ namespace Biblioteca.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_usuarios", x => x.Id);
+                    table.PrimaryKey("PK_Usuarios", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Livros");
+                name: "Livro");
 
             migrationBuilder.DropTable(
-                name: "usuarios");
+                name: "Usuarios");
         }
     }
 }

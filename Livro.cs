@@ -104,7 +104,6 @@ public class Livro
 
             banco.SaveChanges();
             return "Usuário atualizado com sucesso";
-            return "Livro não encontrado!";
         }        
     }
        
