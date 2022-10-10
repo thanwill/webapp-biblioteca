@@ -21,24 +21,19 @@ public class Usuario
 
     public int Cadastrar(BibliotecaContext banco, Usuario usuario)
     {
-        int cont = 0;
-
         bool cadExistente = Validar(banco, usuario);
-
         if (cadExistente == false)
         {
-            usuario.Id = cont++;
             banco.Usuarios.Add(usuario);
-            banco.SaveChanges();
-            return "Usuário cadastrado com sucesso";
         }
         else
         {
-            return "Este usuário já foi cadastrado anteriormente";
+            throw new Exception("Este usuário já foi cadastrado anteriormente");
         }
+        return banco.SaveChanges();
     }
 
-    public string Atualizar(BibliotecaContext banco, Usuario atualizado, int id)
+    public int Atualizar(BibliotecaContext banco, Usuario atualizado, int id)
     {
         bool mailExistente = ValidarAtt(banco, atualizado, id);
 
@@ -48,9 +43,7 @@ public class Usuario
             usuario.Nome = atualizado.Nome;
             usuario.Email = atualizado.Email;
             usuario.Telefone = atualizado.Telefone;
-
-            banco.SaveChanges();
-            return "Usuário atualizado com sucesso";
+            return banco.SaveChanges();
         }
         else
         {
@@ -75,7 +68,6 @@ public class Usuario
     public bool Validar(BibliotecaContext banco, Usuario usuario)
     {
         bool cadExistente = false;
-
         foreach (var busca in banco.Usuarios)
         {
             if (busca.CPF == usuario.CPF || busca.Email == usuario.Email)
@@ -92,8 +84,7 @@ public class Usuario
     {
         var user = banco.Usuarios.Find(id);
         string mail = user.Email;
-        user.Email = "@gmail.com";
-        banco.SaveChanges();
+        user.Email = "";
         bool cadExistente = false;
 
         foreach (var busca in banco.Usuarios)
@@ -101,7 +92,6 @@ public class Usuario
             if (busca.Email == usuario.Email)
             {
                 user.Email = mail;
-                banco.SaveChanges();
                 cadExistente = true;
                 break;
             }
