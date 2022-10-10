@@ -13,33 +13,72 @@ public class Emprestimo
     public Livro Livro { get; set; }
     public Usuario Usuario { get; set; }
 
-    public Emprestimo()
-    {
-        Inicio = new DateTime();
-    }
-
     public string Listar(BibliotecaContext banco)
     {
-        return JsonConvert.SerializeObject(banco.Livros.ToList(), Formatting.Indented);
+        return JsonConvert.SerializeObject
+            (
+                banco.Livros.ToList(),
+                Formatting.Indented
+            );
     }
 
-    public string Buscar(BibliotecaContext banco, int id)
+    public string Buscar(BibliotecaContext banco, Buscar buscar)
     {
-        return JsonConvert.SerializeObject(banco.Emprestimos.Find(id), Formatting.Indented);
+        return JsonConvert.SerializeObject
+        (
+            banco.Emprestimos
+                .Find(buscar.Id), Formatting.Indented
+        );
     }
 
-    public void Cadastrar(BibliotecaContext banco, int usuarioId, int livroId, int dias)
+    public int Cadastrar(BibliotecaContext banco, Cadastrar cadastrar)
     {
         Emprestimo emprestimo = new Emprestimo();
         emprestimo.Inicio = DateTime.Now;
-        emprestimo.Devolucao = emprestimo.Inicio.AddDays(dias);
-        emprestimo.Livro = banco.Livros.Find(livroId);
-        emprestimo.Usuario = banco.Usuarios.Find(usuarioId);
-            
+        emprestimo.Devolucao = emprestimo.Inicio
+            .AddDays(
+                cadastrar.Periodo
+            );
+        emprestimo.Usuario = banco.Usuarios
+            .Find(
+                cadastrar.Usuario
+            );
+        emprestimo.Livro = banco.Livros
+            .Find(
+                cadastrar.Livro
+            );
+
         banco.Emprestimos.Add(emprestimo);
+        return banco.SaveChanges();
     }
 
-    public void Atualizar(BibliotecaContext banco, int id) { }
+    public void Atualizar(BibliotecaContext banco, Buscar buscar)
+    {
+        Emprestimo emprestimo = banco.Emprestimos.Find(buscar.Id)
+        if (emprestimo != null)
+        {
+
+        }
+        else
+        {
+            throw new Exception("Emprestimo não existe.");
+        }
+
+    }
 
     public void Excluir() { }
 }
+
+public class Cadastrar
+{
+    public int Usuario { get; set; }
+    public int Livro { get; set; }
+    public int Periodo { get; set; }
+}
+
+public class Buscar
+{
+    public int Id { get; set; }
+}
+
+

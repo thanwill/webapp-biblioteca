@@ -1,16 +1,10 @@
-using System;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
-
 
 namespace Biblioteca;
 
 public class Livro
 {
-    public int id { get; set; }
+    public int Id { get; set; }
     public string Titulo { get; set; }
     public string Autor { get; set; }
     public int Lancamento { get; set; }
@@ -43,69 +37,40 @@ public class Livro
      */
 
 
-    public string Cadastrar(BibliotecaContext banco, Livro novo)
+    public int Cadastrar(BibliotecaContext banco, Livro novo)
     {
-        Random rand = new Random();
-        novo.id = rand.Next(100);
-
-        var livro = banco.Livros.Find(novo.id);
-
-        if(!(livro == null))
-        {
-            while(novo.id == livro.id)
-            {
-                novo.id = rand.Next(100);
-                // realiza alteração do ID até achar algum disponível.                
-            }
-            banco.Livros.Add(novo);
-            banco.SaveChanges();
-        }
-        else
-        {
-            banco.Livros.Add(novo);
-            banco.SaveChanges();
-        }
-        return "O livro: " + novo.Titulo + ", foi cadastrado com sucesso!";
-        // Atenção: ao cadastrar livro, não use id ou estoque no Body. Eles são implementados automaticamente.
-        // Precisa fazer a validação de IDs iguais.
-
+        banco.Livros.Add(novo);
+        return banco.SaveChanges();
     }
 
-    public string Deletar(BibliotecaContext banco, int id)
+    public int Deletar(BibliotecaContext banco, Deletar deletar)
     {
-
-        var livro = banco.Livros.Find(id);
-        if(livro == null)
-        {
-            return "Não encontrado.";
-        }
-        else
-        {
-            banco.Livros.Remove(livro);
-            banco.SaveChanges();
-            return "Excluido com sucesso!";
-        }
-    }    
-
-    public string Atualizar(BibliotecaContext banco, Livro atualizado, int id)
-    {
-
-        var livro = banco.Livros.Find(id);
-
-        if(livro == null)
-        {
-            return "Não encontrado.";
-        }
-        else
-        {
-            livro.Titulo = atualizado.Titulo;
-            livro.Autor = atualizado.Autor;
-            livro.Lancamento = atualizado.Lancamento;
-
-            banco.SaveChanges();
-            return "Usuário atualizado com sucesso";
-            return "Livro não encontrado!";
-        }        
+        banco.Livros.Remove(banco.Livros.Find(deletar.Id));
+        return banco.SaveChanges();
     }
-       
+
+    public int Atualizar(BibliotecaContext banco, Atualizar atualizar)
+    {
+        var livro = banco.Livros.Find(atualizar.Id);
+
+        if (livro == null)
+            throw new Exception("Não encontrado.");
+
+        livro.Titulo = atualizar.Livro.Titulo;
+        livro.Autor = atualizar.Livro.Autor;
+        livro.Lancamento = atualizar.Livro.Lancamento;
+
+        return banco.SaveChanges();
+    }
+}
+
+public class Deletar
+{
+    public int Id { get; set; }
+}
+
+public class Atualizar
+{
+    public int Id { get; set; }
+    public Livro Livro { get; set; }
 }
