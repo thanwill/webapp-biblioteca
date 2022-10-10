@@ -19,11 +19,11 @@ public class Livro
     // passa como parâmetro o banco, e realiza a listagem da tabela livros com o Json formatado usando Newtonsoft.Json.
     public string Listar(BibliotecaContext banco)
     {
-        return JsonConvert.SerializeObject(banco.Livros.ToList(), Formatting.Indented);
+        return JsonConvert.SerializeObject(banco.Livro.ToList(), Formatting.Indented);
     }
     public string ListarId(BibliotecaContext banco, int id)
     {
-        var livro = banco.Livros.Find(id);
+        var livro = banco.Livro.Find(id);
 
         if (livro == null)
         {
@@ -48,7 +48,7 @@ public class Livro
         Random rand = new Random();
         novo.id = rand.Next(100);
 
-        var livro = banco.Livros.Find(novo.id);
+        var livro = banco.Editora.Find(novo.id);
 
         if(!(livro == null))
         {
@@ -57,12 +57,12 @@ public class Livro
                 novo.id = rand.Next(100);
                 // realiza alteração do ID até achar algum disponível.                
             }
-            banco.Livros.Add(novo);
+            banco.Editora.Add(novo);
             banco.SaveChanges();
         }
         else
         {
-            banco.Livros.Add(novo);
+            banco.Editora.Add(novo);
             banco.SaveChanges();
         }
         return "O livro: " + novo.Titulo + ", foi cadastrado com sucesso!";
@@ -74,14 +74,14 @@ public class Livro
     public string Deletar(BibliotecaContext banco, int id)
     {
 
-        var livro = banco.Livros.Find(id);
+        var livro = banco.Editora.Find(id);
         if(livro == null)
         {
             return "Não encontrado.";
         }
         else
         {
-            banco.Livros.Remove(livro);
+            banco.Editora.Remove(livro);
             banco.SaveChanges();
             return "Excluido com sucesso!";
         }
@@ -90,7 +90,7 @@ public class Livro
     public string Atualizar(BibliotecaContext banco, Livro atualizado, int id)
     {
 
-        var livro = banco.Livros.Find(id);
+        var livro = banco.Editora.Find(id);
 
         if(livro == null)
         {

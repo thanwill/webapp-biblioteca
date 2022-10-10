@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
@@ -107,3 +108,27 @@ public class Editora
     }
        
 }
+=======
+﻿using System;
+using Newtonsoft.Json;
+
+namespace Biblioteca;
+
+public class Editora
+{
+    
+    public int id { get; set; }
+    public string nome { get; set; }
+    public float receita { get; set; }
+    public int fundacao { get; set; }
+    public string CEO { get; set; }
+    public string sede { get; set; }
+
+    // passa como parâmetro o banco, e realiza a listagem da tabela livros com o Json formatado usando Newtonsoft.Json.
+    public string Listar(BibliotecaContext banco)
+    {
+        return JsonConvert.SerializeObject(banco.Editora.ToList(), Formatting.Indented);
+    }
+}
+
+>>>>>>> Stashed changes
