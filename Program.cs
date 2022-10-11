@@ -33,7 +33,7 @@ class Program
         Livro livro = new Livro();
         app.MapGet("/livro", livro.Listar);
         app.MapGet("/livro/{id}", livro.ListarId);
-        app.MapPut("/livro", livro.Cadastrar);
+        app.MapPost("/livro", livro.Cadastrar);
         app.MapDelete("/livro/{id}", livro.Deletar);
         app.MapPut("/atualizar/book/{id}", livro.Atualizar);
 
