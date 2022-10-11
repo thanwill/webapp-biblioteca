@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Biblioteca.Migrations
 {
     [DbContext(typeof(BibliotecaContext))]
-    [Migration("20220928002343_InitialCreate")]
+    [Migration("20221010204555_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,7 +40,7 @@ namespace Biblioteca.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("Livros");
+                    b.ToTable("Livro");
                 });
 
             modelBuilder.Entity("Biblioteca.Usuario", b =>
@@ -63,7 +63,7 @@ namespace Biblioteca.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("usuarios");
+                    b.ToTable("Usuarios");
                 });
 #pragma warning restore 612, 618
         }

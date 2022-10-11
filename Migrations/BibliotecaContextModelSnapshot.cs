@@ -75,7 +75,7 @@ namespace Biblioteca.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("Livros");
+                    b.ToTable("Livro");
                 });
 
             modelBuilder.Entity("Biblioteca.Usuario", b =>
@@ -98,7 +98,7 @@ namespace Biblioteca.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("usuarios");
+                    b.ToTable("Usuarios");
                 });
 
             modelBuilder.Entity("Biblioteca.Emprestimo", b =>
