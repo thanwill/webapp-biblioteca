@@ -35,27 +35,27 @@ namespace Biblioteca.Migrations
                     b.Property<DateTime>("Inicio")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Livroid")
+                    b.Property<int>("LivroId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("Status")
+                    b.Property<int>("Status")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Usuarioid")
+                    b.Property<int>("UsuarioId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("id");
 
-                    b.HasIndex("Livroid");
+                    b.HasIndex("LivroId");
 
-                    b.HasIndex("Usuarioid");
+                    b.HasIndex("UsuarioId");
 
                     b.ToTable("Emprestimos");
                 });
 
             modelBuilder.Entity("Biblioteca.Livro", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -73,9 +73,9 @@ namespace Biblioteca.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
-                    b.ToTable("Livro");
+                    b.ToTable("Livros");
                 });
 
             modelBuilder.Entity("Biblioteca.Usuario", b =>
@@ -85,15 +85,19 @@ namespace Biblioteca.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("CPF")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Nome")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Telefone")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -105,13 +109,13 @@ namespace Biblioteca.Migrations
                 {
                     b.HasOne("Biblioteca.Livro", "Livro")
                         .WithMany()
-                        .HasForeignKey("Livroid")
+                        .HasForeignKey("LivroId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Biblioteca.Usuario", "Usuario")
                         .WithMany()
-                        .HasForeignKey("Usuarioid")
+                        .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

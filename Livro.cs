@@ -43,9 +43,9 @@ public class Livro
         return banco.SaveChanges();
     }
 
-    public int Deletar(BibliotecaContext banco, Deletar deletar)
+    public int Deletar(BibliotecaContext banco, int id)
     {
-        banco.Livros.Remove(banco.Livros.Find(deletar.Id));
+        banco.Livros.Remove(banco.Livros.Find(id));
         return banco.SaveChanges();
     }
 
@@ -62,11 +62,6 @@ public class Livro
 
         return banco.SaveChanges();
     }
-}
-
-public class Deletar
-{
-    public int Id { get; set; }
 }
 
 public class LivroAtualizar

@@ -34,7 +34,7 @@ class Program
         app.MapGet("/livro", livro.Listar);
         app.MapGet("/livro/{id}", livro.ListarId);
         app.MapPut("/livro", livro.Cadastrar);
-        app.MapDelete("/livro", livro.Deletar);
+        app.MapDelete("/livro/{id}", livro.Deletar);
         app.MapPut("/atualizar/book/{id}", livro.Atualizar);
 
         // Usuário

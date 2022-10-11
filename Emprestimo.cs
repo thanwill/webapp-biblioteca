@@ -17,7 +17,7 @@ public class Emprestimo
     {
         return JsonConvert.SerializeObject
             (
-                banco.Livros
+                banco.Emprestimos
                     .ToList(),
                     Formatting.Indented
             );
