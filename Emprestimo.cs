@@ -58,8 +58,6 @@ public class Emprestimo
         Emprestimo emprestimo = banco.Emprestimos.Find(atualizar.EmprestimoId);
         if (emprestimo != null)
         {
-            emprestimo.Status = atualizar.Emprestimo.Status;
-            emprestimo.Atrasos = atualizar.Emprestimo.Atrasos;
             emprestimo.Devolucao = emprestimo.Devolucao.AddDays(atualizar.Dias);
             return banco.SaveChanges();
         }
@@ -86,5 +84,4 @@ public class EmprestimoAtualizar
 {
     public int EmprestimoId { get; set; }
     public int Dias { get; set; }
-    public Emprestimo Emprestimo { get; set; }
 }
