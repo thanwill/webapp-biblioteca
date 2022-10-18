@@ -14,7 +14,11 @@
 	dotnet ef migrations add InitialCreate
 	dotnet ef database update
 */
+using System;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Biblioteca;
 
@@ -24,23 +28,23 @@ class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        var connectionString = builder.Configuration.GetConnectionString("biblioteca") ?? "Data Source=biblioteca.db";
+        var connectionString = builder.Configuration.GetConnectionString("Biblioteca") ?? "Data Source=Biblioteca.db";
         builder.Services.AddSqlite<BibliotecaContext>(connectionString);
         var app = builder.Build();
 
 
-        // LIVRO
+        // Livro
         Livro livro = new Livro();
-        app.MapGet("/livro", livro.Listar);
-        app.MapGet("/livro/{id}", livro.ListarId);
-        app.MapPost("/livro", livro.Cadastrar);
-        app.MapDelete("/livro/{id}", livro.Deletar);
-        app.MapPut("/atualizar/book/{id}", livro.Atualizar);
+        app.MapGet("/livros", livro.Listar);
+        app.MapGet("/livros/{id}", livro.ListarId);
+        app.MapPost("/livros", livro.Cadastrar);
+        app.MapDelete("/livros/{id}", livro.Deletar);
+        app.MapPut("/livros/{id}", livro.Atualizar);
 
         // Usuário
         Usuario usuario = new Usuario();
         app.MapGet("/usuario", usuario.Listar);
-        app.MapGet("/usuario/{id}", usuario.Buscar);
+        //app.MapGet("/usuario/{id}", usuario.Buscar);
         app.MapPost("/usuario", usuario.Cadastrar);
         app.MapPut("/usuario", usuario.Atualizar);
         app.MapDelete("/usuario", usuario.Deletar);
