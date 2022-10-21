@@ -1,0 +1,12 @@
+div#livros{
+    width: auto;
+    height: 100%;
+    text-align: left;
+}
+
+div#usuarios{
+    width: auto;
+    height: 100%;
+    text-align: justify;
+}
+
