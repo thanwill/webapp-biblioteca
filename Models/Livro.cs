@@ -30,13 +30,6 @@ public class Livro
         }
     }
 
-    /*
-        A função Cadastrar gera um id randomico,
-        a Validar verifica se esse id já foi cadastrado antes e entrega outro em caso posítivo,
-        ou permanece o primeiro gerado em caso negativo.
-     */
-
-
     public int Cadastrar(BibliotecaContext banco, Livro novo)
     {
         banco.Livros.Add(novo);
