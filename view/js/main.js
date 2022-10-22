@@ -6,7 +6,3 @@ $(document).ready(function () {
         toolbarEnabled: true
     });
 });
-
-function escrever() {
-    alert("asd");
-}
