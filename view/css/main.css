@@ -1,12 +1,23 @@
-div#livros{
-    width: auto;
-    height: 100%;
+main{
+    min-height: 70vh;
+    background-color: #F2DDB6;
+}
+
+nav, .page-footer{
+    background-color: #a87252;    
+}
+
+.collection{
+    border-radius: 5px;
+    border: none;
     text-align: left;
 }
-
-div#usuarios{
-    width: auto;
-    height: 100%;
-    text-align: justify;
+a{
+    color: #fff;
 }
 
+@media screen and ( max-width:400 ) {
+    body{
+        background-color: black;
+    }
+}
