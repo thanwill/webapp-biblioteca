@@ -6,3 +6,9 @@ $(document).ready(function () {
         toolbarEnabled: true
     });
 });
+
+var visualizar = document.querySelector('#see-1');
+
+visualizar = () => {
+    
+}
