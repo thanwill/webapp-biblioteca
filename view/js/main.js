@@ -5,4 +5,8 @@ $(document).ready(function () {
     $('.fixed-action-btn').floatingActionButton({
         toolbarEnabled: true
     });
+    $('.datepicker').datepicker({
+        format: 'dd mmm,  yyyy',
+        showClearBtn: false
+    });
 });

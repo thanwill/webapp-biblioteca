@@ -1,23 +1,22 @@
-main{
-    min-height: 70vh;
-    background-color: #F2DDB6;
-}
-
-nav, .page-footer{
-    background-color: #a87252;    
-}
-
-.collection{
-    border-radius: 5px;
-    border: none;
+.collection > li{
     text-align: left;
 }
-a{
-    color: #fff;
+.modal-content{
+    border-radius: 30px;
+}
+.erro-device{
+    display: none;
+}
+@media only screen and (min-width: 540px) {
+  .erro-device{
+    display: inline;    
+  }
+  main,
+  footer, nav {
+    display: none;
+  }
 }
 
-@media screen and ( max-width:400 ) {
-    body{
-        background-color: black;
-    }
+a {
+  color: #fff;
 }
