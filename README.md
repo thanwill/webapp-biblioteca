@@ -2,7 +2,7 @@ Curitiba, 2022/2 <br>
 Universidade Positivo<br>
 Análise de Sistemas/Sistemas de Informação/Engenharia de Software<br>
 Desenvolvimento de Software Visual<br>
-Prof. Jean Diogo (<jean.diogo@up.edu.br>)<br>
+Your site is live at https://thanwill.github.io/up-webapi-biblioteca/
 
 ## Especificação do Trabalho
 ### API Web

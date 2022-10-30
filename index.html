@@ -127,6 +127,85 @@
         <div id="pg-lend" class="col s12">
             <div class="container center">
                 <div id="emprestimos">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="container center">
+            <!-- Modal Structure -->
+            <div id="forms-book" class="modal">
+                <div class="modal-content">
+                    <h4>livro</h4>
+                    <form class="">
+                        <div class="row">
+                            <div class="input-field col s12 ">
+                                <input id="book_title" type="text" class="validate">
+                                <label for="book_title">Título</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 ">
+                                <input id="autor_name" type="text" class="validate">
+                                <label for="autor_name">Autor</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input placeholder="Lançamento" type="text" class="datepicker">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <p class="range-field">
+                                    <p class="left">Quantidade em estoque</p>
+                                    <input type="range" id="test5" value="10" default="10" min="0" max="10" />
+                                </p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cadastrar</a>
+                </div>
+            </div>
+            <div id="forms-user" class="modal">
+                <div class="modal-content">
+                    <h4>usuário</h4>
+                    <form class="" style="padding-top: 30px;">
+                        <div class="row">
+
+                            <div class="input-field col s12 ">
+                                <input id="name" type="text" class="validate">
+                                <label for="name">Nome</label>
+                            </div>
+
+                            <div class="input-field col s12">
+                                <input id="last_name" type="text" class="validate">
+                                <label for="last_name">Sobrenome</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="email" type="email" class="validate">
+                                <label for="email">E-mail</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="icon_telephone" type="tel" class="validate">
+                                <label for="icon_telephone">Telefone</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input placeholder="Data de ascimento" type="text" class="datepicker">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cadastrar</a>
                 </div>
             </div>
         </div>
@@ -348,7 +427,6 @@
                             <label for="autor_name">Autor</label>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="input-field col s12">
                             <input placeholder="Lançamento" type="text" class="datepicker">
