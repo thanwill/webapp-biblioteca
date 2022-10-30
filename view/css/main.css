@@ -1,26 +1,15 @@
-@media and (min-width: 700) {
-  main {
-    min-height: 90vh;
-    background-color: #f2ddb6;
-  }
-
-  nav,
-  .page-footer {
-    background-color: #a87252;
-  }
-
-  .collection {
-    border-radius: 5px;
-    border: none;
+.collection > li{
     text-align: left;
-  }
 }
-@media only screen and (min-width: 600px) {
-  body {
-    background-repeat: no-repeat;
-    background-image: url(/view/img/humaaans-sitting-bg.png);
-    background-position: top center;
-    
+.modal-content{
+    border-radius: 30px;
+}
+.erro-device{
+    display: none;
+}
+@media only screen and (min-width: 540px) {
+  .erro-device{
+    display: inline;    
   }
   main,
   footer, nav {
