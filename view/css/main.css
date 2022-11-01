@@ -1,3 +1,6 @@
+body{
+  background-color: #B0D9D5;
+}
 .collection > li{
     text-align: left;
 }
@@ -7,9 +10,28 @@
 .erro-device{
     display: none;
 }
+.nav-extended{
+  background-color:#0B8C75;
+}
+#search{
+  background-color: #0B8C75;
+}
+a {
+  color: #fff;
+}
+
+
+
+/* DESATIVA O LAYOUT PARA DEVICES MAIORES*/
 @media only screen and (min-width: 540px) {
   .erro-device{
-    display: inline;    
+    display: block; 
+    text-align: center;
+  }
+  #erro-img{
+    width: auto;
+    margin-top: 10vh;
+    max-height: 80vh;
   }
   main,
   footer, nav {
@@ -17,6 +39,3 @@
   }
 }
 
-a {
-  color: #fff;
-}

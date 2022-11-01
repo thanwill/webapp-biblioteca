@@ -39,12 +39,11 @@
 
     <ul class="sidenav" id="mobile-demo">
         <!-- HOME-->
-        <li><a href="home.html">Início</a></li>
-        <li><a href="index.html">Cadastros</a></li>
-        <li><a href="index.html">Equipe</a></li>
+        <li><a href="#!">Início</a></li>
     </ul>
-<!-- CORPO DO CONTEÚDO-->
+    <!-- CORPO DO CONTEÚDO-->
     <main>
+
         <div id="pg-books" class="col s12">
             <div class="container center">
                 <div id="" style="padding-top: 5vh;">
@@ -65,19 +64,13 @@
                                 </nav>
                                 <li class="collection-header">
                                     <h4>Livros</h4>
-                                </li>
+                                </li>                              
                                 <li class="collection-item grey-text">
-                                    <div>A arte de fazer acontecer<a class="secondary-content modal-trigger" href="#see-forms-book">
-                                        <i id="see-1" class="material-icons">visibility</i></a></div>
+                                    <div class="exibe-titulo">A arte de fazer acontecer<a class="secondary-content modal-trigger"
+                                            href="#see-forms-book">
+                                            <i id="see-1" class="material-icons">visibility</i></a></div>
                                 </li>
-                                <li class="collection-item grey-text">
-                                    <div>Mas o que é marketing afinal?<a  class="secondary-content modal-trigger" href="#see-forms-book">
-                                        <i id="see-2" class="material-icons ">visibility</i></a></div>
-                                </li>
-                                <li class="collection-item grey-text">
-                                    <div>Coaching e Psicanálise: Aux...<a class="secondary-content modal-trigger" href="#see-forms-book">
-                                            <i id="see-3" class="material-icons">visibility</i></a></div>
-                                </li>
+
                             </ul>
                         </div>
                     </div>
@@ -106,16 +99,16 @@
                                     <h4>Usuários</h4>
                                 </li>
                                 <li class="collection-item grey-text">
-                                    <div>Maria Gabriella<a class="secondary-content modal-trigger" href="#see-forms-user" ><i
-                                                class="material-icons">visibility</i></a></div>
+                                    <div>Maria Gabriella<a class="secondary-content modal-trigger"
+                                            href="#see-forms-user"><i class="material-icons">visibility</i></a></div>
                                 </li>
                                 <li class="collection-item grey-text">
-                                    <div>Joaquim Brásilio<a class="secondary-content modal-trigger" href="#see-forms-user"><i
-                                                class="material-icons">visibility</i></a></div>
+                                    <div>Joaquim Brásilio<a class="secondary-content modal-trigger"
+                                            href="#see-forms-user"><i class="material-icons">visibility</i></a></div>
                                 </li>
                                 <li class="collection-item grey-text">
-                                    <div>Fernanda Lopes<a class="secondary-content modal-trigger" href="#see-forms-user"><i
-                                                class="material-icons">visibility</i></a></div>
+                                    <div>Fernanda Lopes<a class="secondary-content modal-trigger"
+                                            href="#see-forms-user"><i class="material-icons">visibility</i></a></div>
                                 </li>
                             </ul>
                         </div>
@@ -127,11 +120,90 @@
         <div id="pg-lend" class="col s12">
             <div class="container center">
                 <div id="emprestimos">
+
+                </div>
+            </div>
+        </div>
+        <div class="container center">
+            <!-- Modal Structure -->
+            <div id="forms-book" class="modal">
+                <div class="modal-content">
+                    <form id="livro-form">
+                        <div class="row">
+                            <div class="input-field col s12 ">
+                                <input id="livro-titulo" type="text" class="validate">
+                                <label for="livro-titulo">Título</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 ">
+                                <input id="livro-autor" type="text" class="validate">
+                                <label for="livro-autor">Autor</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="livro-ano" placeholder="Lançamento" type="text" class="datepicker">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <p class="range-field">
+                                    <p class="left">Quantidade em estoque</p>
+                                    <input id="livro-estoque" type="range" value="10" default="10" min="0" max="10" />
+                                </p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a id="btn-cadastrar" class="modal-close waves-effect waves-green btn-flat">Cadastrar</a>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+            <div id="forms-user" class="modal">
+                <div class="modal-content">
+                    <h4>usuário</h4>
+                    <form class="" style="padding-top: 30px;">
+                        <div class="row">
+
+                            <div class="input-field col s12 ">
+                                <input id="name" type="text" class="validate">
+                                <label for="name">Nome</label>
+                            </div>
+
+                            <div class="input-field col s12">
+                                <input id="last_name" type="text" class="validate">
+                                <label for="last_name">Sobrenome</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="email" type="email" class="validate">
+                                <label for="email">E-mail</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="icon_telephone" type="tel" class="validate">
+                                <label for="icon_telephone">Telefone</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input placeholder="Data de ascimento" type="text" class="datepicker">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cadastrar</a>
                 </div>
             </div>
         </div>
         <div class="fixed-action-btn toolbar">
-            <a class="btn-floating btn-large red">
+            <a class="btn-floating btn-large">
                 <i class="large material-icons">mode_edit</i>
             </a>
             <ul>
@@ -144,11 +216,11 @@
         </div>
     </main>
     <div class="erro-device container">
-        <img src="./view/img/humaaans-sitting-bg.png" width="100%">
+        <img id="erro-img" src="./view/img/humaaans-sitting-bg.png" width="100%">
     </div>
     <!-- FORMULÁRIOS E MODAIS QUE SÃO CHAMADOS POR FUNÇÕES / CLASSES OCULTAS -->
-    <div class="container center"> 
-        <!-- FORM DE LIVROS-->       
+    <div class="container center">
+        <!-- FORM DE LIVROS-->
         <div id="forms-book" class="modal">
             <div class="modal-content">
                 <div class="row" style="padding-top: 1vh;">
@@ -200,26 +272,26 @@
                     </p>
                 </div>
                 <div class="row">
-                    <table class="grey-text striped">                
+                    <table class="grey-text striped">
                         <tbody>
-                          <tr>
-                            <td>Título</td>
-                            <td></td>
-                          </tr>
-                          <tr>
-                            <td>Autor</td>
-                            <td></td>
-                          </tr>
-                          <tr>
-                            <td>Lançamento</td>
-                            <td></td>
-                          </tr>
-                          <tr>
-                            <td>Quantidade</td>
-                            <td></td>
-                          </tr>
+                            <tr>
+                                <td>Título</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Autor</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Lançamento</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Quantidade</td>
+                                <td></td>
+                            </tr>
                         </tbody>
-                      </table>
+                    </table>
                 </div>
                 <form class="" style="display: none;">
                     <div class="row">
@@ -255,7 +327,7 @@
                 <a href="#!" class="modal-close waves-effect waves-green btn-flat">Excluir</a>
             </div>
         </div>
-        <!-- FORM DE USUÁRIOS-->       
+        <!-- FORM DE USUÁRIOS-->
         <div id="forms-user" class="modal">
             <div class="modal-content">
                 <div class="row" style="padding-top: 1vh;">
@@ -310,30 +382,30 @@
                     </p>
                 </div>
                 <div class="row">
-                    <table class="grey-text striped">                
+                    <table class="grey-text striped">
                         <tbody>
-                          <tr>
-                            <td>Nome</td>
-                            <td></td>
-                          </tr>
-                          <tr>
-                            <td>Sobrenome</td>
-                            <td></td>
-                          </tr>
-                          <tr>
-                            <td>E-mail</td>
-                            <td></td>
-                          </tr>
-                          <tr>
-                            <td>Telefone</td>
-                            <td></td>
-                          </tr>
-                          <tr>
-                            <td>Nascimento</td>
-                            <td></td>
-                          </tr>
+                            <tr>
+                                <td>Nome</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Sobrenome</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>E-mail</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Telefone</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Nascimento</td>
+                                <td></td>
+                            </tr>
                         </tbody>
-                      </table>
+                    </table>
                 </div>
                 <form class="" style="display: none;">
                     <div class="row">
@@ -348,7 +420,6 @@
                             <label for="autor_name">Autor</label>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="input-field col s12">
                             <input placeholder="Lançamento" type="text" class="datepicker">
