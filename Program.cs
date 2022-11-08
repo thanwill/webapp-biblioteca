@@ -14,11 +14,7 @@
 	dotnet ef migrations add InitialCreate
 	dotnet ef database update
 */
-using System;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Biblioteca;
 
