@@ -14,11 +14,7 @@
 	dotnet ef migrations add InitialCreate
 	dotnet ef database update
 */
-using System;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Biblioteca;
 
@@ -31,11 +27,9 @@ class Program
         var connectionString = builder.Configuration.GetConnectionString("Biblioteca") ?? "Data Source=Biblioteca.db";
         builder.Services.AddSqlite<BibliotecaContext>(connectionString);
         var app = builder.Build();
-        if (builder.Environment.IsDevelopment())
-        {
-            app.UseDeveloperExceptionPage();
-        }
-        /* Livro
+
+
+        // Livro
         Livro livro = new Livro();
         app.MapGet("/livros", livro.Listar);
         app.MapGet("/livros/{id}", livro.ListarId);
@@ -51,18 +45,13 @@ class Program
         app.MapPut("/usuario", usuario.Atualizar);
         app.MapDelete("/usuario", usuario.Deletar);
 
-         Empréstimo
+        // Empréstimo
         Emprestimo emprestimo = new Emprestimo();
         app.MapGet("/emprestimo", emprestimo.Listar);
         app.MapGet("/emprestimo/{id}", emprestimo.Buscar);
         app.MapPost("/emprestimo", emprestimo.Cadastrar);
         app.MapPut("/emprestimo", emprestimo.Atualizar);
-        */
-        app.UseDefaultFiles();
-        app.UseStaticFiles();
-        app.UseHttpsRedirection();
-        app.UseAuthorization();
-        app.MapControllers();
+
         app.Run();
     }
 }
