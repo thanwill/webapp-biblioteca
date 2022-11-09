@@ -1,41 +1,42 @@
-body{
-  background-color: #B0D9D5;
+body {
+  background-color: #b0d9d5;
 }
-.collection > li{
-    text-align: left;
+.collection > li {
+  text-align: left;
 }
-.modal-content{
-    border-radius: 30px;
+.modal-content {
+  border-radius: 30px;
 }
-.erro-device{
-    display: none;
+.erro-device {
+  display: none;
 }
-.nav-extended{
-  background-color:#0B8C75;
+.nav-extended {
+  background-color: #0b8c75;
 }
-#search{
-  background-color: #0B8C75;
+#search {
+  background-color: #0b8c75;
 }
 a {
   color: #fff;
 }
 
-
-
 /* DESATIVA O LAYOUT PARA DEVICES MAIORES*/
 @media only screen and (min-width: 540px) {
-  .erro-device{
-    display: block; 
+  body {
+    background-color: #fff;
+  }
+  .erro-device {
+    display: block;
     text-align: center;
   }
-  #erro-img{
+  #erro-img {
     width: auto;
     margin-top: 10vh;
     max-height: 80vh;
   }
   main,
-  footer, nav {
+  footer,
+  nav {
     display: none;
   }
 }
-

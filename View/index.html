@@ -1,294 +1,132 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="shortcut icon"
-      href="assets/images/open-book.png"
-      type="image/x-icon"
-    />
 
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <title>Início</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="assets/images/open-book.png" type="image/x-icon" />
 
-  <body>
-    <!--MENU-->
-    <nav class="nav-extended">
-      <div class="nav-wrapper">
-        <a href="#" class="brand-logo"></a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"
-          ><i class="material-icons">menu</i></a
-        >
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="index.html">Início</a></li>
-          <li><a href="index.html">Cadastrar</a></li>
-          <li><a href="index.html">Equipe</a></li>
-        </ul>
-      </div>
-      <div class="nav-content">
-        <!-- class="active" usar com JS para mostrar qual ppágina está ativa-->
-        <ul class="tabs tabs-transparent">
-          <li class="tab"><a href="#pg-books">Livros</a></li>
-          <li class="tab"><a href="#pg-users">Usuários</a></li>
-          <li class="tab"><a href="#pg-lend">Empréstimos</a></li>
-        </ul>
-      </div>
-    </nav>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <title>Início</title>
+</head>
 
-    <ul class="sidenav" id="mobile-demo">
-      <!-- HOME-->
-      <li><a href="#!">Início</a></li>
-    </ul>
-    <!-- CORPO DO CONTEÚDO-->
-    <main>
-      <div id="pg-books" class="col s12">
-        <div class="container center">
-          <div id="" style="padding-top: 5vh">
-            <div class="row">
-              <div class="livros col s10 offset-s1 m8 offset-m2 l6 offset-l3">
-                <ul class="collection with-header" onload="ocultarTexto()">
-                  <nav>
-                    <div class="nav-wrapper">
-                      <form>
-                        <div class="input-field">
-                          <input id="search" type="search" />
-                          <label class="label-icon" for="search"
-                            ><i class="material-icons">search</i></label
-                          >
-                          <i class="material-icons">close</i>
-                        </div>
-                      </form>
-                    </div>
-                  </nav>
-                  <li class="collection-header">
-                    <h4>Livros</h4>
-                  </li>
-                  <li class="collection-item grey-text">
-                    <div class="exibe-titulo">
-                      A arte de fazer acontecer<a
-                        class="secondary-content modal-trigger"
-                        href="#see-forms-book"
-                      >
-                        <i id="see-1" class="material-icons">visibility</i></a
-                      >
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="pg-users" class="col s12">
-        <div class="container center">
-          <div id="usuarios">
-            <div class="row" style="padding-top: 5vh">
-              <div class="col s10 offset-s1">
-                <ul class="collection with-header">
-                  <nav>
-                    <div class="nav-wrapper">
-                      <form>
-                        <div class="input-field">
-                          <input id="search" type="search" />
-                          <label class="label-icon" for="search"
-                            ><i class="material-icons">search</i></label
-                          >
-                          <i class="material-icons">close</i>
-                        </div>
-                      </form>
-                    </div>
-                  </nav>
-                  <li class="collection-header">
-                    <h4>Usuários</h4>
-                  </li>
-                  <li class="collection-item grey-text">
-                    <div>
-                      Maria Gabriella<a
-                        class="secondary-content modal-trigger"
-                        href="#see-forms-user"
-                        ><i class="material-icons">visibility</i></a
-                      >
-                    </div>
-                  </li>
-                  <li class="collection-item grey-text">
-                    <div>
-                      Joaquim Brásilio<a
-                        class="secondary-content modal-trigger"
-                        href="#see-forms-user"
-                        ><i class="material-icons">visibility</i></a
-                      >
-                    </div>
-                  </li>
-                  <li class="collection-item grey-text">
-                    <div>
-                      Fernanda Lopes<a
-                        class="secondary-content modal-trigger"
-                        href="#see-forms-user"
-                        ><i class="material-icons">visibility</i></a
-                      >
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="pg-lend" class="col s12">
-        <div class="container center">
-          <div id="emprestimos"></div>
-        </div>
-      </div>
-      <div class="container center">
-        <!-- Modal Structure -->
-        <div id="forms-book" class="modal">
-          <div class="modal-content">
-            <h4>livro</h4>
-            <form class="">
-              <div class="row">
-                <div class="input-field col s12">
-                  <input id="book_title" type="text" class="validate" />
-                  <label for="book_title">Título</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <input id="autor_name" type="text" class="validate" />
-                  <label for="autor_name">Autor</label>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="input-field col s12">
-                  <input
-                    placeholder="Lançamento"
-                    type="text"
-                    class="datepicker"
-                  />
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <p class="range-field"></p>
-                  <p class="left">
-                    Quantidade em estoque
-                    <input
-                      type="range"
-                      id="test5"
-                      value="10"
-                      default="10"
-                      min="0"
-                      max="10"
-                    />
-                  </p>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat"
-              >Cadastrar</a
-            >
-          </div>
-        </div>
-        <div id="forms-user" class="modal">
-          <div class="modal-content">
-            <h4>usuário</h4>
-            <form class="" style="padding-top: 30px">
-              <div class="row">
-                <div class="input-field col s12">
-                  <input id="name" type="text" class="validate" />
-                  <label for="name">Nome</label>
-                </div>
-
-                <div class="input-field col s12">
-                  <input id="last_name" type="text" class="validate" />
-                  <label for="last_name">Sobrenome</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <input id="email" type="email" class="validate" />
-                  <label for="email">E-mail</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <input id="icon_telephone" type="tel" class="validate" />
-                  <label for="icon_telephone">Telefone</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <input
-                    placeholder="Data de ascimento"
-                    type="text"
-                    class="datepicker"
-                  />
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat"
-              >Cadastrar</a
-            >
-          </div>
-        </div>
-      </div>
-      <div class="fixed-action-btn toolbar">
-        <a class="btn-floating btn-large">
-          <i class="large material-icons">mode_edit</i>
-        </a>
-        <ul>
-          <li>
-            <a class="btn-floating modal-trigger" href="#forms-book"
-              ><i class="material-icons">book</i></a
-            >
-          </li>
-          <li>
-            <a class="btn-floating modal-trigger" href="#forms-user"
-              ><i class="material-icons">person</i></a
-            >
-          </li>
-          <li>
-            <a class="btn-floating"
-              ><i class="material-icons">perm_contact_calendar</i></a
-            >
-          </li>
-        </ul>
-      </div>
-    </main>
-    <div class="erro-device container">
-      <img
-        id="erro-img"
-        src="assets/images/humaaans-sitting-bg.png"
-        width="100%"
-      />
+<body>
+  <!--MENU-->
+  <nav class="nav-extended">
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo"></a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="index.html">Cadastrar</a></li>
+        <li><a href="index.html">Equipe</a></li>
+      </ul>
     </div>
-    <!-- FORMULÁRIOS E MODAIS QUE SÃO CHAMADOS POR FUNÇÕES / CLASSES OCULTAS -->
+    <div class="nav-content">
+      <!-- class="active" usar com JS para mostrar qual ppágina está ativa-->
+      <ul class="tabs tabs-transparent">
+        <li class="tab"><a href="#pg-books">Livros</a></li>
+        <li class="tab"><a href="#pg-users">Usuários</a></li>
+        <li class="tab"><a href="#pg-lend">Empréstimos</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <ul class="sidenav" id="mobile-demo">
+    <!-- HOME-->
+    <li><a href="#!">Início</a></li>
+  </ul>
+  <!-- CORPO DO CONTEÚDO-->
+  <main>
+    <div id="pg-books" class="col s12">
+      <div class="container center">
+        <div id="" style="padding-top: 5vh">
+          <div class="row">
+            <div class="livros col s10 offset-s1 m8 offset-m2 l6 offset-l3">
+              <ul class="collection with-header" onload="ocultarTexto()">
+                <nav>
+                  <div class="nav-wrapper">
+                    <form>
+                      <div class="input-field">
+                        <input id="search" type="search" />
+                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                        <i class="material-icons">close</i>
+                      </div>
+                    </form>
+                  </div>
+                </nav>
+                <li class="collection-header">
+                  <h4>Livros</h4>
+                </li>
+                <li class="collection-item grey-text">
+                  <div class="exibe-titulo">
+                    A arte de fazer acontecer<a class="secondary-content modal-trigger" href="#see-forms-book">
+                      <i id="see-1" class="material-icons">visibility</i></a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="pg-users" class="col s12">
+      <div class="container center">
+        <div id="usuarios">
+          <div class="row" style="padding-top: 5vh">
+            <div class="usuarios col s10 offset-s1">
+              <ul class="collection with-header">
+                <nav>
+                  <div class="nav-wrapper">
+                    <form>
+                      <div class="input-field">
+                        <input id="search" type="search" />
+                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                        <i class="material-icons">close</i>
+                      </div>
+                    </form>
+                  </div>
+                </nav>
+                <li class="collection-header">
+                  <h4>Usuários</h4>
+                </li>
+                <li class="collection-item grey-text">
+                  <div>
+                    Maria Gabriella<a class="secondary-content modal-trigger" href="#see-forms-user"><i
+                        class="material-icons">visibility</i></a>
+                  </div>
+                </li>
+                <li class="collection-item grey-text">
+                  <div>
+                    Joaquim Brásilio<a class="secondary-content modal-trigger" href="#see-forms-user"><i
+                        class="material-icons">visibility</i></a>
+                  </div>
+                </li>
+                <li class="collection-item grey-text">
+                  <div>
+                    Fernanda Lopes<a class="secondary-content modal-trigger" href="#see-forms-user"><i
+                        class="material-icons">visibility</i></a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="pg-lend" class="col s12">
+      <div class="container center">
+        <div id="emprestimos"></div>
+      </div>
+    </div>
     <div class="container center">
-      <!-- FORM DE LIVROS-->
+      <!-- Modal Structure -->
       <div id="forms-book" class="modal">
         <div class="modal-content">
-          <div class="row" style="padding-top: 1vh">
-            <h4 class="grey-text left-align">Livros</h4>
-            <p class="grey-text left-align">
-              Insira as informações para realizar um novo cadastro de livro.
-            </p>
-          </div>
-
+          <h4>livro</h4>
           <form class="">
             <div class="row">
               <div class="input-field col s12">
@@ -305,11 +143,7 @@
 
             <div class="row">
               <div class="input-field col s12">
-                <input
-                  placeholder="Lançamento"
-                  type="text"
-                  class="datepicker"
-                />
+                <input placeholder="Lançamento" type="text" class="datepicker" />
               </div>
             </div>
             <div class="row">
@@ -317,127 +151,32 @@
                 <p class="range-field"></p>
                 <p class="left">
                   Quantidade em estoque
-                  <input
-                    type="range"
-                    id="test5"
-                    value="10"
-                    default="10"
-                    min="0"
-                    max="10"
-                  />
+                  <input type="range" id="test5" value="10" default="10" min="0" max="10" />
                 </p>
               </div>
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <a href="#!" class="modal-close waves-effect waves-green btn-flat"
-            >Cadastrar</a
-          >
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cadastrar</a>
         </div>
       </div>
-      <!-- TABELA DE VISUALIZAÇÃO E EDIÇÃO DOS LIVROS-->
-      <div id="see-forms-book" class="modal">
-        <div class="modal-content">
-          <div class="row" style="padding-top: 1vh">
-            <h4 class="grey-text left-align">Livro</h4>
-            <p class="grey-text left-align">
-              Consulte as informações cadastradas do livro selecionado.
-            </p>
-          </div>
-
-          <div class="row">
-            <table class="grey-text striped">
-              <tbody>
-                <tr>
-                  <td>Título</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>Autor</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>Lançamento</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>Quantidade</td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <form class="" style="display: none">
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="book_title" type="text" class="validate" />
-                <label for="book_title">Título</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="autor_name" type="text" class="validate" />
-                <label for="autor_name">Autor</label>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="input-field col s12">
-                <input
-                  placeholder="Lançamento"
-                  type="text"
-                  class="datepicker"
-                />
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <p class="range-field"></p>
-                <p class="left">
-                  Quantidade em estoque
-                  <input
-                    type="range"
-                    id="test5"
-                    value="10"
-                    default="10"
-                    min="0"
-                    max="10"
-                  />
-                </p>
-              </div>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <a href="#!" class="modal-close waves-effect waves-green btn-flat"
-            >Editar</a
-          >
-          <a href="#!" class="modal-close waves-effect waves-green btn-flat"
-            >Excluir</a
-          >
-        </div>
-      </div>
-      <!-- FORM DE USUÁRIOS-->
       <div id="forms-user" class="modal">
         <div class="modal-content">
-          <div class="row" style="padding-top: 1vh">
-            <h4 class="grey-text left-align">Usuário</h4>
-            <p class="grey-text left-align">
-              Insira as informações para realizar um novo cadastro de usuário.
-            </p>
-          </div>
-
-          <form>
+          <h4>usuário</h4>
+          <form class="" style="padding-top: 30px">
             <div class="row">
               <div class="input-field col s12">
                 <input id="name" type="text" class="validate" />
                 <label for="name">Nome</label>
               </div>
-
               <div class="input-field col s12">
                 <input id="last_name" type="text" class="validate" />
                 <label for="last_name">Sobrenome</label>
+              </div>
+              <div class="input-field col s12">
+                <input id="cpf" type="text" class="validate" />
+                <label for="cpf">CPF</label>
               </div>
             </div>
             <div class="row">
@@ -454,109 +193,264 @@
             </div>
             <div class="row">
               <div class="input-field col s12">
-                <input
-                  placeholder="Data de nascimento"
-                  type="text"
-                  id="user-birth"
-                  class="datepicker"
-                />
+                <input placeholder="Data de ascimento" type="text" class="datepicker" />
               </div>
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <a href="#!" class="modal-close waves-effect waves-green btn-flat"
-            >Cadastrar</a
-          >
-        </div>
-      </div>
-      <!-- TABELA DE VISUALIZAÇÃO E EDIÇÃO DOS USUÁRIOS-->
-      <div id="see-forms-user" class="modal">
-        <div class="modal-content">
-          <div class="row" style="padding-top: 1vh">
-            <h4 class="grey-text left-align">Usuário</h4>
-            <p class="grey-text left-align">
-              Consulte as informações cadastradas do usuário selecionado.
-            </p>
-          </div>
-
-          <div class="row">
-            <table class="grey-text striped">
-              <tbody>
-                <tr>
-                  <td>Nome</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>Sobrenome</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>E-mail</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>Telefone</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>Nascimento</td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <form class="" style="display: none">
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="book_title" type="text" class="validate" />
-                <label for="book_title">Título</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="autor_name" type="text" class="validate" />
-                <label for="autor_name">Autor</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <input
-                  placeholder="Lançamento"
-                  type="text"
-                  class="datepicker"
-                />
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <p class="range-field"></p>
-                <p class="left">
-                  Quantidade em estoque
-                  <input
-                    type="range"
-                    id="test5"
-                    value="10"
-                    default="10"
-                    min="0"
-                    max="10"
-                  />
-                </p>
-              </div>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <a href="#!" class="modal-close waves-effect waves-green btn-flat"
-            >Editar</a
-          >
-          <a href="#!" class="modal-close waves-effect waves-green btn-flat"
-            >Excluir</a
-          >
+          <a onclick="cadastrar_usuario()" class="modal-close waves-effect waves-green btn-flat">Cadastrar</a>
         </div>
       </div>
     </div>
-    <!--
+    <div class="fixed-action-btn toolbar">
+      <a class="btn-floating btn-large">
+        <i class="large material-icons">mode_edit</i>
+      </a>
+      <ul>
+        <li>
+          <a class="btn-floating modal-trigger" href="#forms-book"><i class="material-icons">book</i></a>
+        </li>
+        <li>
+          <a class="btn-floating modal-trigger" href="#forms-user"><i class="material-icons">person</i></a>
+        </li>
+        <li>
+          <a class="btn-floating"><i class="material-icons">perm_contact_calendar</i></a>
+        </li>
+      </ul>
+    </div>
+  </main>
+  <div class="erro-device container">
+    <img id="erro-img" src="assets/images/humaaans-sitting-bg.png" width="100%" />
+  </div>
+  <!-- FORMULÁRIOS E MODAIS QUE SÃO CHAMADOS POR FUNÇÕES / CLASSES OCULTAS -->
+  <div class="container center">
+    <!-- FORM DE LIVROS-->
+    <div id="forms-book" class="modal">
+      <div class="modal-content">
+        <div class="row" style="padding-top: 1vh">
+          <h4 class="grey-text left-align">Livros</h4>
+          <p class="grey-text left-align">
+            Insira as informações para realizar um novo cadastro de livro.
+          </p>
+        </div>
+
+        <form class="">
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="book_title" type="text" class="validate" />
+              <label for="book_title">Título</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="autor_name" type="text" class="validate" />
+              <label for="autor_name">Autor</label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s12">
+              <input placeholder="Lançamento" type="text" class="datepicker" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="estoque" type="number" class="validate" />
+              <label for="estoque">Quantidade</label>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cadastrar</a>
+      </div>
+    </div>
+    <!-- TABELA DE VISUALIZAÇÃO E EDIÇÃO DOS LIVROS-->
+    <div id="see-forms-book" class="modal">
+      <div class="modal-content">
+        <div class="row" style="padding-top: 1vh">
+          <h4 class="grey-text left-align">Livro</h4>
+          <p class="grey-text left-align">
+            Consulte as informações cadastradas do livro selecionado.
+          </p>
+        </div>
+
+        <div class="row">
+          <table class="grey-text striped">
+            <tbody>
+              <tr>
+                <td>Título</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Autor</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Lançamento</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Quantidade</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <form class="" style="display: none">
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="book_title" type="text" class="validate" />
+              <label for="book_title">Título</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="autor_name" type="text" class="validate" />
+              <label for="autor_name">Autor</label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s12">
+              <input placeholder="Lançamento" type="text" class="datepicker" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <p class="range-field"></p>
+              <p class="left">
+                Quantidade em estoque
+                <input type="range" id="test5" value="10" default="10" min="0" max="10" />
+              </p>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Editar</a>
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Excluir</a>
+      </div>
+    </div>
+    <!-- FORM DE USUÁRIOS-->
+    <div id="forms-user" class="modal">
+      <div class="modal-content">
+        <div class="row" style="padding-top: 1vh">
+          <h4 class="grey-text left-align">Usuário</h4>
+          <p class="grey-text left-align">
+            Insira as informações para realizar um novo cadastro de usuário.
+          </p>
+        </div>
+        <form>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="nome" type="text" class="validate" />
+              <label for="nome">Nome</label>
+            </div>
+
+            <div class="input-field col s12">
+              <input id="sobrenome" type="text" class="validate" />
+              <label for="sobrenome">Sobrenome</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="email" type="email" class="validate" />
+              <label for="email">E-mail</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="telefone" type="tel" class="validate" />
+              <label for="telefone">Telefone</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input placeholder="Data de nascimento" type="text" id="nascimento" class="datepicker" />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a onclick="cadastrar_usuario()" class="modal-close waves-effect waves-green btn-flat">Cadastrar</a>
+      </div>
+    </div>
+    <!-- TABELA DE VISUALIZAÇÃO E EDIÇÃO DOS USUÁRIOS-->
+    <div id="see-forms-user" class="modal">
+      <div class="modal-content">
+        <div class="row" style="padding-top: 1vh">
+          <h4 class="grey-text left-align">Usuário</h4>
+          <p class="grey-text left-align">
+            Consulte as informações cadastradas do usuário selecionado.
+          </p>
+        </div>
+
+        <div class="row">
+          <table class="grey-text striped">
+            <tbody>
+              <tr>
+                <td>Nome</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Sobrenome</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>E-mail</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Telefone</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Nascimento</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <form class="" style="display: none">
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="book_title" type="text" class="validate" />
+              <label for="book_title">Título</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="autor_name" type="text" class="validate" />
+              <label for="autor_name">Autor</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input placeholder="Lançamento" type="text" class="datepicker" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <p class="range-field"></p>
+              <p class="left">
+                Quantidade em estoque
+                <input type="range" id="test5" value="10" default="10" min="0" max="10" />
+              </p>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Editar</a>
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Excluir</a>
+      </div>
+    </div>
+
+  </div>
+  <!--
         RODAPÉ OCULTADO
     <footer class="page-footer body-content">
         <div class="container">
@@ -584,8 +478,10 @@
         </div>
     </footer>
 -->
-    <script src="node_modules/jquery/dist/jquery.js"></script>
-    <script src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
-    <script src="assets/js/main.js"></script>
-  </body>
+  <script src="node_modules/jquery/dist/jquery.js"></script>
+  <script src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/usuario.js"></script>
+</body>
+
 </html>
