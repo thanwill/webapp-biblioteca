@@ -1,16 +1,16 @@
-var url = 'http://localhost:3000/';
+var url = 'http://localhost:5220/';
 
 function cadastrar_livro()
 {
     let body = 
     {
         'Titulo': document.getElementById('book_title').value,
-        'Autor': document.getElementById('book_title').value,
+        'Autor': document.getElementById('autor_name').value,
         'Lancamento': document.getElementById('book-Lancamento').value,
         'Estoque': document.getElementById('test5').value
     };
 
-    fetch(url + 'Livros',
+    fetch(url + 'livros',
     {
         'method': 'POST',
         'redirect': 'follow',
