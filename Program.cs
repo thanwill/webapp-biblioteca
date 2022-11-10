@@ -27,6 +27,9 @@ class Program
         var builder = WebApplication.CreateBuilder(args);
         var connectionString = builder.Configuration.GetConnectionString("Biblioteca") ?? "Data Source=Biblioteca.db";
         builder.Services.AddSqlite<BibliotecaContext>(connectionString);
+
+        builder.Services.AddCors(options => options.AddDefaultPolicy(policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
+
         var app = builder.Build();
         
         DEPOIS */
@@ -44,6 +47,7 @@ class Program
         
         //ativa a politica de cross-origin
         app.UseCors();
+
 
         // Livro
         Livro livro = new Livro();

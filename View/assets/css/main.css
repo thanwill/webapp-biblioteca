@@ -20,7 +20,8 @@ a {
   color: #fff;
 }
 
-/* DESATIVA O LAYOUT PARA DEVICES MAIORES*/
+/* Essa propriedade vai desativar o layout para devices com tela de largura > 540*/
+
 @media only screen and (min-width: 540px) {
   body {
     background-color: #fff;
@@ -30,6 +31,7 @@ a {
     text-align: center;
   }
   #erro-img {
+
     width: auto;
     margin-top: 10vh;
     max-height: 80vh;
