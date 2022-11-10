@@ -26,7 +26,12 @@ class Program
 
         var connectionString = builder.Configuration.GetConnectionString("Biblioteca") ?? "Data Source=Biblioteca.db";
         builder.Services.AddSqlite<BibliotecaContext>(connectionString);
+
+        builder.Services.AddCors(options => options.AddDefaultPolicy(policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
+
         var app = builder.Build();
+
+        app.UseCors();
 
 
         // Livro
