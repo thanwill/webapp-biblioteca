@@ -7,7 +7,6 @@ $(document).ready(function () {
   $(".datepicker").datepicker({
     format: "dd/mm/yyyy",
     setDefaultDate: true,
-    defaultDate: new Date(2022, 10, 01),
     minDate: new Date(1900, 01, 01),
     showClearBtn: false,
   });
