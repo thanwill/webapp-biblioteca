@@ -26,11 +26,11 @@
       </ul>
     </div>
     <div class="nav-content">
-      <!-- class="active" usar com JS para mostrar qual ppágina está ativa-->
+      <!-- Aqui é onde chamamos as páginas do site.-->
       <ul class="tabs tabs-transparent">
-        <li class="tab"><a href="#pg-books">Livros</a></li>
-        <li class="tab"><a href="#pg-users">Usuários</a></li>
-        <li class="tab"><a href="#pg-lend">Empréstimos</a></li>
+        <li class="tab"><a href="#pagina-livros">Livros</a></li>
+        <li class="tab"><a href="#pagina-usuarios">Usuários</a></li>
+        <li class="tab"><a href="#pagina-emprestimos">Empréstimos</a></li>
       </ul>
     </div>
   </nav>
@@ -39,9 +39,10 @@
     <!-- HOME-->
     <li><a href="#!">Início</a></li>
   </ul>
-  <!-- CORPO DO CONTEÚDO-->
+  <!-- Dento da MAIN, fica todo o conteúdo que é vísivel na nossa página HTML.-->
   <main>
-    <div id="pg-books" class="col s12">
+    <!-- Cada ID aqui, representa uma das páginas que podem ser alteradas e que são chamadas na classe TABS na linha 31 a linha 33-->
+    <div id="pagina-livros" class="col s12">
       <div class="container center">
         <div id="" style="padding-top: 5vh">
           <div class="row">
@@ -63,7 +64,7 @@
                 </li>
                 <li class="collection-item grey-text">
                   <div class="exibe-titulo">
-                    A arte de fazer acontecer<a class="secondary-content modal-trigger" href="#see-forms-book">
+                    A arte de fazer acontecer<a class="secondary-content modal-trigger" href="#visualizar-livro">
                       <i id="see-1" class="material-icons">visibility</i></a>
                   </div>
                 </li>
@@ -73,7 +74,8 @@
         </div>
       </div>
     </div>
-    <div id="pg-users" class="col s12">
+
+    <div id="pagina-usuarios" class="col s12">
       <div class="container center">
         <div id="usuarios">
           <div class="row" style="padding-top: 5vh">
@@ -95,19 +97,7 @@
                 </li>
                 <li class="collection-item grey-text">
                   <div>
-                    Maria Gabriella<a class="secondary-content modal-trigger" href="#see-forms-user"><i
-                        class="material-icons">visibility</i></a>
-                  </div>
-                </li>
-                <li class="collection-item grey-text">
-                  <div>
-                    Joaquim Brásilio<a class="secondary-content modal-trigger" href="#see-forms-user"><i
-                        class="material-icons">visibility</i></a>
-                  </div>
-                </li>
-                <li class="collection-item grey-text">
-                  <div>
-                    Fernanda Lopes<a class="secondary-content modal-trigger" href="#see-forms-user"><i
+                    Maria Gabriella<a class="secondary-content modal-trigger" href="#visualizar-usuario"><i
                         class="material-icons">visibility</i></a>
                   </div>
                 </li>
@@ -117,116 +107,45 @@
         </div>
       </div>
     </div>
-    <div id="pg-lend" class="col s12">
+
+    <div id="pagina-emprestimos" class="col s12">
       <div class="container center">
         <div id="emprestimos"></div>
       </div>
     </div>
-    <div class="container center">
-      <!-- Modal Structure -->
-      <div id="forms-book" class="modal">
-        <div class="modal-content">
-          <h4>livro</h4>
-          <form class="">
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="book_title" type="text" class="validate" />
-                <label for="book_title">Título</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="autor_name" type="text" class="validate" />
-                <label for="autor_name">Autor</label>
-              </div>
-            </div>
 
-            <div class="row">
-              <div class="input-field col s12">
-                <input placeholder="Lançamento" type="text" class="datepicker" />
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <p class="range-field"></p>
-                <p class="left">
-                  Quantidade em estoque
-                  <input type="range" id="test5" value="10" default="10" min="0" max="10" />
-                </p>
-              </div>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cadastrar</a>
-        </div>
-      </div>
-      <div id="forms-user" class="modal">
-        <div class="modal-content">
-          <h4>usuário</h4>
-          <form class="" style="padding-top: 30px">
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="name" type="text" class="validate" />
-                <label for="name">Nome</label>
-              </div>
-              <div class="input-field col s12">
-                <input id="last_name" type="text" class="validate" />
-                <label for="last_name">Sobrenome</label>
-              </div>
-              <div class="input-field col s12">
-                <input id="cpf" type="text" class="validate" />
-                <label for="cpf">CPF</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="email" type="email" class="validate" />
-                <label for="email">E-mail</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="icon_telephone" type="tel" class="validate" />
-                <label for="icon_telephone">Telefone</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <input placeholder="Data de ascimento" type="text" class="datepicker" />
-              </div>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <a onclick="cadastrar_usuario()" class="modal-close waves-effect waves-green btn-flat">Cadastrar</a>
-        </div>
-      </div>
-    </div>
+    <!-- MUITO IMPORTANTE, aqui ficam os botões que chamam os formulários de cadastro para as classes livro, usuário e empréstimo. Ele é o botão verde flutuante no fim da página-->
+
     <div class="fixed-action-btn toolbar">
       <a class="btn-floating btn-large">
         <i class="large material-icons">mode_edit</i>
       </a>
       <ul>
         <li>
-          <a class="btn-floating modal-trigger" href="#forms-book"><i class="material-icons">book</i></a>
+          <a class="btn-floating modal-trigger" href="#formulario-livro"><i class="material-icons">book</i></a>
         </li>
         <li>
-          <a class="btn-floating modal-trigger" href="#forms-user"><i class="material-icons">person</i></a>
+          <a class="btn-floating modal-trigger" href="#formulario-usuario"><i class="material-icons">person</i></a>
         </li>
         <li>
-          <a class="btn-floating"><i class="material-icons">perm_contact_calendar</i></a>
+          <a class="btn-floating modal-trigger" href="#"><i class="material-icons">perm_contact_calendar</i></a>
         </li>
       </ul>
     </div>
   </main>
+
   <div class="erro-device container">
     <img id="erro-img" src="assets/images/humaaans-sitting-bg.png" width="100%" />
   </div>
+
+
+
+
   <!-- FORMULÁRIOS E MODAIS QUE SÃO CHAMADOS POR FUNÇÕES / CLASSES OCULTAS -->
   <div class="container center">
+
     <!-- FORM DE LIVROS-->
-    <div id="forms-book" class="modal">
+    <div id="formulario-livro" class="modal">
       <div class="modal-content">
         <div class="row" style="padding-top: 1vh">
           <h4 class="grey-text left-align">Livros</h4>
@@ -251,7 +170,7 @@
 
           <div class="row">
             <div class="input-field col s12">
-              <input placeholder="Lançamento" type="text" class="datepicker" />
+              <input id="data-lancamento" placeholder="Data de lançamento" type="text" class="datepicker" />
             </div>
           </div>
           <div class="row">
@@ -267,7 +186,7 @@
       </div>
     </div>
     <!-- TABELA DE VISUALIZAÇÃO E EDIÇÃO DOS LIVROS-->
-    <div id="see-forms-book" class="modal">
+    <div id="visualizar-livro" class="modal">
       <div class="modal-content">
         <div class="row" style="padding-top: 1vh">
           <h4 class="grey-text left-align">Livro</h4>
@@ -275,7 +194,6 @@
             Consulte as informações cadastradas do livro selecionado.
           </p>
         </div>
-
         <div class="row">
           <table class="grey-text striped">
             <tbody>
@@ -298,43 +216,15 @@
             </tbody>
           </table>
         </div>
-        <form class="" style="display: none">
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="book_title" type="text" class="validate" />
-              <label for="book_title">Título</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="autor_name" type="text" class="validate" />
-              <label for="autor_name">Autor</label>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="input-field col s12">
-              <input placeholder="Lançamento" type="text" class="datepicker" />
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <p class="range-field"></p>
-              <p class="left">
-                Quantidade em estoque
-                <input type="range" id="test5" value="10" default="10" min="0" max="10" />
-              </p>
-            </div>
-          </div>
-        </form>
       </div>
       <div class="modal-footer">
         <a href="#!" class="modal-close waves-effect waves-green btn-flat">Editar</a>
         <a href="#!" class="modal-close waves-effect waves-green btn-flat">Excluir</a>
       </div>
     </div>
+
     <!-- FORM DE USUÁRIOS-->
-    <div id="forms-user" class="modal">
+    <div id="formulario-usuario" class="modal">
       <div class="modal-content">
         <div class="row" style="padding-top: 1vh">
           <h4 class="grey-text left-align">Usuário</h4>
@@ -377,8 +267,9 @@
         <a onclick="cadastrar_usuario()" class="modal-close waves-effect waves-green btn-flat">Cadastrar</a>
       </div>
     </div>
+
     <!-- TABELA DE VISUALIZAÇÃO E EDIÇÃO DOS USUÁRIOS-->
-    <div id="see-forms-user" class="modal">
+    <div id="visualizar-usuario" class="modal">
       <div class="modal-content">
         <div class="row" style="padding-top: 1vh">
           <h4 class="grey-text left-align">Usuário</h4>
@@ -413,36 +304,8 @@
             </tbody>
           </table>
         </div>
-
-        <form class="" style="display: none">
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="book_title" type="text" class="validate" />
-              <label for="book_title">Título</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="autor_name" type="text" class="validate" />
-              <label for="autor_name">Autor</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <input placeholder="Lançamento" type="text" class="datepicker" />
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <p class="range-field"></p>
-              <p class="left">
-                Quantidade em estoque
-                <input type="range" id="test5" value="10" default="10" min="0" max="10" />
-              </p>
-            </div>
-          </div>
-        </form>
       </div>
+
       <div class="modal-footer">
         <a href="#!" class="modal-close waves-effect waves-green btn-flat">Editar</a>
         <a href="#!" class="modal-close waves-effect waves-green btn-flat">Excluir</a>
