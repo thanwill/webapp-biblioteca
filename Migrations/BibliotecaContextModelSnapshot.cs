@@ -92,7 +92,15 @@ namespace Biblioteca.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Nascimento")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Sobrenome")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
