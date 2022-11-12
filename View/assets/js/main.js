@@ -10,4 +10,8 @@ $(document).ready(function () {
     minDate: new Date(1900, 01, 01),
     showClearBtn: false,
   });
+  $('.tabs').tabs({
+    duration: 600,
+    swipeable: true
+  });
 });
