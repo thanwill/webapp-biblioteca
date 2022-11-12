@@ -15,12 +15,13 @@ body {
 }
 #search {
   background-color: #0b8c75;
+
 }
 a {
   color: #fff;
 }
 
-/* DESATIVA O LAYOUT PARA DEVICES MAIORES*/
+/* Desativa o layout para telas maiores que 540 px */
 @media only screen and (min-width: 540px) {
   body {
     background-color: #fff;
