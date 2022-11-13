@@ -67,20 +67,19 @@ function listar_usuarios() {
                 if (usuario.Nome.length != 0) {
                     list +=
                         `<div class="collection-item grey-text" style="text-align:left;">
-                        ${usuario.Nome} ${usuario.Sobrenome}
-                        <a class="secondary-content modal-trigger" href="#visualizar-usuario"><i
-                            class="material-icons">visibility</i></a>
-                        </div>`;
+                    ${usuario.Nome} ${usuario.Sobrenome}
+                    <a class="secondary-content modal-trigger" href="#visualizar-usuario"><i
+                        class="material-icons">visibility</i></a>
+                    </div>`;
                 } else {
                     list +=
                         `<div class="collection-item grey-text">
-                        Vazia.
-                        </div>`;
+                    Vazia.
+                    </div>`;
                 }
             });
             //preenche div com usuarios recebidos do GET
             listaUsuarios.innerHTML = list;
         });
-
 }
-//listar_usuarios();
+listar_usuarios();
