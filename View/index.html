@@ -58,7 +58,7 @@
         <div id="" style="padding-top: 5vh">
           <div class="row">
             <div class="livros col s10 offset-s1 m8 offset-m2 l6 offset-l3">
-              <ul class="collection with-header" onload="ocultarTexto()">
+              <ul class="collection with-header">
                 <nav>
                   <div class="nav-wrapper">
                     <form>
@@ -269,8 +269,9 @@
       </div>
     </div>
 
-    <!-- TABELA DE VISUALIZAÇÃO E EDIÇÃO DOS USUÁRIOS-->
+    <!-- TABELA DE VISUALIZAÇÃO E EDIÇÃO DOS USUÁRIOS -->
     <div id="visualizar-usuario" class="modal">
+  
       <div class="modal-content">
         <div class="row" style="padding-top: 1vh">
           <h4 class="grey-text left-align">Usuário</h4>
@@ -278,33 +279,9 @@
             Consulte as informações cadastradas do usuário selecionado.
           </p>
         </div>
+        <div class="btn" onclick="mostrar_perfil()">Clicar</div>
+        <div class="row" id="mostrar-perfil"></div>
 
-        <div class="row">
-          <table class="grey-text striped">
-            <tbody>
-              <tr>
-                <td>Nome</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Sobrenome</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>E-mail</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Telefone</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Nascimento</td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
       </div>
 
       <div class="modal-footer">

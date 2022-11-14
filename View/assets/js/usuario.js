@@ -63,23 +63,72 @@ function listar_usuarios() {
                 listarUsuarios.removeChild(listarUsuarios.firstChild);
             }*/
             let list = '';
-            usuarios.forEach((usuario, index) => {
+            usuarios.forEach((usuario) => {
                 if (usuario.Nome.length != 0) {
                     list +=
                         `<div class="collection-item grey-text" style="text-align:left;">
-                    ${usuario.Nome} ${usuario.Sobrenome}
-                    <a class="secondary-content modal-trigger" href="#visualizar-usuario"><i
-                        class="material-icons">visibility</i></a>
-                    </div>`;
+                            ${usuario.Nome} ${usuario.Sobrenome}
+                            <a class="secondary-content modal-trigger registros-usuarios" value="${usuario.Id}" href="#visualizar-usuario">
+                                <i class="material-icons">visibility</i>
+                            </a>
+                        </div>`;
                 } else {
                     list +=
                         `<div class="collection-item grey-text">
-                    Vazia.
-                    </div>`;
+                        Vazia.
+                        </div>`;
                 }
             });
             //preenche div com usuarios recebidos do GET
             listaUsuarios.innerHTML = list;
+        });
+
+}
+
+function mostrar_perfil() {
+    console.log('estou aqui');
+    let index = document.querySelector('.registros-usuarios').value;
+    // da um GET no endpoint "usuarios"
+
+    fetch(url + `/usuario/${index}`)
+        .then(response => response.json())
+        .then((usuario) => {
+            //pega div que vai conter a lista de usuarios
+            let mostrarPerfil = document.querySelector('#mostrar-perfil');
+            /*limpa div
+            while (listarUsuarios.firstChild) {
+                listarUsuarios.removeChild(listarUsuarios.firstChild);
+            }*/
+            let list = '';
+            list +=
+                        `
+                        <table class="grey-text striped">
+                            <tbody>
+                            <tr>
+                                <td>Nome</td>
+                                <td>${usuario.Nome}</td>
+                            </tr>
+                            <tr>
+                                <td>Sobrenome</td>
+                                <td>${usuario.Sobrenome}</td>
+                            </tr>
+                            <tr>
+                                <td>E-mail</td>
+                                <td>${usuario.Email}</td>
+                            </tr>
+                            <tr>
+                                <td>Telefone</td>
+                                <td>${usuario.Telefone}</td>
+                            </tr>
+                            <tr>
+                                <td>Nascimento</td>
+                                <td>${usuario.Nascimento}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        `;
+            //preenche div com usuarios recebidos do GET
+            mostrarPerfil.innerHTML = list;
         });
 }
 listar_usuarios();

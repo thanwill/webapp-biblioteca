@@ -55,7 +55,7 @@ class Program
 
         // Usuário
         Usuario usuario = new Usuario();
-        //app.MapGet("/usuario/{id}", usuario.Buscar);
+        app.MapGet("/usuario/{id}", usuario.Buscar);
         app.MapGet("/usuarios", usuario.Listar);
         app.MapPost("/usuario", usuario.Cadastrar);
         app.MapPut("/usuario", usuario.Atualizar);
