@@ -129,10 +129,10 @@
       </a>
       <ul>
         <li>
-          <a class="btn-floating modal-trigger" href="#formulario-livro"><i class="material-icons">book</i></a>
+          <a class="btn-floating modal-trigger" href="#modal-livro"><i class="material-icons">book</i></a>
         </li>
         <li>
-          <a class="btn-floating modal-trigger" href="#formulario-usuario"><i class="material-icons">person</i></a>
+          <a class="btn-floating modal-trigger" href="#modal-usuario"><i class="material-icons">person</i></a>
         </li>
         <li>
           <a class="btn-floating modal-trigger" href="#"><i class="material-icons">perm_contact_calendar</i></a>
@@ -228,7 +228,7 @@
     </div>
 
     <!-- FORM DE USUÁRIOS-->
-    <div id="formulario-usuario" class="modal">
+    <div id="modal-usuario" class="modal">
       <div class="modal-content">
         <div class="row" style="padding-top: 1vh">
           <h4 class="grey-text left-align">Usuário</h4>
@@ -236,7 +236,7 @@
             Insira as informações para realizar um novo cadastro de usuário.
           </p>
         </div>
-        <form>
+        <form id="formulario-usuario">
           <div class="row">
             <div class="input-field col s12">
               <input id="nome" type="text" class="validate" />
@@ -271,7 +271,7 @@
 
     <!-- TABELA DE VISUALIZAÇÃO E EDIÇÃO DOS USUÁRIOS -->
     <div id="visualizar-usuario" class="modal">
-  
+
       <div class="modal-content">
         <div class="row" style="padding-top: 1vh">
           <h4 class="grey-text left-align">Usuário</h4>
@@ -279,7 +279,7 @@
             Consulte as informações cadastradas do usuário selecionado.
           </p>
         </div>
-        <div class="btn" onclick="mostrar_perfil()">Clicar</div>
+        <div class="btn">Clicar</div>
         <div class="row" id="mostrar-perfil"></div>
 
       </div>
@@ -291,35 +291,6 @@
     </div>
 
   </div>
-  <!--
-
-        RODAPÉ OCULTADO
-    <footer class="page-footer body-content">
-        <div class="container">
-            <div class="row">
-                <div class="col l6 s12">
-                    <h5 class="">Rodápe da página</h5>
-                    <p class=" text-lighten-4">Front end do projeto minimal API em C#. <br>
-                        Saiba mais <a class=" text-lighten-3" href="#!" target="_blank"
-                            rel="noopener noreferrer">aqui</a>.
-                </div>
-                <div class="col l4 offset-l2 s12">
-                    <h5 class="">Criadores</h5>
-                    <ul>
-                        <li><a class=" text-lighten-3" href="#!">Bruno</a></li>
-                        <li><a class=" text-lighten-3" href="#!">Jonathan</a></li>
-                        <li><a class=" text-lighten-3" href="#!">Lucas</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="footer-copyright">
-            <div class="container">
-                Atualizado em 2022
-            </div>
-        </div>
-    </footer>
--->
   <script src="./node_modules/jquery/dist/jquery.js"></script>
   <script src="./node_modules/materialize-css/dist/js/materialize.min.js"></script>
   <script src="./assets/js/main.js"></script>

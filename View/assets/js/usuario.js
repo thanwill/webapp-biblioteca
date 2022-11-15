@@ -1,6 +1,7 @@
 var url = 'http://localhost:3000';
 
-function cadastrar_usuario(e) {
+function cadastrar_usuario() {
+
     let body = {
         'Nome': document.getElementById('nome').value,
         'Sobrenome': document.getElementById('sobrenome').value,
@@ -44,13 +45,13 @@ function cadastrar_usuario(e) {
             M.toast({
                 html: `Não foi possível efetuar o cadastro! :(`,
                 inDuration: 300,
-                classes: 'red'
             });
         });
+    
 }
 
 function listar_usuarios() {
-
+    
     // da um GET no endpoint "usuarios"
     fetch(url + '/usuarios')
         .then(response => response.json())
@@ -68,7 +69,7 @@ function listar_usuarios() {
                     list +=
                         `<div class="collection-item grey-text" style="text-align:left;">
                             ${usuario.Nome} ${usuario.Sobrenome}
-                            <a class="secondary-content modal-trigger registros-usuarios" value="${usuario.Id}" href="#visualizar-usuario">
+                            <a class="secondary-content modal-trigger registros-usuarios" value="${usuario.Id}" onclick="mostrar_perfil()">
                                 <i class="material-icons">visibility</i>
                             </a>
                         </div>`;
@@ -84,10 +85,12 @@ function listar_usuarios() {
         });
 
 }
-
+listar_usuarios();
+var instance = M.Modal.getInstance('visualizar-usuario');
 function mostrar_perfil() {
-    console.log('estou aqui');
-    let index = document.querySelector('.registros-usuarios').value;
+    
+    instance.open();
+    console.log(index);
     // da um GET no endpoint "usuarios"
 
     fetch(url + `/usuario/${index}`)
@@ -131,4 +134,36 @@ function mostrar_perfil() {
             mostrarPerfil.innerHTML = list;
         });
 }
-listar_usuarios();
+function remover(id)
+{
+	fetch(url + 'usuarios/' + id,
+	{
+		'method': 'DELETE',
+		'redirect': 'follow'
+	})
+	.then((response) =>
+	{
+		if(response.ok)
+		{
+			return response.text()
+		}
+		else
+		{
+			return response.text().then((text) =>
+			{
+				throw new Error(text)
+			})
+		}
+	})
+	.then((output) =>
+	{
+		listar()
+		console.log(output)
+		alert('Usuário removido! >=]');
+	})
+	.catch((error) =>
+	{
+		console.log(error)
+		alert('Não foi possível remover o usuário :/')
+	})
+}
