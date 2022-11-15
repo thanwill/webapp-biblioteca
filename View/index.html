@@ -25,12 +25,6 @@
   <body>
     <!--MENU-->
     <nav class="nav-extended">
-      <div class="nav-wrapper">
-        <a href="#" class="brand-logo"></a>
-        <a href="#" data-target="slide-out" class="sidenav-trigger"
-          ><i class="material-icons">menu</i></a
-        >
-      </div>
       <div class="nav-content">
         <!-- Aqui é onde chamamos as páginas do site.-->
         <ul class="tabs tabs-transparent">
@@ -46,38 +40,6 @@
         </ul>
       </div>
     </nav>
-    <ul id="slide-out" class="sidenav">
-      <li>
-        <div class="user-view">
-          <div class="background">
-            <img
-              src="assets/images/pexels-cottonbro-studio-4614204.jpeg"
-              height="200px"
-            />
-          </div>
-          <a href="#user"
-            ><img
-              class="circle materialboxed"
-              src="assets/images/pexels-ike-louie-natividad-2709388.png"
-          /></a>
-          <a href="#name"><span class="white-text name">John Doe</span></a>
-          <a href="#email"
-            ><span class="white-text email">jdandturk@gmail.com</span></a
-          >
-        </div>
-      </li>
-      <li>
-        <a href="#!"><i class="material-icons">cloud</i>Editar foto</a>
-      </li>
-      <li>
-        <a href="#!"><i class="material-icons">person</i>Visualizar perfil</a>
-      </li>
-      <li>
-        <div class="divider"></div>
-      </li>
-      <li><a class="subheader">Redes sociais</a></li>
-      <li><a class="waves-effect" href="#!">Instagram</a></li>
-    </ul>
 
     <!-- Dentro da MAIN, fica todo o conteúdo que é visível na nossa página HTML.-->
     <main>
@@ -164,30 +126,7 @@
           <div id="" style="padding-top: 5vh">
             <div class="row">
               <div class="livros col s10 offset-s1 m8 offset-m2 l6 offset-l3">
-                <ul id="lista-emprestimos" class="collection with-header">
-                  <nav>
-                    <div class="nav-wrapper">
-                      <form>
-                        <div class="input-field">
-                          <input id="search" type="search" />
-                          <label class="label-icon" for="search"
-                            ><i class="material-icons">search</i></label
-                          >
-                          <i class="material-icons">close</i>
-                        </div>
-                      </form>
-                    </div>
-                  </nav>
-                  <li class="collection-header">
-                    <h4>Empréstimos</h4>
-                  </li>
-                  <!-- <li class="collection-item grey-text">
-                  <div class="exibe-titulo">
-                    A arte de fazer acontecer<a class="secondary-content modal-trigger" href="#visualizar-emprestimo">
-                      <i id="see-1" class="material-icons">launch</i></a>
-                  </div>
-                </li> -->
-                </ul>
+                <ul id="lista-emprestimos" class="collection with-header"></ul>
               </div>
             </div>
           </div>
@@ -428,39 +367,91 @@
           <form>
             <div class="row">
               <div class="input-field col s12">
-                <input id="emprestimo-livro" type="text" class="validate" />
+                <input
+                  id="emprestimo-id"
+                  type="text"
+                  class="validate"
+                  disabled
+                />
+                <label for="emprestimo-id">Identificador do Empréstimo</label>
+              </div>
+              <div class="input-field col s12">
+                <input
+                  id="emprestimo-livro"
+                  type="text"
+                  class="validate"
+                  disabled
+                />
                 <label for="emprestimo-livro">Livro</label>
               </div>
               <div class="input-field col s12">
-                <input id="emprestimo-usuario" type="text" class="validate" />
+                <input
+                  id="emprestimo-usuario"
+                  type="text"
+                  class="validate"
+                  disabled
+                />
                 <label for="emprestimo-usuario">Usuário</label>
               </div>
               <div class="input-field col s12">
-                <input id="emprestimo-inicio" type="text" class="validate" />
+                <input
+                  id="emprestimo-inicio"
+                  type="text"
+                  class="validate"
+                  disabled
+                />
                 <label for="emprestimo-inicio">Início</label>
               </div>
               <div class="input-field col s12">
-                <input id="emprestimo-devolucao" type="text" class="validate" />
+                <input
+                  id="emprestimo-devolucao"
+                  type="text"
+                  class="validate"
+                  disabled
+                />
                 <label for="emprestimo-devolucao">Devolução</label>
               </div>
               <div class="input-field col s12">
-                <input id="emprestimo-status" type="text" class="validate" />
+                <input
+                  id="emprestimo-status"
+                  type="text"
+                  class="validate"
+                  disabled
+                />
                 <label for="emprestimo-status">Status</label>
               </div>
               <div class="input-field col s12">
-                <input id="emprestimo-atrasos" type="text" class="validate" />
+                <input
+                  id="emprestimo-atrasos"
+                  type="text"
+                  class="validate"
+                  disabled
+                />
                 <label for="emprestimo-atrasos">Atrasos</label>
               </div>
               <div class="input-field col s12">
-                <input id="emprestimo-custo" type="text" class="validate" />
+                <input
+                  id="emprestimo-custo"
+                  type="text"
+                  class="validate"
+                  disabled
+                />
                 <label for="emprestimo-custo">Custo</label>
+              </div>
+              <div class="input-field col s12">
+                <input
+                  id="emprestimo-estender"
+                  type="text"
+                  class="validate"
+                />
+                <label for="emprestimo-estender">Estender em Dias</label>
               </div>
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <a onclick="" class="modal-close waves-effect waves-green btn-flat"
-            >Cadastrar</a
+          <a onclick="alterarEmprestimo()" class="modal-close waves-effect waves-green btn-flat"
+            >Alterar</a
           >
         </div>
       </div>
@@ -502,7 +493,7 @@
                   type="text"
                   class="validate"
                 />
-                <label for="novo-emprestimo-periodo">Periodo em Dias</label>
+                <label for="novo-emprestimo-periodo">Período em Dias</label>
               </div>
             </div>
           </form>

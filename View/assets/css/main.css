@@ -1,3 +1,8 @@
+.carousel {
+  height: auto;
+  overflow: scroll;
+}
+
 body {
   background-color: #b0d9d5;
 }
@@ -15,8 +20,8 @@ body {
 }
 
 nav,
-.nav-extended,
-.page-footer {
+.nav-extended {
+  position: sticky;
   background-color: #0b8c75;
 }
 
