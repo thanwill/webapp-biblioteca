@@ -1,7 +1,11 @@
-Curitiba, 2022/2 <br>
-Universidade Positivo<br>
-Análise de Sistemas/Sistemas de Informação/Engenharia de Software<br>
-Desenvolvimento de Software Visual<br>
+Curitiba, 2022/2
+
+Universidade Positivo
+
+Análise de Sistemas/Sistemas de Informação/Engenharia de Software
+
+Desenvolvimento de Software Visual
+
 Your site is live at https://thanwill.github.io/up-webapi-biblioteca/
 
 ## Especificação do Trabalho
