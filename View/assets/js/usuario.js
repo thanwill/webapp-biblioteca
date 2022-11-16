@@ -1,7 +1,4 @@
-var form = document.getElementsByTagName('form[3]');
-console.log(form)
 function cadastrar_usuario() {
-
     let body = {
         'Nome': document.getElementById('nome').value,
         'Sobrenome': document.getElementById('sobrenome').value,
@@ -217,4 +214,3 @@ function excluir_usuario(id) {
             M.toast({html: 'Não foi possível remover o usuário'});
         });
 }
-

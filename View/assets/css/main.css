@@ -1,19 +1,18 @@
 body {
   background-color: #b0d9d5;
 }
-.collection > li {
+
+.collection>li {
   text-align: left;
 }
 .erro-device {
   display: none;
 }
 .nav-extended {
+  position: sticky;
   background-color: #0b8c75;
 }
-#search {
-  background-color: #0b8c75;
 
-}
 a {
   color: #fff;
 }
@@ -28,15 +27,18 @@ td{
   body {
     background-color: #fff;
   }
+
   .erro-device {
     display: block;
     text-align: center;
   }
+
   #erro-img {
     width: auto;
     margin-top: 10vh;
     max-height: 80vh;
   }
+
   main,
   footer,
   nav {

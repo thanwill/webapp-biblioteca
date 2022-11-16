@@ -25,7 +25,7 @@
       <ul class="tabs tabs-transparent">
         <li class="tab"><a class="tabs-content" href="#pagina-livros">Livros</a></li>
         <li class="tab"><a class="tabs-content" href="#pagina-usuarios">Usuários</a></li>
-        <li class="tab"><a class="tabs-content" href="#pagina-emprestimos">Empréstimos</a></li>
+        <li class="tab" onclick="listarEmprestimos()"> <a class="tabs-content" href="#pagina-emprestimos">Empréstimos</a> </li>
       </ul>
     </div>
   </nav>
@@ -92,33 +92,37 @@
 
     <div id="pagina-emprestimos" class="col s12">
       <div class="container center">
+        <div id="" style="padding-top: 5vh">
+          <div class="row">
+            <div class="livros col s10 offset-s1 m8 offset-m2 l6 offset-l3">
+              <ul id="lista-emprestimos" class="collection with-header"></ul>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- MUITO IMPORTANTE, aqui ficam os botões que chamam os formulários de cadastro para as classes livro, usuário e empréstimo. Ele é o botão verde flutuante no fim da página-->
 
     <div class="fixed-action-btn toolbar">
-      <a class="btn-floating btn-large">
-        <i class="large material-icons">mode_edit</i>
-      </a>
+      <a class="btn-floating btn-large"><i class="large material-icons">mode_edit</i></a>
       <ul>
-        <li>
-          <a class="btn-floating modal-trigger" href="#formulario-livro"><i class="material-icons">book</i></a>
-        </li>
-        <li>
-          <a class="btn-floating modal-trigger" href="#formulario-usuario"><i class="material-icons">person</i></a>
-        </li>
-        <li>
-          <a class="btn-floating modal-trigger" href="#"><i class="material-icons">perm_contact_calendar</i></a>
-        </li>
+        <li><a class="btn-floating modal-trigger" href="#formulario-livro"><i class="material-icons">book</i></a></li>
+        <li><a class="btn-floating modal-trigger" href="#formulario-usuario"><i class="material-icons">person</i></a></li>
+        <li> <a class="btn-floating modal-trigger" href="#formulario-novo-emprestimo" ><i class="material-icons">perm_contact_calendar</i></a > </li>
       </ul>
     </div>
   </main>
+
+
   <div class="erro-device container">
     <img id="erro-img" src="./assets/images/humaaans-sitting-bg.png" width="100%" />
   </div>
-  <!-- FORMULÁRIOS E MODAIS QUE SÃO CHAMADOS POR FUNÇÕES / CLASSES OCULTAS -->
+
+
+  <!-- Aqui devem ser registrados todos os modais que formos usar. -->
   <div class="container center">
+
     <!-- FORM DE LIVROS-->
     <div id="formulario-livro" class="modal">
       <div class="modal-content">
@@ -245,10 +249,159 @@
       <div id="visualizar-perfil"></div>
     </div>
   </div>
-  <script src="./node_modules/jquery/dist/jquery.js"></script>
-  <script src="./node_modules/materialize-css/dist/js/materialize.min.js"></script>
-  <script src="./assets/js/main.js"></script>
-  <script src="./assets/js/usuario.js"></script>
-</body>
 
+      <!-- FORM DE EMPRÉSTIMOS-->
+      <div id="formulario-emprestimo" class="modal">
+        <div class="modal-content">
+          <div class="row" style="padding-top: 1vh">
+            <h4 class="grey-text left-align">Empréstimo</h4>
+          </div>
+          <form>
+            <div class="row">
+              <div class="input-field col s12">
+                <input
+                  id="emprestimo-id"
+                  type="text"
+                  class="validate"
+                  disabled
+                />
+                <label for="emprestimo-id">Identificador do Empréstimo</label>
+              </div>
+              <div class="input-field col s12">
+                <input
+                  id="emprestimo-livro"
+                  type="text"
+                  class="validate"
+                  disabled
+                />
+                <label for="emprestimo-livro">Livro</label>
+              </div>
+              <div class="input-field col s12">
+                <input
+                  id="emprestimo-usuario"
+                  type="text"
+                  class="validate"
+                  disabled
+                />
+                <label for="emprestimo-usuario">Usuário</label>
+              </div>
+              <div class="input-field col s12">
+                <input
+                  id="emprestimo-inicio"
+                  type="text"
+                  class="validate"
+                  disabled
+                />
+                <label for="emprestimo-inicio">Início</label>
+              </div>
+              <div class="input-field col s12">
+                <input
+                  id="emprestimo-devolucao"
+                  type="text"
+                  class="validate"
+                  disabled
+                />
+                <label for="emprestimo-devolucao">Devolução</label>
+              </div>
+              <div class="input-field col s12">
+                <input
+                  id="emprestimo-status"
+                  type="text"
+                  class="validate"
+                  disabled
+                />
+                <label for="emprestimo-status">Status</label>
+              </div>
+              <div class="input-field col s12">
+                <input
+                  id="emprestimo-atrasos"
+                  type="text"
+                  class="validate"
+                  disabled
+                />
+                <label for="emprestimo-atrasos">Atrasos</label>
+              </div>
+              <div class="input-field col s12">
+                <input
+                  id="emprestimo-custo"
+                  type="text"
+                  class="validate"
+                  disabled
+                />
+                <label for="emprestimo-custo">Custo</label>
+              </div>
+              <div class="input-field col s12">
+                <input id="emprestimo-estender" type="text" class="validate" />
+                <label for="emprestimo-estender">Estender em Dias</label>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <a
+            onclick="alterarEmprestimo()"
+            class="modal-close waves-effect waves-green btn-flat"
+            >Alterar</a
+          >
+        </div>
+      </div>
+
+      <div id="formulario-novo-emprestimo" class="modal">
+        <div class="modal-content">
+          <div class="row" style="padding-top: 1vh">
+            <h4 class="grey-text left-align">Empréstimo</h4>
+            <p class="grey-text left-align">
+              Insira as informações para realizar um novo cadastro de
+              empréstimo.
+            </p>
+          </div>
+          <form>
+            <div class="row">
+              <div class="input-field col s12">
+                <input
+                  id="novo-emprestimo-livro"
+                  type="text"
+                  class="validate"
+                />
+                <label for="novo-emprestimo-livro"
+                  >Identificador do Livro</label
+                >
+              </div>
+              <div class="input-field col s12">
+                <input
+                  id="novo-emprestimo-usuario"
+                  type="text"
+                  class="validate"
+                />
+                <label for="novo-emprestimo-usuario"
+                  >Identificador do Usuário</label
+                >
+              </div>
+              <div class="input-field col s12">
+                <input
+                  id="novo-emprestimo-periodo"
+                  type="text"
+                  class="validate"
+                />
+                <label for="novo-emprestimo-periodo">Período em Dias</label>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <a
+            onclick="cadastrarEmprestimo()"
+            class="modal-close waves-effect waves-green btn-flat"
+            >Cadastrar</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/usuario.js"></script>
+    <script src="assets/js/emprestimo.js"></script>
+  </body>
 </html>

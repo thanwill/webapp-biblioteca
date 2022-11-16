@@ -1,6 +1,6 @@
 var api = "http://localhost:5220";
 
-// inicializa todos os componentes do Materilize de uma única vez.
+// inicializa todos os componentes do Materialize de uma única vez.
 M.AutoInit();
 
 $(document).ready(function () {
