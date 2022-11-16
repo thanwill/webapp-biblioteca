@@ -1,5 +1,3 @@
-var url = 'http://localhost:3000';
-
 function cadastrar_usuario(e) {
     let body = {
         'Nome': document.getElementById('nome').value,
@@ -11,7 +9,7 @@ function cadastrar_usuario(e) {
     };
     //envio da requisicao usando a FETCH API
     //configuracao e realizacao do POST no endpoint "usuarios"
-    fetch(url + "/usuario", {
+    fetch(api + "/usuario", {
             'method': 'POST',
             'redirect': 'follow',
             'headers': {
@@ -52,7 +50,7 @@ function cadastrar_usuario(e) {
 function listar_usuarios() {
 
     // da um GET no endpoint "usuarios"
-    fetch(url + '/usuarios')
+    fetch(api + '/usuarios')
         .then(response => response.json())
         .then((usuarios) => {
             //pega div que vai conter a lista de usuarios
@@ -90,7 +88,7 @@ function mostrar_perfil() {
     let index = document.querySelector('.registros-usuarios').value;
     // da um GET no endpoint "usuarios"
 
-    fetch(url + `/usuario/${index}`)
+    fetch(api + `/usuario/${index}`)
         .then(response => response.json())
         .then((usuario) => {
             //pega div que vai conter a lista de usuarios
