@@ -1,16 +1,17 @@
 {
   "name": "view",
   "version": "1.0.0",
-  "description": "",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "npx serve -s"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "jquery": "^3.6.1",
-    "materialize-css": "^1.0.0"
+    "materialize-css": "^1.0.0",
+    "prettier": "^2.7.1"
+  },
+  "engines": {
+    "node": ">=18",
+    "npm": ">=9"
   }
 }

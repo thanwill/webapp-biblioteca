@@ -1,22 +1,30 @@
+.carousel {
+  height: auto;
+  overflow: scroll;
+}
+
 body {
   background-color: #b0d9d5;
 }
-.collection > li {
+
+.collection>li {
   text-align: left;
 }
+
 .modal-content {
   border-radius: 30px;
 }
+
 .erro-device {
   display: none;
 }
-.nav-extended {
-  background-color: #0b8c75;
-}
-#search {
-  background-color: #0b8c75;
 
+nav,
+.nav-extended {
+  position: sticky;
+  background-color: #0b8c75;
 }
+
 a {
   color: #fff;
 }
@@ -26,15 +34,18 @@ a {
   body {
     background-color: #fff;
   }
+
   .erro-device {
     display: block;
     text-align: center;
   }
+
   #erro-img {
     width: auto;
     margin-top: 10vh;
     max-height: 80vh;
   }
+
   main,
   footer,
   nav {

@@ -1,4 +1,6 @@
-// inicializa todos os componentes do Materilize de uma única vez.
+var api = "http://localhost:5220";
+
+// inicializa todos os componentes do Materialize de uma única vez.
 M.AutoInit();
 
 $(document).ready(function () {
@@ -11,8 +13,8 @@ $(document).ready(function () {
     minDate: new Date(1900, 01, 01),
     showClearBtn: false,
   });
-  $('.tabs').tabs({
+  $(".tabs").tabs({
     duration: 600,
-    swipeable: true
+    swipeable: true,
   });
 });

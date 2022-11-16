@@ -1,7 +1,4 @@
-var url = 'http://localhost:3000';
-
-function cadastrar_usuario() {
-
+function cadastrar_usuario(e) {
     let body = {
         'Nome': document.getElementById('nome').value,
         'Sobrenome': document.getElementById('sobrenome').value,
@@ -12,7 +9,7 @@ function cadastrar_usuario() {
     };
     //envio da requisicao usando a FETCH API
     //configuracao e realizacao do POST no endpoint "usuarios"
-    fetch(url + "/usuario", {
+    fetch(api + "/usuario", {
             'method': 'POST',
             'redirect': 'follow',
             'headers': {
@@ -45,15 +42,15 @@ function cadastrar_usuario() {
             M.toast({
                 html: `Não foi possível efetuar o cadastro! :(`,
                 inDuration: 300,
+                classes: 'red'
             });
         });
-    
 }
 
 function listar_usuarios() {
-    
+
     // da um GET no endpoint "usuarios"
-    fetch(url + '/usuarios')
+    fetch(api + '/usuarios')
         .then(response => response.json())
         .then((usuarios) => {
             //pega div que vai conter a lista de usuarios
@@ -69,7 +66,7 @@ function listar_usuarios() {
                     list +=
                         `<div class="collection-item grey-text" style="text-align:left;">
                             ${usuario.Nome} ${usuario.Sobrenome}
-                            <a class="secondary-content modal-trigger registros-usuarios" value="${usuario.Id}" onclick="mostrar_perfil()">
+                            <a class="secondary-content modal-trigger registros-usuarios" value="${usuario.Id}" href="#visualizar-usuario">
                                 <i class="material-icons">visibility</i>
                             </a>
                         </div>`;
@@ -85,15 +82,13 @@ function listar_usuarios() {
         });
 
 }
-listar_usuarios();
-var instance = M.Modal.getInstance('visualizar-usuario');
+
 function mostrar_perfil() {
-    
-    instance.open();
-    console.log(index);
+    console.log('estou aqui');
+    let index = document.querySelector('.registros-usuarios').value;
     // da um GET no endpoint "usuarios"
 
-    fetch(url + `/usuario/${index}`)
+    fetch(api + `/usuario/${index}`)
         .then(response => response.json())
         .then((usuario) => {
             //pega div que vai conter a lista de usuarios
@@ -134,36 +129,4 @@ function mostrar_perfil() {
             mostrarPerfil.innerHTML = list;
         });
 }
-function remover(id)
-{
-	fetch(url + 'usuarios/' + id,
-	{
-		'method': 'DELETE',
-		'redirect': 'follow'
-	})
-	.then((response) =>
-	{
-		if(response.ok)
-		{
-			return response.text()
-		}
-		else
-		{
-			return response.text().then((text) =>
-			{
-				throw new Error(text)
-			})
-		}
-	})
-	.then((output) =>
-	{
-		listar()
-		console.log(output)
-		alert('Usuário removido! >=]');
-	})
-	.catch((error) =>
-	{
-		console.log(error)
-		alert('Não foi possível remover o usuário :/')
-	})
-}
+listar_usuarios();
