@@ -7,7 +7,7 @@ public class Livro
     public int Id { get; set; }
     public string Titulo { get; set; }
     public string Autor { get; set; }
-    public int Lancamento { get; set; }
+    public string Lancamento { get; set; }
     public int Estoque { get; set; } = 10;
 
     // passa como parâmetro o banco, e realiza a listagem da tabela livros com o Json formatado usando Newtonsoft.Json.
@@ -29,11 +29,16 @@ public class Livro
 
         }
     }
-
-    public int Cadastrar(BibliotecaContext banco, Livro novo)
+    /*
+        Versão antiga, desconsiderar mas não apagar.
+        public int Cadastrar(BibliotecaContext banco, Livro novo) { banco.Livros.Add(novo); return banco.SaveChanges(); }
+    */
+    
+    
+    public int Cadastrar(BibliotecaContext banco, Livro livro)
     {
-        banco.Livros.Add(novo);
-        return banco.SaveChanges();
+        banco.Livros.Add(livro);
+        return banco.SaveChanges();                
     }
 
     public int Deletar(BibliotecaContext banco, int id)
@@ -55,6 +60,7 @@ public class Livro
 
         return banco.SaveChanges();
     }
+    
 }
 
 public class LivroAtualizar

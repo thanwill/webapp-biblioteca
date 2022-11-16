@@ -50,15 +50,10 @@
                     </form>
                   </div>
                 </nav>
-                <li class="collection-header">
+                <li class="collection-header grey-text" onclick="listar_livros()">
                   <h4>Livros</h4>
                 </li>
-                <li class="collection-item grey-text">
-                  <div class="exibe-titulo">
-                    A arte de fazer acontecer<a class="secondary-content modal-trigger" href="#visualizar-livro">
-                      <i id="see-1" class="material-icons">launch</i></a>
-                  </div>
-                </li>
+                <div id="lista-livros"></div>
               </ul>
             </div>
           </div>
@@ -82,8 +77,8 @@
                   </form>
                 </div>
               </nav>
-              <li class="collection-header" onclick="lista_usuarios()">
-                <h4 class="grey-text">Usuários</h4>
+              <li class="collection-header grey-text" onclick="lista_usuarios()">
+                <h4>Usuários</h4>
               </li>
               <div id="lista-usuarios"></div>
             </ul>
@@ -137,14 +132,14 @@
         <form class="">
           <div class="row">
             <div class="input-field col s12">
-              <input id="book_title" type="text" class="validate" />
-              <label for="book_title">Título</label>
+              <input id="titulo" type="text" class="validate" />
+              <label for="titulo">Título</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="autor_name" type="text" class="validate" />
-              <label for="autor_name">Autor</label>
+              <input id="autor" type="text" class="validate" />
+              <label for="autor">Autor</label>
             </div>
           </div>
 
@@ -162,7 +157,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cadastrar</a>
+        <a onclick="cadastrar_livro()" class="modal-close waves-effect waves-green btn-flat">Cadastrar</a>
       </div>
     </div>
     <!-- TABELA DE VISUALIZAÇÃO E EDIÇÃO DOS LIVROS-->
@@ -340,6 +335,7 @@
   <script src="assets/js/main.js"></script>
   <script src="assets/js/usuario.js"></script>
   <script src="assets/js/emprestimo.js"></script>
+  <script src="assets/js/livro.js"></script>
 </body>
 
 </html>

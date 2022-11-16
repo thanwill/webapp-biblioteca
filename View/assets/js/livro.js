@@ -1,56 +1,79 @@
-let idLivro = 0;
-
 function cadastrar_livro() {
-
-    if (document.getElementById('book_title').value == null || document.getElementById('book_title').value == '') {
-        alert('Não foi possível efetuar o cadastro')
-        return
-    }
-    if (document.getElementById('autor_name').value == null || document.getElementById('autor_name').value == '') {
-        alert('Não foi possível efetuar o cadastro')
-        return
-    }
-
-    let body =
-    {
-        'Titulo': document.getElementById('book_title').value,
-        'Autor': document.getElementById('autor_name').value,
-        'Lancamento': document.getElementById('book-Lancamento').value,
-        'Estoque': document.getElementById('test5').value
+    
+    const body = {
+        'Titulo': document.getElementById('titulo').value,
+        'Autor': document.getElementById('autor').value,
+        'Lancamento': document.getElementById('data-lancamento').value,
+        'Estoque': document.getElementById('estoque').value
     };
-
-    fetch(api + '/livros',
-        {
+    console.log(body)
+    fetch(api + '/livros', {
             'method': 'POST',
             'redirect': 'follow',
-            'headers':
-            {
+            'headers': {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
             'body': JSON.stringify(body)
         })
-
+        //checa se requisicao deu certo
         .then((response) => {
             if (response.ok) {
-                listar_livros()
-                return response.text()
-            }
-            else {
-                response.text().then((text) => {
-                    throw new Error(text)
-                })
+                return response.text();
+            } else {
+                return response.text().then((text) => {
+                    throw new Error(text);
+                });
             }
         })
-
+        //trata resposta
         .then((output) => {
             console.log(output);
-            alert('Cadastro efetuado')
+            M.toast({
+                html: `${body.Titulo} cadastrado(a) com sucesso!`,
+                inDuration: 300,
+                classes:'green accent-2'
+            });
         })
+        //trata erro
         .catch((error) => {
-            console.log(error)
-            alert('Não foi possível efetuar o cadastro')
-        })
+            console.log(error);
+            M.toast({
+                html: `Não foi possível efetuar o cadastro! :(`,
+                inDuration: 300,
+                classes: 'red lighten-3'
+            });
+        });
+}
+function listar_livros() {
+
+    fetch(api + '/livros')
+        .then(response => response.json())
+        .then((livros) => {
+            let listaLivros = document.getElementById('lista-livros');
+            for (const {
+                Id,
+                Titulo
+            } of livros) {
+            const itemLista = document.createElement("li");
+            itemLista.setAttribute("id", `${Id}`);
+            itemLista.setAttribute("class", "collection-item grey-text");
+            itemLista.innerHTML = `
+        <div style="text-align:left;" . id="${Id}">
+          ${Titulo}
+          <a 
+            class="secondary-content modal-trigger"
+            href="#modal-usuario"
+            onclick="visualizar_perfil(${Id})">
+              <i id="see-1" class="material-icons">
+              expand_more
+              </i>
+          </a>
+        </div>
+      `;
+      listaLivros.appendChild(itemLista);
+        }
+        });
 }
 
 function listar_livro_especifico() {
@@ -74,8 +97,7 @@ function listar_livro_especifico() {
                         </div>`
 
                     }
-                }
-                else {
+                } else {
                     list +=
                         `<div class="collection-item grey-text">
                         Vazia.
@@ -87,34 +109,8 @@ function listar_livro_especifico() {
 
 }
 
-function listar_livros() {
 
-    fetch(api + '/livros')
-        .then(response => response.json())
-        .then((livros) => {
-            let listaLivros = document.getElementById('lista-livros');
 
-            let list = '';
-            livros.forEach((livro, index) => {
-                if (livro.Titulo.lenght != 0) {
-                    list +=
-                        `<div class="collection-item grey-text" style="text-align:left;">
-                        ${livro.Titulo}
-                        <a class="secondary-content modal-trigger" href="#see-forms-book"><i
-                         onclick="info_livro(${livro.Id})" class="material-icons">visibility</i></a>
-                        </div>`
-
-                }
-                else {
-                    list +=
-                        `<div class="collection-item grey-text">
-                        Vazia.
-                        </div>`
-                }
-            });
-            listaLivros.innerHTML = list;
-        });
-}
 function info_livro(id) {
     fetch(api + '/livros/' + id)
         .then(response => response.json())
@@ -129,8 +125,6 @@ function info_livro(id) {
         })
 
 }
-
-listar_livros();
 
 function pre_atualizacao() {
     fetch(api + '/livros/' + idLivro)
@@ -168,21 +162,19 @@ function pre_atualizacao() {
         })
 
 }
+
 function atualizar_livro(id, divTitulo, divAutor, divLancamento) {
 
-    let body =
-    {
+    let body = {
         'Titulo': divTitulo,
         'Autor': divAutor,
         'Lancamento': divLancamento
     }
 
-    fetch(api + "/livros/" + id,
-        {
+    fetch(api + "/livros/" + id, {
             'method': 'PUT',
             'redirect': 'follow',
-            'headers':
-            {
+            'headers': {
                 'Content-type': 'application/json',
                 'Accept': 'application/json'
             },
@@ -191,8 +183,7 @@ function atualizar_livro(id, divTitulo, divAutor, divLancamento) {
         .then((response) => {
             if (response.ok) {
                 return response.text()
-            }
-            else {
+            } else {
                 return response.text().then((text) => {
                     throw new Error(text)
                 })
@@ -213,16 +204,14 @@ function atualizar_livro(id, divTitulo, divAutor, divLancamento) {
 function deletar_livro() {
 
     let id = idLivro;
-    fetch(api + '/livros/' + id,
-        {
+    fetch(api + '/livros/' + id, {
             'method': 'DELETE',
             'redirect': 'follow'
         })
         .then((response) => {
             if (response.ok) {
                 return response.text()
-            }
-            else {
+            } else {
                 return response.text().then((text) => {
                     throw new Error(text)
                 })

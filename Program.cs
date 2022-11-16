@@ -11,12 +11,15 @@
 
 // antes de rodar o dotnet run pela PRIMEIRA vez
 // rodar os seguintes comandos para iniciar a base de dados:
-// dotnet ef migrations add InitialCreate
+//  InitialCreate
 // obs: troque "InitialCreate" por uma descrição da alteração nas tabelas
 // toda vez que alterar `DbContext` ou classe que os `DbSet`s dependem
-// dotnet ef database update
 // obs: rode este comando toda vez que criar uma migration
 // para aplicar as alterações em banco de dados / persistência.
+
+    dotnet ef migrations add [nome_da_migration]
+    dotnet ef database update
+
 */
 using Microsoft.EntityFrameworkCore;
 
