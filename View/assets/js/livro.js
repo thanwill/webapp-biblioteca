@@ -1,5 +1,5 @@
 function cadastrar_livro() {
-    
+
     const body = {
         'Titulo': document.getElementById('titulo').value,
         'Autor': document.getElementById('autor').value,
@@ -32,7 +32,7 @@ function cadastrar_livro() {
             M.toast({
                 html: `${body.Titulo} cadastrado(a) com sucesso!`,
                 inDuration: 300,
-                classes:'green accent-2'
+                classes: 'green accent-2'
             });
         })
         //trata erro
@@ -45,6 +45,7 @@ function cadastrar_livro() {
             });
         });
 }
+
 function listar_livros() {
 
     fetch(api + '/livros')
@@ -52,64 +53,29 @@ function listar_livros() {
         .then((livros) => {
             let listaLivros = document.getElementById('lista-livros');
             for (const {
-                Id,
-                Titulo
-            } of livros) {
-            const itemLista = document.createElement("li");
-            itemLista.setAttribute("id", `${Id}`);
-            itemLista.setAttribute("class", "collection-item grey-text");
-            itemLista.innerHTML = `
+                    Id,
+                    Titulo
+                } of livros) {
+                const itemLista = document.createElement("li");
+                itemLista.setAttribute("id", `${Id}`);
+                itemLista.setAttribute("class", "collection-item grey-text");
+                itemLista.innerHTML = `
         <div style="text-align:left;" . id="${Id}">
           ${Titulo}
           <a 
             class="secondary-content modal-trigger"
-            href="#modal-usuario"
-            onclick="visualizar_perfil(${Id})">
+            href="#modal-livro"
+            onclick="visualizar_livro(${Id})">
               <i id="see-1" class="material-icons">
               expand_more
               </i>
           </a>
         </div>
       `;
-      listaLivros.appendChild(itemLista);
-        }
+                listaLivros.appendChild(itemLista);
+            }
         });
 }
-
-function listar_livro_especifico() {
-
-    let titulo = document.getElementById('search').value
-    fetch(api + '/livros')
-        .then(response => response.json())
-        .then((livros) => {
-            let listaLivros = document.getElementById('lista-livros');
-
-            let list = '';
-
-            livros.forEach((livro, index) => {
-                if (livro.Titulo.lenght != 0) {
-                    if (livro.Titulo == titulo) {
-                        list +=
-                            `<div class="collection-item grey-text" style="text-align:left;">
-                        ${livro.Titulo}
-                        <a class="secondary-content modal-trigger" href="#see-forms-book"><i
-                         onclick="info_livro(${livro.Id})" class="material-icons">visibility</i></a>
-                        </div>`
-
-                    }
-                } else {
-                    list +=
-                        `<div class="collection-item grey-text">
-                        Vazia.
-                        </div>`
-                }
-            });
-            listaLivros.innerHTML = list;
-        })
-
-}
-
-
 
 function info_livro(id) {
     fetch(api + '/livros/' + id)
@@ -124,6 +90,89 @@ function info_livro(id) {
 
         })
 
+}
+
+function visualizar_livro(id) {
+
+    fetch(api + `/livros/${id}`)
+        .then((response) => response.json())
+        .then((livro) => {
+            const visualizaLivro = document.querySelector('#visualizar-livro');
+            let list = `
+            <div class="modal-content">
+            <div class="row" style="padding-top: 1vh">
+            <h4 class="grey-text left-align">Livros</h4>
+            <p class="grey-text left-align">
+            Consulte as informações cadastradas do livro selecionado.
+            </p>
+            </div>
+            <div class="row">
+            <table class="grey-text striped">
+            <tbody>
+            <tr>
+                <td>Matrícula</td>
+                <td>${livro.Id}</td>
+            </tr>
+            <tr>
+                <td>Título:</td>
+                <td>${livro.Titulo}</td>
+            </tr>
+            <tr>
+            <td>Autor:</td>
+            <td>${livro.Autor}</td>
+            </tr>
+            <tr>
+            <td>Lançamento:</td>
+            <td>${livro.Lancamento}</td>
+            </tr>
+            <tr>
+            <td>Quantidade em estoque:</td>
+            <td>${livro.Estoque}</td>
+            </tr>
+            </tbody>
+            </table>
+            </div>
+            </div>
+            <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Editar</a>
+            <a onclick="excluir_livro(${livro.Id})" class="modal-close waves-effect waves-green btn-flat">Excluir</a>
+                </div>
+            `;
+            visualizaLivro.innerHTML = list;
+        });
+}
+
+function excluir_livro(id) {
+    fetch(api + `/livros/${id}`, {
+            'method': 'DELETE',
+            'redirect': 'follow'
+        })
+        .then((response) => {
+            if (response.ok) {
+                return response.text()
+            } else {
+                return response.text().then((text) => {
+                    throw new Error(text)
+                })
+            }
+        })
+        .then((output) => {
+            console.log(output);
+            M.toast({
+                html: 'Usuário removido com sucesso!',
+                inDuration: 300,
+                classes:'green accent-2'
+            });
+
+        })
+        .catch((error) => {
+            console.log(error);
+            M.toast({
+                html: 'Não foi possível remover o usuário',
+                inDuration: 300,
+                classes: 'red lighten-3'
+            });
+        });
 }
 
 function pre_atualizacao() {
@@ -227,3 +276,4 @@ function deletar_livro() {
             alert('Não foi possível remover o livro')
         })
 }
+listar_livros();

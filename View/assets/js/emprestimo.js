@@ -142,3 +142,4 @@ function recarregarEmprestimos() {
   document.getElementById("novo-emprestimo-periodo").value = "";
   listarEmprestimos();
 }
+listarEmprestimos()

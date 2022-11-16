@@ -204,12 +204,16 @@ function excluir_usuario(id) {
             console.log(output)
             M.toast({
                 html: 'Usuário removido com sucesso!',
-                inDuration:900
+                inDuration:300
             });
 
         })
         .catch((error) => {
             console.log(error);
-            M.toast({html: 'Não foi possível remover o usuário'});
+            M.toast({
+              html: 'Não foi possível remover o usuário', 
+              inDuration:300
+            });
         });
 }
+lista_usuarios();
