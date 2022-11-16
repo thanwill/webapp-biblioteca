@@ -134,22 +134,22 @@ function buscarLivros() {
   fetch(api + '/livros')
     .then(response => response.json())
     .then((livros) => {
-      //PEGA OPTION VAZIA NO HTML
-      let selecionaLivro = document.querySelector('#seleciona-livro');
-      console.log(selecionaLivro)
+        //PEGA OPTION VAZIA NO HTML
+        let selecionaLivro = document.querySelector('#seleciona-livro');
+        //PREENCHE ELA COM O NOME E O ID DOS USUARIOS
+        for (const {
+            Id,
+            Titulo
+          } of livros) {
+          const itemLista = document.createElement("li");
+          itemLista.setAttribute("value", `${Id}`);
+          itemLista.textContent = `${Titulo}`;
+          selecionaLivro.appendChild(itemLista);
+        };
 
-      //PREENCHE ELA COM O NOME E O ID DOS USUARIOS
-      for (i = 0; i < selecionaLivro.length; i = i + 1) {
-        console.log(selecionaLivro.options[i]);
-    }
-      for (let livro of livros) {
-        let opcaoLivro = document.createElement('option');
-        opcaoLivro.innerHTML = livro.Titulo;
-        opcaoLivro.value = livro.Id;
-        selecionaLivro.appendChild(opcaoLivro);
-      }
     });
 }
+buscarLivros();
 
 function recarregarEmprestimos() {
   document.getElementById("emprestimo-id").value = "";

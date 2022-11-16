@@ -72,7 +72,7 @@ function lista_usuarios() {
                 href="#modal-usuario"
                 onclick="visualizar_perfil(${Id})">
                   <i id="see-1" class="material-icons">
-                  expand_more
+                  visibility
                   </i>
               </a>
             </div>

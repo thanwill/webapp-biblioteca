@@ -70,7 +70,7 @@ function listar_livros() {
             href="#modal-livro"
             onclick="visualizar_livro(${Id})">
               <i id="see-1" class="material-icons">
-              expand_more
+              visibility
               </i>
           </a>
         </div>

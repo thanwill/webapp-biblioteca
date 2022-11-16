@@ -295,7 +295,7 @@
         <form>
           <div class="row">
             <div class="input-field col s12">
-              <select id="seleciona-livro" onclick="buscarLivros()">
+              <select id="seleciona-livro" onchange="buscarLivros(this.value)">
                 <option>Escolha um livro</option>
               </select>
               <label for="seleciona-livro">Livros disponíveis</label>
