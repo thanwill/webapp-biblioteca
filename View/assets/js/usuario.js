@@ -186,7 +186,6 @@ function editar_perfil(id,divNome, divSobrenome, divCpf, divEmail, divTelefone, 
 }
 
 function excluir_usuario(id) {
-    console.log('entrei aqui.');
     fetch(api + `/usuarios/${id}`,{
             'method': 'DELETE',
             'redirect': 'follow'

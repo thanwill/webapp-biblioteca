@@ -55,7 +55,7 @@ class Program
         app.MapGet("/usuarios", usuario.Listar);
         app.MapPost("/usuarios", usuario.Cadastrar);
         app.MapPut("/usuarios", usuario.Atualizar);
-        app.MapDelete("/usuarios", usuario.Deletar);
+        app.MapDelete("/usuarios/{id}", usuario.Deletar);
 
         // Empréstimo
         Emprestimo emprestimo = new Emprestimo();
