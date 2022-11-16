@@ -1,4 +1,7 @@
+var form = document.getElementsByTagName('form[3]');
+console.log(form)
 function cadastrar_usuario() {
+
     let body = {
         'Nome': document.getElementById('nome').value,
         'Sobrenome': document.getElementById('sobrenome').value,
@@ -31,9 +34,10 @@ function cadastrar_usuario() {
         //trata resposta
         .then((output) => {
             console.log(output);
-            html.inDuration = M.toast({
+            M.toast({
                 html: `${body.Nome} cadastrado(a) com sucesso!`,
-                inDuration: 600
+                inDuration: 300,
+                classes:'green accent-2'
             });
         })
         //trata erro
@@ -42,7 +46,7 @@ function cadastrar_usuario() {
             M.toast({
                 html: `Não foi possível efetuar o cadastro! :(`,
                 inDuration: 300,
-                classes: 'red'
+                classes: 'red lighten-3'
             });
         });
 }
@@ -129,16 +133,64 @@ function visualizar_perfil(id) {
           </div>
           <div class="modal-footer">
             <a href="#formulario-usuario" class="modal-close waves-effect waves-green btn-flat">Editar</a>
-            <a class="modal-close waves-effect waves-green btn-flat" onclick(excluir_usuario(${usuario.Id}))>Excluir</a>
+            <a class="modal-close waves-effect waves-green btn-flat" onclick="excluir_usuario(${usuario.Id})">Excluir</a>
           </div>
             
             `;
             visualizaPerfil.innerHTML = list;
         });
 }
+function editar_perfil(id,divNome, divSobrenome, divCpf, divEmail, divTelefone, divNascimento  )
+{
+	let body = {
+        'Nome': divNome.value,
+        'Sobrenome': divSobrenome.value,
+        'CPF': divCpf.value,
+        'Email': divEmail.value,
+        'Telefone': divTelefone.value,
+        'Nascimento': divNascimento.value,
+    };
+	
+	fetch(api + `/usuarios/${id}`,{
+		'method': 'PUT',
+		'redirect': 'follow',
+		'headers':
+		{
+			'Content-Type': 'application/json',
+			'Accept': 'application/json'
+		},
+		'body': JSON.stringify(body)
+	})
+	.then((response) =>
+	{
+		if(response.ok)
+		{
+			return response.text()
+		}
+		else
+		{
+			return response.text().then((text) =>
+			{
+				throw new Error(text)
+			})
+		}
+	})
+	.then((output) =>
+	{
+		lista_usuarios();
+		console.log(output)
+		alert('Usuário atualizado! \\o/');
+	})
+	.catch((error) =>
+	{
+		console.log(error)
+		alert('Não foi possível atualizar o usuário :/');
+	})
+}
 
 function excluir_usuario(id) {
-    fetch(url + 'usuarios/' + id, {
+    console.log('entrei aqui.');
+    fetch(api + `/usuarios/${id}`,{
             'method': 'DELETE',
             'redirect': 'follow'
         })
@@ -152,12 +204,17 @@ function excluir_usuario(id) {
             }
         })
         .then((output) => {
-            listar()
+            lista_usuarios();
             console.log(output)
-            alert('Usuário removido! >=]')
+            M.toast({
+                html: 'Usuário removido com sucesso!',
+                inDuration:900
+            });
+
         })
         .catch((error) => {
-            console.log(error)
-            alert('Não foi possível remover o usuário :/')
-        })
+            console.log(error);
+            M.toast({html: 'Não foi possível remover o usuário'});
+        });
 }
+

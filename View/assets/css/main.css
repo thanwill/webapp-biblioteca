@@ -17,9 +17,8 @@ body {
 a {
   color: #fff;
 }
- .carousel-item{
-  height:90vh;
-  overflow: auto;
+td{
+  overflow:visible;
 }
 #lista-usuarios{
   overflow: scroll;

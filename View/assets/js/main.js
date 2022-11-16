@@ -14,9 +14,15 @@ $(document).ready(function () {
     showClearBtn: false,
   });
   $('.tabs').tabs({
-    duration: 600,
+    duration: 300,
     swipeable: false
   });
-  var modalUsuario = document.querySelector('#formulario-usuario');
-  var instanceUsuario = M.Modal.getInstance(modalUsuario);
+  
+});
+
+document.querySelector('#form-livro').addEventListener('onclick', function(event){
+  event.preventDefault();
+});
+document.querySelector('#form-usuario').addEventListener('onclick', function(event){
+  event.preventDefault();
 });
