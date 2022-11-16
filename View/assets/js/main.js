@@ -11,10 +11,10 @@ $(document).ready(function () {
     format: "dd/mm/yyyy",
     setDefaultDate: true,
     minDate: new Date(1900, 01, 01),
-    showClearBtn: false,
+    showClearBtn: true
   });
   $(".tabs").tabs({
-    duration: 600,
-    swipeable: true,
+    duration: 300,
+    swipeable: false
   });
 });
