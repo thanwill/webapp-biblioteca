@@ -9,7 +9,7 @@ function cadastrar_usuario() {
     };
     //envio da requisicao usando a FETCH API
     //configuracao e realizacao do POST no endpoint "usuarios"
-    fetch(api + "/usuario", {
+    fetch(api + "/usuarios", {
             'method': 'POST',
             'redirect': 'follow',
             'headers': {
@@ -55,25 +55,63 @@ function lista_usuarios() {
     fetch(api + '/usuarios')
         .then((response) => response.json())
         .then((usuarios) => {
-            usuarios.forEach(u => {
+            for (const {
+                    Id, 
+                    Nome, 
+                    Sobrenome
+                } of usuarios) {
                 const itemLista = document.createElement("li");
-                itemLista.setAttribute("id", `${u.id}`);
+                itemLista.setAttribute("id", `${Id}`);
                 itemLista.setAttribute("class", "collection-item grey-text");
                 itemLista.innerHTML = `
-            <div class="exibe-titulo" style="text-align:left;">
-              ${u.Nome} ${u.Sobrenome}
+            <div style="text-align:left;" . id="${Id}">
+              ${Nome} ${Sobrenome}
               <a 
                 class="secondary-content modal-trigger"
-                href="#formulario-emprestimo"
-                onclick="visualizarEmprestimo(${u.id})">
+                href="#modal-usuario"
+                onclick="visualizar_perfil(${Id})">
                   <i id="see-1" class="material-icons">
-                    visibility
+                  expand_more
                   </i>
               </a>
             </div>
           `;
                 listaUsuario.appendChild(itemLista);
-            });
+            }
         });
 }
-lista_usuarios();
+
+function visualizar_perfil(id) {
+
+    fetch(api + `/usuarios/${id}`)
+        .then((response) => response.json())
+        .then((usuario) => {
+            const visualizaPerfil = document.querySelector('#visualizar-perfil');
+            let list = 
+            `
+            <tbody>
+            <tr>
+              <td>Nome completo</td>
+              <td>${usuario.Nome} ${usuario.Sobrenome}</td>
+            </tr>
+            <tr>
+              <td>CPF</td>
+              <td>${usuario.CPF}</td>
+            </tr>
+            <tr>
+              <td>E-mail</td>
+              <td>${usuario.Email}</td>
+            </tr>
+            <tr>
+              <td>Telefone</td>
+              <td>${usuario.Telefone}</td>
+            </tr>
+            <tr>
+              <td>Nascimento</td>
+              <td>${usuario.Nascimento}</td>
+            </tr>
+          </tbody>
+            `;
+            visualizaPerfil.innerHTML = list;            
+        });
+}

@@ -55,11 +55,11 @@ class Program
 
         // Usuário
         Usuario usuario = new Usuario();
-        //app.MapGet("/usuario/{id}", usuario.Buscar);
+        app.MapGet("/usuarios/{id}", usuario.Buscar);
         app.MapGet("/usuarios", usuario.Listar);
-        app.MapPost("/usuario", usuario.Cadastrar);
-        app.MapPut("/usuario", usuario.Atualizar);
-        app.MapDelete("/usuario", usuario.Deletar);
+        app.MapPost("/usuarios", usuario.Cadastrar);
+        app.MapPut("/usuarios", usuario.Atualizar);
+        app.MapDelete("/usuarios", usuario.Deletar);
 
         // Empréstimo
         Emprestimo emprestimo = new Emprestimo();

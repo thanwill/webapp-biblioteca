@@ -1,4 +1,4 @@
-var api = "http://localhost:3000";
+var api = "http://localhost:5220";
 
 // inicializa todos os componentes do Materilize de uma única vez.
 M.AutoInit();
@@ -17,4 +17,6 @@ $(document).ready(function () {
     duration: 600,
     swipeable: false
   });
+  var modalUsuario = document.querySelector('#formulario-usuario');
+  var instanceUsuario = M.Modal.getInstance(modalUsuario);
 });
