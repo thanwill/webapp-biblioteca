@@ -5,16 +5,17 @@ M.AutoInit();
 
 $(document).ready(function () {
   $(".fixed-action-btn").floatingActionButton({
-    toolbarEnabled: true,
+    toolbarEnabled: true
   });
   $(".datepicker").datepicker({
     format: "dd/mm/yyyy",
     setDefaultDate: true,
     minDate: new Date(1900, 01, 01),
-    showClearBtn: true
+    showClearBtn: false,
   });
-  $(".tabs").tabs({
+  $('.tabs').tabs({
     duration: 300,
     swipeable: false
   });
+  
 });

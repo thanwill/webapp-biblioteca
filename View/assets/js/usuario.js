@@ -1,4 +1,4 @@
-function cadastrar_usuario(e) {
+function cadastrar_usuario() {
     let body = {
         'Nome': document.getElementById('nome').value,
         'Sobrenome': document.getElementById('sobrenome').value,
@@ -9,7 +9,7 @@ function cadastrar_usuario(e) {
     };
     //envio da requisicao usando a FETCH API
     //configuracao e realizacao do POST no endpoint "usuarios"
-    fetch(api + "/usuario", {
+    fetch(api + "/usuarios", {
             'method': 'POST',
             'redirect': 'follow',
             'headers': {
@@ -31,9 +31,10 @@ function cadastrar_usuario(e) {
         //trata resposta
         .then((output) => {
             console.log(output);
-            html.inDuration = M.toast({
+            M.toast({
                 html: `${body.Nome} cadastrado(a) com sucesso!`,
-                inDuration: 600
+                inDuration: 300,
+                classes:'green accent-2'
             });
         })
         //trata erro
@@ -42,91 +43,174 @@ function cadastrar_usuario(e) {
             M.toast({
                 html: `Não foi possível efetuar o cadastro! :(`,
                 inDuration: 300,
-                classes: 'red'
+                classes: 'red lighten-3'
             });
         });
 }
 
-function listar_usuarios() {
-
-    // da um GET no endpoint "usuarios"
+function lista_usuarios() {
+    const listaUsuario = document.getElementById("lista-usuarios");
+    while (listaUsuario.firstChild) {
+        listaUsuario.removeChild(listaUsuario.firstChild);
+    }
     fetch(api + '/usuarios')
-        .then(response => response.json())
+        .then((response) => response.json())
         .then((usuarios) => {
-            //pega div que vai conter a lista de usuarios
-            let listaUsuarios = document.querySelector('#lista-usuarios');
-
-            /*limpa div
-            while (listarUsuarios.firstChild) {
-                listarUsuarios.removeChild(listarUsuarios.firstChild);
-            }*/
-            let list = '';
-            usuarios.forEach((usuario) => {
-                if (usuario.Nome.length != 0) {
-                    list +=
-                        `<div class="collection-item grey-text" style="text-align:left;">
-                            ${usuario.Nome} ${usuario.Sobrenome}
-                            <a class="secondary-content modal-trigger registros-usuarios" value="${usuario.Id}" href="#visualizar-usuario">
-                                <i class="material-icons">visibility</i>
-                            </a>
-                        </div>`;
-                } else {
-                    list +=
-                        `<div class="collection-item grey-text">
-                        Vazia.
-                        </div>`;
-                }
-            });
-            //preenche div com usuarios recebidos do GET
-            listaUsuarios.innerHTML = list;
+            for (const {
+                    Id,
+                    Nome,
+                    Sobrenome
+                } of usuarios) {
+                const itemLista = document.createElement("li");
+                itemLista.setAttribute("id", `${Id}`);
+                itemLista.setAttribute("class", "collection-item grey-text");
+                itemLista.innerHTML = `
+            <div style="text-align:left;" . id="${Id}">
+              ${Nome} ${Sobrenome}
+              <a 
+                class="secondary-content modal-trigger"
+                href="#modal-usuario"
+                onclick="visualizar_perfil(${Id})">
+                  <i id="see-1" class="material-icons">
+                  expand_more
+                  </i>
+              </a>
+            </div>
+          `;
+                listaUsuario.appendChild(itemLista);
+            }
         });
-
 }
 
-function mostrar_perfil() {
-    console.log('estou aqui');
-    let index = document.querySelector('.registros-usuarios').value;
-    // da um GET no endpoint "usuarios"
+function visualizar_perfil(id) {
 
-    fetch(api + `/usuario/${index}`)
-        .then(response => response.json())
+    fetch(api + `/usuarios/${id}`)
+        .then((response) => response.json())
         .then((usuario) => {
-            //pega div que vai conter a lista de usuarios
-            let mostrarPerfil = document.querySelector('#mostrar-perfil');
-            /*limpa div
-            while (listarUsuarios.firstChild) {
-                listarUsuarios.removeChild(listarUsuarios.firstChild);
-            }*/
-            let list = '';
-            list +=
-                        `
-                        <table class="grey-text striped">
-                            <tbody>
-                            <tr>
-                                <td>Nome</td>
-                                <td>${usuario.Nome}</td>
-                            </tr>
-                            <tr>
-                                <td>Sobrenome</td>
-                                <td>${usuario.Sobrenome}</td>
-                            </tr>
-                            <tr>
-                                <td>E-mail</td>
-                                <td>${usuario.Email}</td>
-                            </tr>
-                            <tr>
-                                <td>Telefone</td>
-                                <td>${usuario.Telefone}</td>
-                            </tr>
-                            <tr>
-                                <td>Nascimento</td>
-                                <td>${usuario.Nascimento}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        `;
-            //preenche div com usuarios recebidos do GET
-            mostrarPerfil.innerHTML = list;
+            const visualizaPerfil = document.querySelector('#visualizar-perfil');
+            let list =
+                `
+            <div class="modal-content">
+            <div class="row" style="padding-top: 1vh">
+              <h4 class="grey-text left-align">Usuário</h4>
+              <p class="grey-text left-align">
+                Consulte as informações cadastradas do usuário selecionado.
+              </p>
+            </div>
+            <div class="row">
+              <table class="grey-text striped">
+              <tbody>
+              <tr>
+                <td>Matrícula</td>
+                <td>${usuario.Id}</td>
+              </tr>
+              <tr>
+                <td>Nome completo</td>
+                <td>${usuario.Nome} ${usuario.Sobrenome}</td>
+              </tr>
+              <tr>
+                <td>CPF</td>
+                <td>${usuario.CPF}</td>
+              </tr>
+              <tr>
+                <td>E-mail</td>
+                <td>${usuario.Email}</td>
+              </tr>
+              <tr>
+                <td>Telefone</td>
+                <td>${usuario.Telefone}</td>
+              </tr>
+              <tr>
+                <td>Nascimento</td>
+                <td>${usuario.Nascimento}</td>
+              </tr>
+            </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a href="#formulario-usuario" class="modal-close waves-effect waves-green btn-flat">Editar</a>
+            <a class="modal-close waves-effect waves-green btn-flat" onclick="excluir_usuario(${usuario.Id})">Excluir</a>
+          </div>
+            
+            `;
+            visualizaPerfil.innerHTML = list;
         });
 }
-listar_usuarios();
+function editar_perfil(id,divNome, divSobrenome, divCpf, divEmail, divTelefone, divNascimento  )
+{
+	let body = {
+        'Nome': divNome.value,
+        'Sobrenome': divSobrenome.value,
+        'CPF': divCpf.value,
+        'Email': divEmail.value,
+        'Telefone': divTelefone.value,
+        'Nascimento': divNascimento.value,
+    };
+	
+	fetch(api + `/usuarios/${id}`,{
+		'method': 'PUT',
+		'redirect': 'follow',
+		'headers':
+		{
+			'Content-Type': 'application/json',
+			'Accept': 'application/json'
+		},
+		'body': JSON.stringify(body)
+	})
+	.then((response) =>
+	{
+		if(response.ok)
+		{
+			return response.text()
+		}
+		else
+		{
+			return response.text().then((text) =>
+			{
+				throw new Error(text)
+			})
+		}
+	})
+	.then((output) =>
+	{
+		lista_usuarios();
+		console.log(output)
+		alert('Usuário atualizado! \\o/');
+	})
+	.catch((error) =>
+	{
+		console.log(error)
+		alert('Não foi possível atualizar o usuário :/');
+	})
+}
+
+function excluir_usuario(id) {
+    console.log('entrei aqui.');
+    fetch(api + `/usuarios/${id}`,{
+            'method': 'DELETE',
+            'redirect': 'follow'
+        })
+        .then((response) => {
+            if (response.ok) {
+                return response.text()
+            } else {
+                return response.text().then((text) => {
+                    throw new Error(text)
+                })
+            }
+        })
+        .then((output) => {
+            lista_usuarios();
+            console.log(output)
+            M.toast({
+                html: 'Usuário removido com sucesso!',
+                inDuration:900
+            });
+
+        })
+        .catch((error) => {
+            console.log(error);
+            M.toast({html: 'Não foi possível remover o usuário'});
+        });
+}
