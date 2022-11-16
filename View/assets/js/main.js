@@ -17,5 +17,6 @@ $(document).ready(function () {
     duration: 300,
     swipeable: false
   });
+  $('select').formSelect();
   
 });

@@ -184,6 +184,45 @@ function editar_perfil(id,divNome, divSobrenome, divCpf, divEmail, divTelefone, 
 		alert('Não foi possível atualizar o usuário :/');
 	})
 }
+function alterar_usuario(id) {
+
+  const body = {
+    EmprestimoId: Number.parseInt(
+      document.getElementById("emprestimo-id").value
+    ),
+    Dias: Number.parseInt(document.getElementById("emprestimo-estender").value),
+  };
+
+  fetch(api + "/emprestimos", {
+      method: "PUT",
+      redirect: "follow",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(body),
+    })
+    .then((response) => {
+      if (response.ok) {
+        return response.text();
+      } else {
+        return response.text().then((text) => {
+          throw new Error(text);
+        });
+      }
+    })
+    //trata resposta
+    .then((output) => {
+      console.log(output);
+      recarregarEmprestimos();
+      alert("Alteração efetuada! :D");
+    })
+    //trata erro
+    .catch((error) => {
+      console.log(error);
+      alert("Não foi possível alterar o empréstimo! :(");
+    });
+}
 
 function excluir_usuario(id) {
     fetch(api + `/usuarios/${id}`,{

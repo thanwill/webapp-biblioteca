@@ -149,26 +149,26 @@
         <form class="">
           <div class="row">
             <div class="input-field col s12">
-              <input id="titulo" type="text" class="validate" />
+              <input id="titulo" type="text" class="validate" min="3" max="30"  required/>
               <label for="titulo">Título</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="autor" type="text" class="validate" />
+              <input id="autor" type="text" class="validate" min="3" max="30" required/>
               <label for="autor">Autor</label>
             </div>
           </div>
 
           <div class="row">
             <div class="input-field col s12">
-              <input id="data-lancamento" placeholder="Data de lançamento" type="text" class="datepicker" />
+              <input id="data-lancamento" placeholder="Lançamanto" type="text" class="datepicker" required/>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="estoque" type="number" class="validate" />
-              <label for="estoque">Quantidade</label>
+              <input id="estoque" type="number" class="validate" min="0" max="10" required/>
+              <label for="estoque">Quantidade em estoque</label>
             </div>
           </div>
         </form>
@@ -195,27 +195,27 @@
         <form id="formulario-usuario">
           <div class="row">
             <div class="input-field col s12">
-              <input id="nome" type="text" class="validate" />
+              <input id="nome" type="text" class="validate" min="3" max="30" required/>
               <label for="nome">Nome</label>
             </div>
             <div class="input-field col s12">
-              <input id="sobrenome" type="text" class="validate" />
+              <input id="sobrenome" type="text" class="validate" min="3" max="30" required/>
               <label for="sobrenome">Sobrenome</label>
             </div>
             <div class="input-field col s12">
-              <input id="cpf" type="text" class="validate" />
+              <input id="cpf" type="text" class="validate" min="3" max="30" required/>
               <label for="cpf">CPF</label>
             </div>
             <div class="input-field col s12">
-              <input id="email" type="email" class="validate" />
+              <input id="email" type="email" class="validate" min="3" max="30" required/>
               <label for="email">E-mail</label>
             </div>
             <div class="input-field col s12">
-              <input id="telefone" type="tel" class="validate" />
+              <input id="telefone" type="tel" class="validate" min="10" max="30" required/>
               <label for="telefone">Telefone</label>
             </div>
             <div class="input-field col s12">
-              <input placeholder="Data de nascimento" type="text" id="nascimento" class="datepicker" />
+              <input placeholder="Data de nascimento" type="text" id="nascimento" class="datepicker" required/>
             </div>
           </div>
         </form>
@@ -295,14 +295,14 @@
         <form>
           <div class="row">
             <div class="input-field col s12">
-              <select id="seleciona-livro" onchange="buscarLivros(this.value)">
-                <option>Escolha um livro</option>
+              <select id="seleciona-livro" class="browser-default">
+                <option selected disabled>Livros disponíveis</option>
               </select>
-              <label for="seleciona-livro">Livros disponíveis</label>
             </div>
             <div class="input-field col s12">
-              <input id="novo-emprestimo-usuario" type="text" class="validate" />
-              <label for="novo-emprestimo-usuario">Identificador do Usuário</label>
+              <select id="seleciona-usuario" class="browser-default">
+                <option selected disabled>Usuários cadastrados</option>
+              </select>
             </div>
             <div class="input-field col s12">
               <input id="novo-emprestimo-periodo" type="text" class="validate" />

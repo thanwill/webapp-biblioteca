@@ -47,17 +47,22 @@ function visualizarEmprestimo(id) {
 }
 
 function cadastrarEmprestimo() {
+  const form = document.querySelector('#formulario-novo-emprestimo');
+  form.addEventListener('onclick', function(e){
+    e.preventDefault();
+  });
   const body = {
     UsuarioId: Number.parseInt(
-      document.getElementById("novo-emprestimo-livro").value
+      document.getElementById("seleciona-usuario").value
     ),
     LivroId: Number.parseInt(
-      document.getElementById("novo-emprestimo-usuario").value
+      document.getElementById("seleciona-livro").value
     ),
     Periodo: Number.parseInt(
       document.getElementById("novo-emprestimo-periodo").value
     ),
   };
+  console.log(body)
 
   fetch(api + "/emprestimos", {
       method: "POST",
@@ -129,28 +134,49 @@ function alterarEmprestimo() {
     });
 }
 
-function buscarLivros() {
+function select_livros() {
   //DA UM GET NO ENDPOINT DE LISTAR USUARIOS
   fetch(api + '/livros')
     .then(response => response.json())
     .then((livros) => {
-        //PEGA OPTION VAZIA NO HTML
-        let selecionaLivro = document.querySelector('#seleciona-livro');
-        //PREENCHE ELA COM O NOME E O ID DOS USUARIOS
-        for (const {
-            Id,
-            Titulo
-          } of livros) {
-          const itemLista = document.createElement("li");
-          itemLista.setAttribute("value", `${Id}`);
-          itemLista.textContent = `${Titulo}`;
-          selecionaLivro.appendChild(itemLista);
-        };
+      // Pega o select vazio
+      let selectLivro = document.querySelector('#seleciona-livro');
+      //PREENCHE ELA COM O NOME E O ID DOS USUARIOS
+      for (const {
+          Id,
+          Titulo
+        } of livros) {
+        const itemLista = document.createElement("option");
+        itemLista.setAttribute("value", `${Id}`);
+        itemLista.innerHTML = `Valor ${Titulo}`;
+        selectLivro.appendChild(itemLista);
+      }
 
     });
 }
-buscarLivros();
+select_livros();
 
+function select_usuarios() {
+  //DA UM GET NO ENDPOINT DE LISTAR USUARIOS
+  fetch(api + '/usuarios')
+    .then(response => response.json())
+    .then((usuarios) => {
+      // Pega o select vazio
+      let selectUsuario = document.querySelector('#seleciona-usuario');
+      //PREENCHE ELA COM O NOME E O ID DOS USUARIOS
+      for (const {
+          Id,
+          Nome, Sobrenome
+        } of usuarios) {
+        const itemLista = document.createElement("option");
+        itemLista.setAttribute("value", `${Id}`);
+        itemLista.innerHTML = `${Nome} ${Sobrenome}`;
+        selectUsuario.appendChild(itemLista);
+      }
+
+    });
+}
+select_usuarios();
 function recarregarEmprestimos() {
   document.getElementById("emprestimo-id").value = "";
   document.getElementById("emprestimo-livro").value = "";
