@@ -1,6 +1,4 @@
-var url = 'http://localhost:3000';
-
-function cadastrar_usuario(e) {
+function cadastrar_usuario() {
     let body = {
         'Nome': document.getElementById('nome').value,
         'Sobrenome': document.getElementById('sobrenome').value,
@@ -11,7 +9,7 @@ function cadastrar_usuario(e) {
     };
     //envio da requisicao usando a FETCH API
     //configuracao e realizacao do POST no endpoint "usuarios"
-    fetch(url + "/usuario", {
+    fetch(api + "/usuario", {
             'method': 'POST',
             'redirect': 'follow',
             'headers': {
@@ -49,38 +47,33 @@ function cadastrar_usuario(e) {
         });
 }
 
-function listar_usuarios() {
-
-    // da um GET no endpoint "usuarios"
-    fetch(url + '/usuarios')
-        .then(response => response.json())
+function lista_usuarios() {
+    const listaUsuario = document.getElementById("lista-usuarios");
+    while (listaUsuario.firstChild) {
+        listaUsuario.removeChild(listaUsuario.firstChild);
+    }
+    fetch(api + '/usuarios')
+        .then((response) => response.json())
         .then((usuarios) => {
-            //pega div que vai conter a lista de usuarios
-            let listaUsuarios = document.querySelector('#lista-usuarios');
-
-            /*limpa div
-            while (listarUsuarios.firstChild) {
-                listarUsuarios.removeChild(listarUsuarios.firstChild);
-            }*/
-            let list = '';
-            usuarios.forEach((usuario, index) => {
-                if (usuario.Nome.length != 0) {
-                    list +=
-                        `<div class="collection-item grey-text" style="text-align:left;">
-                        ${usuario.Nome} ${usuario.Sobrenome}
-                        <a class="secondary-content modal-trigger" href="#visualizar-usuario"><i
-                            class="material-icons">visibility</i></a>
-                        </div>`;
-                } else {
-                    list +=
-                        `<div class="collection-item grey-text">
-                        Vazia.
-                        </div>`;
-                }
+            usuarios.forEach(u => {
+                const itemLista = document.createElement("li");
+                itemLista.setAttribute("id", `${u.id}`);
+                itemLista.setAttribute("class", "collection-item grey-text");
+                itemLista.innerHTML = `
+            <div class="exibe-titulo" style="text-align:left;">
+              ${u.Nome} ${u.Sobrenome}
+              <a 
+                class="secondary-content modal-trigger"
+                href="#formulario-emprestimo"
+                onclick="visualizarEmprestimo(${u.id})">
+                  <i id="see-1" class="material-icons">
+                    visibility
+                  </i>
+              </a>
+            </div>
+          `;
+                listaUsuario.appendChild(itemLista);
             });
-            //preenche div com usuarios recebidos do GET
-            listaUsuarios.innerHTML = list;
         });
-
 }
-listar_usuarios();
+lista_usuarios();

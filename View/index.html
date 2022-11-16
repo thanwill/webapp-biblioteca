@@ -29,95 +29,69 @@
       </ul>
     </div>
   </nav>
-  <ul id="slide-out" class="sidenav">
-    <li>
-      <div class="user-view">
-        <div class="background">
-          <img src="./assets/images/pexels-cottonbro-studio-4614204.jpeg" height="200px">
-        </div>
-        <a href="#user"><img class="circle materialboxed"
-            src="./assets/images/pexels-ike-louie-natividad-2709388.png"></a>
-        <a href="#name"><span class="white-text name">John Doe</span></a>
-        <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
-      </div>
-    </li>
-    <li><a href="#!"><i class="material-icons">cloud</i>Editar foto</a></li>
-    <li><a href="#!"><i class="material-icons">person</i>Visualizar perfil</a></li>
-    <li>
-      <div class="divider"></div>
-    </li>
-    <li><a class="subheader">Redes sociais</a></li>
-    <li><a class="waves-effect" href="#!">Instagram</a></li>
-  </ul>
 
   <!-- Dento da MAIN, fica todo o conteúdo que é vísivel na nossa página HTML.-->
   <main>
     <!-- Cada ID aqui, representa uma das páginas que podem ser alteradas e que são chamadas na classe TABS na linha 31 a linha 33-->
     <div id="pagina-livros" class="col s12">
-      <div class="container center">
-        <div id="" style="padding-top: 5vh">
-          <div class="row">
-            <div class="livros col s10 offset-s1 m8 offset-m2 l6 offset-l3">
-              <ul class="collection with-header" onload="ocultarTexto()">
-                <nav>
-                  <div class="nav-wrapper">
-                    <form>
-                      <div class="input-field">
-                        <input id="search" type="search" />
-                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                        <i class="material-icons">close</i>
-                      </div>
-                    </form>
-                  </div>
-                </nav>
-                <li class="collection-header">
-                  <h4>Livros</h4>
-                </li>
-                <li class="collection-item grey-text">
-                  <div class="exibe-titulo">
-                    A arte de fazer acontecer<a class="secondary-content modal-trigger" href="#visualizar-livro">
-                      <i id="see-1" class="material-icons">visibility</i></a>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="pagina-usuarios" class="col s12">
-      <div class="container center">
-        <div id="usuarios">
-          <div class="row" style="padding-top: 5vh">
-            <div class="usuarios col s10 offset-s1">
-              <ul class="collection with-header">
-                <nav>
-                  <div class="nav-wrapper">
-                    <form>
-                      <div class="input-field">
-                        <input id="pesquisa-usuarios" type="search" />
-                        <label class="label-icon" for="pesquisa-usuarios"><i class="material-icons">search</i></label>
-                        <i class="material-icons">close</i>
-                      </div>
-                    </form>
-                  </div>
-                </nav>
-                <li class="collection-header">
-                  <h4>Usuários</h4>
-                  <div id="header-usuarios"></div>
-                </li>
-                <div id="lista-usuarios">
+      <div class="container center" style="padding-top: 5vh">
+        <div class="row">
+          <div class="col s10 offset-s1 m8 offset-m2 l6 offset-l3">
+            <ul class="collection with-header">
+              <nav>
+                <div class="nav-wrapper">
+                  <form>
+                    <div class="input-field">
+                      <input id="search" type="search" />
+                      <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                      <i class="material-icons">close</i>
+                    </div>
+                  </form>
                 </div>
-              </ul>
-            </div>
+              </nav>
+              <li class="collection-header">
+                <h4>Livros</h4>
+              </li>
+              <li class="collection-item grey-text">
+                <div class="exibe-titulo">
+                  A arte de fazer acontecer<a class="secondary-content modal-trigger" href="#visualizar-livro">
+                    <i id="see-1" class="material-icons">visibility</i></a>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
 
+    <div id="pagina-usuarios" class="col s12">
+      <div class="container center" style="padding-top: 5vh">
+        <div class="row">
+          <div class="col s10 offset-s1 m8 offset-m2 l6 offset-l3">
+            <ul class="collection with-header">
+              <nav>
+                <div class="nav-wrapper">
+                  <form>
+                    <div class="input-field">
+                      <input id="search" type="search" />
+                      <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                      <i class="material-icons">close</i>
+                    </div>
+                  </form>
+                </div>
+              </nav>
+              <li class="collection-header">
+                <h4 class="grey-text">Livros</h4>
+              </li>
+              <div id="lista-usuarios"></div>
+            </ul>
+          </div>         
+        </div>        
+      </div>
+    </div>
+
     <div id="pagina-emprestimos" class="col s12">
       <div class="container center">
-        <div id="emprestimos"></div>
       </div>
     </div>
 
@@ -139,6 +113,7 @@
         </li>
       </ul>
     </div>
+
   </main>
 
   <div class="erro-device container">
@@ -310,43 +285,12 @@
           </table>
         </div>
       </div>
-
       <div class="modal-footer">
         <a href="#!" class="modal-close waves-effect waves-green btn-flat">Editar</a>
         <a href="#!" class="modal-close waves-effect waves-green btn-flat">Excluir</a>
       </div>
     </div>
-
   </div>
-  <!--
-
-        RODAPÉ OCULTADO
-    <footer class="page-footer body-content">
-        <div class="container">
-            <div class="row">
-                <div class="col l6 s12">
-                    <h5 class="">Rodápe da página</h5>
-                    <p class=" text-lighten-4">Front end do projeto minimal API em C#. <br>
-                        Saiba mais <a class=" text-lighten-3" href="#!" target="_blank"
-                            rel="noopener noreferrer">aqui</a>.
-                </div>
-                <div class="col l4 offset-l2 s12">
-                    <h5 class="">Criadores</h5>
-                    <ul>
-                        <li><a class=" text-lighten-3" href="#!">Bruno</a></li>
-                        <li><a class=" text-lighten-3" href="#!">Jonathan</a></li>
-                        <li><a class=" text-lighten-3" href="#!">Lucas</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="footer-copyright">
-            <div class="container">
-                Atualizado em 2022
-            </div>
-        </div>
-    </footer>
--->
   <script src="./node_modules/jquery/dist/jquery.js"></script>
   <script src="./node_modules/materialize-css/dist/js/materialize.min.js"></script>
   <script src="./assets/js/main.js"></script>

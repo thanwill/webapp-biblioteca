@@ -1,9 +1,11 @@
+var api = "http://localhost:3000";
+
 // inicializa todos os componentes do Materilize de uma única vez.
 M.AutoInit();
 
 $(document).ready(function () {
   $(".fixed-action-btn").floatingActionButton({
-    toolbarEnabled: true,
+    toolbarEnabled: true
   });
   $(".datepicker").datepicker({
     format: "dd/mm/yyyy",
@@ -13,6 +15,6 @@ $(document).ready(function () {
   });
   $('.tabs').tabs({
     duration: 600,
-    swipeable: true
+    swipeable: false
   });
 });

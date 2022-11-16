@@ -4,9 +4,6 @@ body {
 .collection > li {
   text-align: left;
 }
-.modal-content {
-  border-radius: 30px;
-}
 .erro-device {
   display: none;
 }
@@ -20,7 +17,13 @@ body {
 a {
   color: #fff;
 }
-
+ .carousel-item{
+  height:90vh;
+  overflow: auto;
+}
+#lista-usuarios{
+  overflow: scroll;
+}
 /* Desativa o layout para telas maiores que 540 px */
 @media only screen and (min-width: 540px) {
   body {
