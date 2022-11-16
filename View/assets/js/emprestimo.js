@@ -6,7 +6,9 @@ function listarEmprestimos() {
   fetch(api + "/emprestimos")
     .then((response) => response.json())
     .then((emprestimos) => {
-      for (const { id } of emprestimos) {
+      for (const {
+          id
+        } of emprestimos) {
         const itemLista = document.createElement("li");
         itemLista.setAttribute("id", `${id}`);
         itemLista.setAttribute("class", "collection-item grey-text");
@@ -58,14 +60,14 @@ function cadastrarEmprestimo() {
   };
 
   fetch(api + "/emprestimos", {
-    method: "POST",
-    redirect: "follow",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: JSON.stringify(body),
-  })
+      method: "POST",
+      redirect: "follow",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(body),
+    })
     .then((response) => {
       if (response.ok) {
         return response.text();
@@ -97,14 +99,14 @@ function alterarEmprestimo() {
   };
 
   fetch(api + "/emprestimos", {
-    method: "PUT",
-    redirect: "follow",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: JSON.stringify(body),
-  })
+      method: "PUT",
+      redirect: "follow",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(body),
+    })
     .then((response) => {
       if (response.ok) {
         return response.text();
@@ -124,6 +126,28 @@ function alterarEmprestimo() {
     .catch((error) => {
       console.log(error);
       alert("Não foi possível alterar o empréstimo! :(");
+    });
+}
+
+function buscarLivros() {
+  //DA UM GET NO ENDPOINT DE LISTAR USUARIOS
+  fetch(api + '/livros')
+    .then(response => response.json())
+    .then((livros) => {
+      //PEGA OPTION VAZIA NO HTML
+      let selecionaLivro = document.querySelector('#seleciona-livro');
+      console.log(selecionaLivro)
+
+      //PREENCHE ELA COM O NOME E O ID DOS USUARIOS
+      for (i = 0; i < selecionaLivro.length; i = i + 1) {
+        console.log(selecionaLivro.options[i]);
+    }
+      for (let livro of livros) {
+        let opcaoLivro = document.createElement('option');
+        opcaoLivro.innerHTML = livro.Titulo;
+        opcaoLivro.value = livro.Id;
+        selecionaLivro.appendChild(opcaoLivro);
+      }
     });
 }
 

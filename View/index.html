@@ -295,8 +295,10 @@
         <form>
           <div class="row">
             <div class="input-field col s12">
-              <input id="novo-emprestimo-livro" type="text" class="validate" />
-              <label for="novo-emprestimo-livro">Identificador do Livro</label>
+              <select id="seleciona-livro" onclick="buscarLivros()">
+                <option>Escolha um livro</option>
+              </select>
+              <label for="seleciona-livro">Livros disponíveis</label>
             </div>
             <div class="input-field col s12">
               <input id="novo-emprestimo-usuario" type="text" class="validate" />

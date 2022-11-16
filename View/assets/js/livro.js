@@ -47,11 +47,14 @@ function cadastrar_livro() {
 }
 
 function listar_livros() {
-
+    let listaLivros = document.getElementById('lista-livros');
+    while (listaLivros.firstChild) {
+        listaLivros.removeChild(listaLivros.firstChild);
+    }
     fetch(api + '/livros')
         .then(response => response.json())
         .then((livros) => {
-            let listaLivros = document.getElementById('lista-livros');
+            
             for (const {
                     Id,
                     Titulo
@@ -75,21 +78,6 @@ function listar_livros() {
                 listaLivros.appendChild(itemLista);
             }
         });
-}
-
-function info_livro(id) {
-    fetch(api + '/livros/' + id)
-        .then(response => response.json())
-        .then((livros) => {
-            document.getElementById('mostrar-titulo').innerHTML = livros.Titulo
-            document.getElementById('mostrar-autor').innerHTML = livros.Autor
-            document.getElementById('mostrar-lancamento').innerHTML = livros.Lancamento
-            document.getElementById('mostrar-quantidade').innerHTML = livros.Estoque;
-
-            idLivro = livros.Id;
-
-        })
-
 }
 
 function visualizar_livro(id) {
@@ -250,30 +238,4 @@ function atualizar_livro(id, divTitulo, divAutor, divLancamento) {
         })
 }
 
-function deletar_livro() {
-
-    let id = idLivro;
-    fetch(api + '/livros/' + id, {
-            'method': 'DELETE',
-            'redirect': 'follow'
-        })
-        .then((response) => {
-            if (response.ok) {
-                return response.text()
-            } else {
-                return response.text().then((text) => {
-                    throw new Error(text)
-                })
-            }
-        })
-        .then((output) => {
-            listar_livros()
-            console.log(output)
-            alert('Livro removido')
-        })
-        .catch((error) => {
-            console.log(error)
-            alert('Não foi possível remover o livro')
-        })
-}
 listar_livros();
