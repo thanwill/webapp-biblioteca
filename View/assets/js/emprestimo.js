@@ -14,11 +14,11 @@ function listarEmprestimos() {
         itemLista.setAttribute("class", "collection-item grey-text");
         itemLista.innerHTML = `
             <div class="exibe-titulo">
-              ${id}
+              Registro ${id}
               <a 
                 class="secondary-content modal-trigger"
-                href="#formulario-emprestimo"
-                onclick="visualizarEmprestimo(${id})">
+                href="#modal-emprestimo"
+                onclick="visualizar_emprestimo(${id})">
                   <i id="see-1" class="material-icons">
                     launch
                   </i>
@@ -30,6 +30,94 @@ function listarEmprestimos() {
     });
 }
 
+function visualizar_emprestimo(id) {
+
+  fetch(api + `/emprestimos/${id}`)
+    .then((response) => response.json())
+    .then((emprestimo) => {
+      const visualizarEmprestimo = document.querySelector('#visualizar-emprestimo');
+      const livroID = Number.parseFloat(emprestimo.LivroId);
+      const usuarioID = Number.parseFloat(emprestimo.usuarioID);
+      console.log(emprestimo)
+      let list =
+        `
+          <div class="modal-content">
+          <div class="row" style="padding-top: 1vh">
+            <h4 class="grey-text left-align">Empréstimo</h4>
+            <p class="grey-text left-align">
+              Consulte as informações cadastradas do empréstimo selecionado.
+            </p>
+          </div>
+          <div class="row">
+            <table class="grey-text striped">
+            <tbody>
+            <tr>
+              <td>Número de registro</td>
+              <td>${emprestimo.id}</td>
+            </tr>
+            <tr>
+              <td>Cadastrado em:</td>
+              <td>${emprestimo.Inicio}</td>
+            </tr>
+            <tr>
+              <td>Devolver em:</td>
+              <td>${emprestimo.Devolucao}</td>
+            </tr>
+            <tr>
+              <td>Status:</td>
+              <td>${emprestimo.Status}</td>
+            </tr>
+            <tr>
+              <td>Dias em atraso</td>
+              <td>${emprestimo.Atrasos}</td>
+            </tr>
+            <tr>
+              <td>Multa gerada</td>
+              <td>${emprestimo.Custo}</td>
+            </tr>
+            <tr>
+              <td>Livro:</td>
+              <td>
+                <a 
+                  class="secondary-content modal-trigger"
+                  href="#modal-livro"
+                  onclick="visualizar_livro(${livroID})">
+                  Consultar
+                    <i id="see-1" class="material-icons">
+                      launch
+                    </i>
+                </a>
+            </td>
+            </tr>
+            <tr>
+              <td>Usuário</td>
+              <td>
+                  <a 
+                  class="secondary-content modal-trigger"
+                  href="#modal-usuario"
+                  onclick="visualizar_usuario(${usuarioID})">
+                  Consultar
+                  <i class="material-icons">
+                  launch
+                  </i>
+                  </a>
+              </td>
+            </tr>
+          </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="#formulario-usuario" class="modal-close waves-effect waves-green btn-flat">Editar</a>
+          <a class="modal-close waves-effect waves-green btn-flat" onclick="foo({})">Excluir</a>
+        </div>
+          
+          `;
+      visualizarEmprestimo.innerHTML = list;
+    });
+}
+
+/*Em desuso
 function visualizarEmprestimo(id) {
   fetch(api + `/emprestimos/${id}`)
     .then((response) => response.json())
@@ -45,12 +133,9 @@ function visualizarEmprestimo(id) {
       document.getElementById("emprestimo-custo").value = emprestimo.Custo;
     });
 }
+*/
 
 function cadastrarEmprestimo() {
-  const form = document.querySelector('#formulario-novo-emprestimo');
-  form.addEventListener('onclick', function(e){
-    e.preventDefault();
-  });
   const body = {
     UsuarioId: Number.parseInt(
       document.getElementById("seleciona-usuario").value
@@ -60,7 +145,7 @@ function cadastrarEmprestimo() {
     ),
     Periodo: Number.parseInt(
       document.getElementById("novo-emprestimo-periodo").value
-    ),
+    )
   };
   console.log(body)
 
@@ -91,7 +176,7 @@ function cadastrarEmprestimo() {
     //trata erro
     .catch((error) => {
       console.log(error);
-      alert("Não foi possível efetuar o cadastro! :(");
+      alert("Não foi possível efetuar o cadastro!");
     });
 }
 
@@ -166,7 +251,8 @@ function select_usuarios() {
       //PREENCHE ELA COM O NOME E O ID DOS USUARIOS
       for (const {
           Id,
-          Nome, Sobrenome
+          Nome,
+          Sobrenome
         } of usuarios) {
         const itemLista = document.createElement("option");
         itemLista.setAttribute("value", `${Id}`);
@@ -177,6 +263,7 @@ function select_usuarios() {
     });
 }
 select_usuarios();
+
 function recarregarEmprestimos() {
   document.getElementById("emprestimo-id").value = "";
   document.getElementById("emprestimo-livro").value = "";
@@ -192,4 +279,4 @@ function recarregarEmprestimos() {
   document.getElementById("novo-emprestimo-periodo").value = "";
   listarEmprestimos();
 }
-listarEmprestimos()
+listarEmprestimos();

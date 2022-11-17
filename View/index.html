@@ -82,8 +82,8 @@
               </li>
               <div id="lista-usuarios"></div>
             </ul>
-          </div>         
-        </div>        
+          </div>
+        </div>
       </div>
     </div>
 
@@ -109,7 +109,7 @@
                 </li>
                 <div id="lista-emprestimos"></div>
               </ul>
-              
+
             </div>
           </div>
         </div>
@@ -149,25 +149,25 @@
         <form class="">
           <div class="row">
             <div class="input-field col s12">
-              <input id="titulo" type="text" class="validate" min="3" max="30"  required/>
+              <input id="titulo" type="text" class="validate" min="3" max="30" required />
               <label for="titulo">Título</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="autor" type="text" class="validate" min="3" max="30" required/>
+              <input id="autor" type="text" class="validate" min="3" max="30" required />
               <label for="autor">Autor</label>
             </div>
           </div>
 
           <div class="row">
             <div class="input-field col s12">
-              <input id="data-lancamento" placeholder="Lançamanto" type="text" class="datepicker" required/>
+              <input id="data-lancamento" placeholder="Lançamanto" type="text" class="datepicker" required />
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="estoque" type="number" class="validate" min="0" max="10" required/>
+              <input id="estoque" type="number" class="validate" min="0" max="10" required />
               <label for="estoque">Quantidade em estoque</label>
             </div>
           </div>
@@ -180,7 +180,7 @@
     <!-- TABELA DE VISUALIZAÇÃO E EDIÇÃO DOS LIVROS-->
     <div id="modal-livro" class="modal">
       <div id="visualizar-livro"></div>
-    
+
     </div>
 
     <!-- FORM DE USUÁRIOS-->
@@ -195,27 +195,27 @@
         <form id="formulario-usuario">
           <div class="row">
             <div class="input-field col s12">
-              <input id="nome" type="text" class="validate" min="3" max="30" required/>
+              <input id="nome" type="text" class="validate" min="3" max="30" required />
               <label for="nome">Nome</label>
             </div>
             <div class="input-field col s12">
-              <input id="sobrenome" type="text" class="validate" min="3" max="30" required/>
+              <input id="sobrenome" type="text" class="validate" min="3" max="30" required />
               <label for="sobrenome">Sobrenome</label>
             </div>
             <div class="input-field col s12">
-              <input id="cpf" type="text" class="validate" min="3" max="30" required/>
+              <input id="cpf" type="text" class="validate" min="3" max="30" required />
               <label for="cpf">CPF</label>
             </div>
             <div class="input-field col s12">
-              <input id="email" type="email" class="validate" min="3" max="30" required/>
+              <input id="email" type="email" class="validate" min="3" max="30" required />
               <label for="email">E-mail</label>
             </div>
             <div class="input-field col s12">
-              <input id="telefone" type="tel" class="validate" min="10" max="30" required/>
+              <input id="telefone" type="tel" class="validate" min="10" max="30" required />
               <label for="telefone">Telefone</label>
             </div>
             <div class="input-field col s12">
-              <input placeholder="Data de nascimento" type="text" id="nascimento" class="datepicker" required/>
+              <input placeholder="Data de nascimento" type="text" id="nascimento" class="datepicker" required />
             </div>
           </div>
         </form>
@@ -224,14 +224,59 @@
         <a onclick="cadastrar_usuario()" class="modal-close waves-effect waves-green btn-flat">Cadastrar</a>
       </div>
     </div>
-
+    <!-- FORM DE USUÁRIOS-->
+    <div id="atualiza-usuario" class="modal">
+      <div class="modal-content">
+        <div class="row" style="padding-top: 1vh">
+          <h4 class="grey-text left-align">Usuário</h4>
+          <p class="grey-text left-align">
+            Insira as informações para atualizar o cadastro de usuário.
+          </p>
+        </div>
+        <form>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="nome" type="text" class="validate" min="3" max="30" required />
+              <label for="nome">Nome</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="sobrenome" type="text" class="validate" min="3" max="30" required />
+              <label for="sobrenome">Sobrenome</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="cpf" type="text" class="validate" min="3" max="30" required />
+              <label for="cpf">CPF</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="email" type="email" class="validate" min="3" max="30" required />
+              <label for="email">E-mail</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="telefone" type="tel" class="validate" min="10" max="30" required />
+              <label for="telefone">Telefone</label>
+            </div>
+            <div class="input-field col s12">
+              <input placeholder="Data de nascimento" type="text" id="nascimento" class="datepicker" required />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a onclick="cadastrar_usuario()" class="modal-close waves-effect waves-green btn-flat">Cadastrar</a>
+      </div>
+    </div>
     <!-- TABELA DE VISUALIZAÇÃO E EDIÇÃO DOS USUÁRIOS-->
     <div id="modal-usuario" class="modal">
       <div id="visualizar-perfil"></div>
     </div>
-  
 
-    <!-- FORM DE EMPRÉSTIMOS-->
+    <!--  EMPRÉSTIMO -->
+
+    <!-- visualizar por ID-->
+    <div id="modal-emprestimo" class="modal">
+      <div id="visualizar-emprestimo"></div>
+    </div>
+    <!-- visualiar do Bruno-->
     <div id="formulario-emprestimo" class="modal">
       <div class="modal-content">
         <div class="row" style="padding-top: 1vh">
@@ -282,7 +327,7 @@
         <a onclick="alterarEmprestimo()" class="modal-close waves-effect waves-green btn-flat">Alterar</a>
       </div>
     </div>
-
+    <!-- cadastrar-->
     <div id="formulario-novo-emprestimo" class="modal">
       <div class="modal-content">
         <div class="row" style="padding-top: 1vh">
@@ -315,6 +360,7 @@
         <a onclick="cadastrarEmprestimo()" class="modal-close waves-effect waves-green btn-flat">Cadastrar</a>
       </div>
     </div>
+
   </div>
 
   <script src="node_modules/jquery/dist/jquery.js"></script>
