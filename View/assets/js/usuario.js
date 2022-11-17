@@ -127,8 +127,8 @@ function visualizar_perfil(id) {
           </div>
           </div>
           <div class="modal-footer">
-          <a onclick="editar(${usuario.Id})" class="waves-effect waves-light btn modal-trigger" href="#atualiza-usuario">Editar</a>
-          <a onclick="excluir_usuario(${usuario.Id})" class="modal-close waves-effect waves-green btn-flat" >Excluir</a>
+          <a onclick="editar_usuario(${usuario.Id})" class="waves-effect waves-light btn green lighten-2 modal-trigger" href="#atualiza-usuario">Editar</a>
+          <a onclick="excluir_usuario(${usuario.Id})" class="waves-effect waves-red btn-flat" >Excluir</a>
           </div>
             
             `;
@@ -136,32 +136,31 @@ function visualizar_perfil(id) {
     });
 }
 
-function editar(id) {
+function editar_usuario(id) {
   
   fetch(api + `/usuarios/${id}`)
     .then((response) => response.json())
     .then((usuario) => {
 
-      console.log(usuario);      
-      const btn = document.querySelector('#btn-atualizar');
-      const list   = `
-      
-      <div class="modal-footer">        
-        <a id="btn-atualizar" onclick="atualizar(${usuario.Id})" class="modal-close waves-effect waves-green btn-flat">Atualizar</a>
-      </div>
+      console.log(usuario);
+      const btn = document.querySelector('#btn-atualizar-usuario');
+      const list   = 
+      `      
+        <div class="modal-footer">        
+          <a onclick="atualizar_usuario(${usuario.Id})" class="modal-close waves-effect waves-green btn-flat">Atualizar</a>
+        </div>
       `;
       document.getElementById("editar-nome").value = usuario.Nome;
       document.getElementById("editar-sobrenome").value = usuario.Sobrenome;
       document.getElementById("editar-cpf").value = usuario.CPF;
       document.getElementById("editar-email").value = usuario.Email;
       document.getElementById("editar-telefone").value = usuario.Telefone;      
-      document.getElementById("editar-nascimento").value = usuario.Nascimento;
-
+      document.getElementById("editar-nascimento").value = usuario.Nascimento;  
       btn.innerHTML = list;
            
     });
 }
-function atualizar(id){
+function atualizar_usuario(id){
 
   let body = {
     'Nome': document.getElementById('editar-nome').value,
@@ -169,7 +168,7 @@ function atualizar(id){
     'CPF': document.getElementById('editar-cpf').value,
     'Email': document.getElementById('editar-email').value,
     'Telefone': document.getElementById('editar-telefone').value,
-    'Nascimento': document.getElementById('editar-nascimento').value,
+    'Nascimento': document.getElementById('editar-nascimento').value
   }; 
   fetch(api + `/usuarios/${id}`, {
     method: "PUT",
@@ -193,7 +192,7 @@ function atualizar(id){
   .then((output) => {
     console.log(output);
     M.toast({
-      html: `${usuario.Nome} atualizado com sucesso!`,
+      html: `Usuário atualizado com sucesso!`,
       inDuration: 300
     });
   })
@@ -206,7 +205,6 @@ function atualizar(id){
     });
   });
 }
-
 
 function excluir_usuario(id) {
   fetch(api + `/usuarios/${id}`, {

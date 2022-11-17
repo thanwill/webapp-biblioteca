@@ -7,7 +7,7 @@ public class Emprestimo
     public int id { get; set; }
     public DateTime Inicio { get; set; }
     public DateTime Devolucao { get; set; }
-    public int Status { get; set; }
+    public bool Status { get; set; } = true;
     public int Atrasos { get; set; }
     public double Custo { get; set; }
     public Livro Livro { get; set; }
@@ -22,7 +22,20 @@ public class Emprestimo
                     Formatting.Indented
             );
     }
-
+    public string Buscar(BibliotecaContext banco, int id)
+    {
+        var emprestimo = banco.Emprestimos.Find(id);
+        
+        if (emprestimo == null)
+        {
+            return "[Emprestimo:31] Não encontrado!";
+        }
+        else
+        {
+            return JsonConvert.SerializeObject(emprestimo, Formatting.Indented);
+        }
+    }
+    /*
     public string Buscar(BibliotecaContext banco, int id)
     {
         return JsonConvert.SerializeObject
@@ -31,6 +44,8 @@ public class Emprestimo
                 .Find(id), Formatting.Indented
         );
     }
+    */
+    
 
     public int Cadastrar(BibliotecaContext banco, EmprestimoCadastrar cadastrar)
     {

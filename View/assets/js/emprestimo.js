@@ -36,7 +36,8 @@ function visualizar_emprestimo(id) {
     .then((response) => response.json())
     .then((emprestimo) => {
       const visualizarEmprestimo = document.querySelector('#visualizar-emprestimo');
-      console.log(emprestimo)
+      console.log(emprestimo);
+
       let list =
         `
           <div class="modal-content">
@@ -133,7 +134,6 @@ function visualizarEmprestimo(id) {
 }
 */
 
-
 function cadastrarEmprestimo() {
   const body = {
     UsuarioId: Number.parseInt(
@@ -146,8 +146,6 @@ function cadastrarEmprestimo() {
       document.getElementById("novo-emprestimo-periodo").value
     )
   };
-
-  console.log(body)
 
   fetch(api + "/emprestimos", {
       method: "POST",
@@ -170,13 +168,18 @@ function cadastrarEmprestimo() {
     //trata resposta
     .then((output) => {
       console.log(output);
-      recarregarEmprestimos();
-      alert("Cadastro efetuado! :D");
+      M.toast({
+        html: `Cadastrado com sucesso!`,
+        inDuration: 300
+      });
     })
     //trata erro
     .catch((error) => {
       console.log(error);
-      alert("Não foi possível efetuar o cadastro!");
+      M.toast({
+        html: `Cadastrado com sucesso!`,
+        inDuration: 300
+      });
     });
 }
 
@@ -233,7 +236,7 @@ function select_livros() {
         } of livros) {
         const itemLista = document.createElement("option");
         itemLista.setAttribute("value", `${Id}`);
-        itemLista.innerHTML = `Valor ${Titulo}`;
+        itemLista.innerHTML = `${Titulo}`;
         selectLivro.appendChild(itemLista);
       }
 

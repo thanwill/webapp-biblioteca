@@ -44,6 +44,7 @@ function cadastrar_livro() {
                 classes: 'red lighten-3'
             });
         });
+        listar_livros();
 }
 
 function listar_livros() {
@@ -122,11 +123,85 @@ function visualizar_livro(id) {
             </div>
             </div>
             <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Editar</a>
-                <a onclick="excluir_livro(${livro.Id})" class="modal-close waves-effect waves-green btn-flat">Excluir</a>
+                <a
+                    onclick="editar_livro(${livro.Id})" 
+                    class="waves-effect waves-light btn modal-trigger" 
+                    href="#atualiza-livro">Editar
+                </a>
+                <a 
+                    onclick="excluir_livro(${livro.Id})"
+                    class="modal-close waves-effect waves-green btn-flat">Excluir
+                </a>
             </div>
             `;
             visualizaLivro.innerHTML = list;
+        });
+}
+
+function editar_livro(id) {
+
+    fetch(api + `/livros/${id}`)
+        .then((response) => response.json())
+        .then((livro) => {
+
+            console.log(livro);
+            const btn = document.querySelector('#btn-atualizar-livro');
+            const list = `
+            <div class="modal-footer">        
+            <a onclick="atualizar_livro(${livro.Id})" class="modal-close waves-effect waves-green btn-flat">Atualizar</a>
+            </div>
+        `;    
+            document.getElementById("editar-titulo").value = livro.Titulo;
+            document.getElementById("editar-autor").value = livro.Autor;
+            document.getElementById("editar-data-lancamento").value = livro.Lancamento;
+            document.getElementById("editar-estoque").value = livro.Estoque;                    
+            btn.innerHTML = list;
+
+        });
+}
+
+function atualizar_livro(id) {
+
+    let body = {
+        'Titulo': document.getElementById('editar-titulo').value,
+        'Autor': document.getElementById('editar-autor').value,
+        'Lacamento': document.getElementById('editar-data-lancamento').value,
+        'Estoque': document.getElementById('editar-estoque').value
+    };
+    fetch(api + `/livros/${id}`, {
+            method: "PUT",
+            redirect: "follow",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+            },
+            body: JSON.stringify(body),
+        })
+        .then((response) => {
+            if (response.ok) {
+                return response.text();
+            } else {
+                return response.text().then((text) => {
+                    throw new Error(text);
+                });
+            }
+        })
+        //trata resposta
+        .then((output) => {
+            console.log(output);
+            document.querySelector('#lista-livros').reload();
+            M.toast({
+                html: `Livro atualizado com sucesso!`,
+                inDuration: 300
+            });
+        })
+        //trata erro
+        .catch((error) => {
+            console.log(error);
+            M.toast({
+                html: `Não foi possível atualizar o livro!`,
+                inDuration: 300
+            });
         });
 }
 
@@ -162,80 +237,4 @@ function excluir_livro(id) {
             });
         });
 }
-
-function pre_atualizacao() {
-    fetch(api + '/livros/' + idLivro)
-        .then(response => response.json())
-        .then((livros) => {
-
-            let titulo = livros.Titulo
-            let autor = livros.Autor
-            let lancamento = livros.Lancamento
-
-            let resp = ''
-
-            do {
-                resp = window.prompt('Deseja editar o titulo do livro? [S/N]');
-                if (resp == 'S') {
-                    titulo = window.prompt('Informe o novo título')
-                }
-            } while (resp != 'S' && resp != 'N');
-
-            do {
-                resp = window.prompt('Deseja editar o nome do autor do livro? [S/N]');
-                if (resp == 'S') {
-                    autor = window.prompt('Informe o novo nome do autor')
-                }
-            } while (resp != 'S' && resp != 'N');
-
-            do {
-                resp = window.prompt('Deseja editar a data de lançamento do livro? [S/N]');
-                if (resp == 'S') {
-                    lancamento = window.prompt('Informe a nova data de lançamento')
-                }
-            } while (resp != 'S' && resp != 'N');
-
-            atualizar_livro(idLivro, titulo, autor, lancamento)
-        })
-
-}
-
-function atualizar_livro(id, divTitulo, divAutor, divLancamento) {
-
-    let body = {
-        'Titulo': divTitulo,
-        'Autor': divAutor,
-        'Lancamento': divLancamento
-    }
-
-    fetch(api + "/livros/" + id, {
-            'method': 'PUT',
-            'redirect': 'follow',
-            'headers': {
-                'Content-type': 'application/json',
-                'Accept': 'application/json'
-            },
-            'body': JSON.stringify(body)
-        })
-        .then((response) => {
-            if (response.ok) {
-                return response.text()
-            } else {
-                return response.text().then((text) => {
-                    throw new Error(text)
-                })
-            }
-        })
-
-        .then((output) => {
-            listar_livros()
-            console.log(output)
-            alert('Livro atualizado')
-        })
-        .catch((error) => {
-            console.log(error)
-            alert('Não foi possível atualizar o livro')
-        })
-}
-
 listar_livros();

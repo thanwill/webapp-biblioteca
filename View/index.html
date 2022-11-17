@@ -116,7 +116,7 @@
       </div>
     </div>
 
-    <!-- MUITO IMPORTANTE, aqui ficam os botões que chamam os formulários de cadastro para as classes livro, usuário e empréstimo. Ele é o botão verde flutuante no fim da página-->
+    <!-- Aqui ficam os botões que chamam os formulários de cadastro para as classes livro, usuário e empréstimo. Ele é o botão verde flutuante no fim da página-->
 
     <div class="fixed-action-btn toolbar">
       <a class="btn-floating btn-large"><i class="large material-icons">mode_edit</i></a>
@@ -134,9 +134,11 @@
     <img id="erro-img" src="assets/images/humaaans-sitting-bg.png" width="100%" />
   </div>
 
-  <!-- FORMULÁRIOS E MODAIS QUE SÃO CHAMADOS POR FUNÇÕES / CLASSES OCULTAS -->
+  <!-- MODAIS -->
   <div class="container center">
-    <!-- FORM DE LIVROS-->
+
+    <!-- LIVROS-->
+    <!-- Cadastrar -->
     <div id="formulario-livro" class="modal">
       <div class="modal-content">
         <div class="row" style="padding-top: 1vh">
@@ -177,14 +179,45 @@
         <a onclick="cadastrar_livro()" class="modal-close waves-effect waves-green btn-flat">Cadastrar</a>
       </div>
     </div>
-    <!-- consulta e tem acesso as ações do livro-->
+    <!-- Atualizar, sem label -->
+    <div id="atualiza-livro" class="modal">
+      <div class="modal-content">
+        <div class="row" style="padding-top: 1vh">
+          <h4 class="grey-text left-align">Editar usuário</h4>
+        </div>
+        <form>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="editar-titulo" type="text" class="validate" min="3" max="30" required />
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="editar-autor" type="text" class="validate" min="3" max="30" required />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="editar-data-lancamento" placeholder="Lançamanto" type="text" class="datepicker" required />
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="editar-estoque" type="number" class="validate" min="0" max="10" required />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div id="btn-atualizar-livro"></div>
+    </div>
+    <!-- Visualizar -->
     <div id="modal-livro" class="modal">
       <div id="visualizar-livro"></div>
     </div>
 
     <!-- USUÁRIOS-->
-
-    <!-- cadastro-->
+    <!-- Cadastrar -->
     <div id="formulario-usuario" class="modal">
       <div class="modal-content">
         <div class="row" style="padding-top: 1vh">
@@ -225,11 +258,11 @@
         <a onclick="cadastrar_usuario()" class="modal-close waves-effect waves-green btn-flat">Cadastrar</a>
       </div>
     </div>
-    <!-- atualização, sem label -->
+    <!-- Atualizar, sem label -->
     <div id="atualiza-usuario" class="modal">
       <div class="modal-content">
         <div class="row" style="padding-top: 1vh">
-          <h4 class="grey-text left-align">Editar usuário</h4>          
+          <h4 class="grey-text left-align">Editar usuário</h4>
         </div>
         <form>
           <div class="row">
@@ -254,20 +287,79 @@
           </div>
         </form>
       </div>
-      <div id="btn-atualizar"></div>
+      <div id="btn-atualizar-usuario"></div>
     </div>
-    <!-- visualizar perfil-->
+    <!-- Visualizar-->
     <div id="modal-usuario" class="modal">
       <div id="visualizar-perfil"></div>
     </div>
 
     <!--  EMPRÉSTIMO -->
-
-    <!-- visualizar por ID-->
+    <!-- Cadastrar -->
+    <div id="formulario-novo-emprestimo" class="modal">
+      <div class="modal-content">
+        <div class="row" style="padding-top: 1vh">
+          <h4 class="grey-text left-align">Empréstimo</h4>
+          <p class="grey-text left-align">
+            Insira as informações para realizar um novo cadastro de
+            empréstimo.
+          </p>
+        </div>
+        <form>
+          <div class="row">
+            <div class="input-field col s12">
+              <select id="seleciona-livro" class="browser-default">
+                <option selected disabled>Livros disponíveis</option>
+              </select>
+            </div>
+            <div class="input-field col s12">
+              <select id="seleciona-usuario" class="browser-default">
+                <option selected disabled>Usuários cadastrados</option>
+              </select>
+            </div>
+            <div class="input-field col s12">
+              <input id="novo-emprestimo-periodo" type="text" class="validate" />
+              <label for="novo-emprestimo-periodo">Período em Dias</label>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a onclick="cadastrarEmprestimo()" class="modal-close waves-effect waves-green btn-flat">Cadastrar</a>
+      </div>
+    </div>
+    <!-- Atualizar, sem label -->
+    <div id="atualiza-emprestimo" class="modal">
+      <div class="modal-content">
+        <div class="row" style="padding-top: 1vh">
+          <h4 class="grey-text left-align">Editar empréstimo</h4>
+        </div>
+        <form>
+          <div class="row">
+            <div class="input-field col s12">
+              <select id="seleciona-livro" class="browser-default">
+                <option selected disabled>Livros disponíveis</option>
+              </select>
+            </div>
+            <div class="input-field col s12">
+              <select id="seleciona-usuario" class="browser-default">
+                <option selected disabled>Usuários cadastrados</option>
+              </select>
+            </div>
+            <div class="input-field col s12">
+              <input id="novo-emprestimo-periodo" type="text" class="validate" />
+              <label for="novo-emprestimo-periodo">Período em Dias</label>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div id="btn-atualizar-usuario"></div>
+    </div>
+    <!-- Visualizar -->
     <div id="modal-emprestimo" class="modal">
       <div id="visualizar-emprestimo"></div>
     </div>
-    <!-- visualiar do Bruno-->
+    <!-- visualizar do Bruno-->
     <div id="formulario-emprestimo" class="modal">
       <div class="modal-content">
         <div class="row" style="padding-top: 1vh">
@@ -318,39 +410,7 @@
         <a onclick="alterarEmprestimo()" class="modal-close waves-effect waves-green btn-flat">Alterar</a>
       </div>
     </div>
-    <!-- cadastrar-->
-    <div id="formulario-novo-emprestimo" class="modal">
-      <div class="modal-content">
-        <div class="row" style="padding-top: 1vh">
-          <h4 class="grey-text left-align">Empréstimo</h4>
-          <p class="grey-text left-align">
-            Insira as informações para realizar um novo cadastro de
-            empréstimo.
-          </p>
-        </div>
-        <form>
-          <div class="row">
-            <div class="input-field col s12">
-              <select id="seleciona-livro" class="browser-default">
-                <option selected disabled>Livros disponíveis</option>
-              </select>
-            </div>
-            <div class="input-field col s12">
-              <select id="seleciona-usuario" class="browser-default">
-                <option selected disabled>Usuários cadastrados</option>
-              </select>
-            </div>
-            <div class="input-field col s12">
-              <input id="novo-emprestimo-periodo" type="text" class="validate" />
-              <label for="novo-emprestimo-periodo">Período em Dias</label>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <a onclick="cadastrarEmprestimo()" class="modal-close waves-effect waves-green btn-flat">Cadastrar</a>
-      </div>
-    </div>
+
 
   </div>
 

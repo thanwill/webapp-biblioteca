@@ -47,24 +47,28 @@ public class Livro
         return banco.SaveChanges();
     }
 
-    public int Atualizar(BibliotecaContext banco, LivroAtualizar atualizar)
+    public void Atualizar(BibliotecaContext banco, LivroAtualizar atualizado, int id)
     {
-        var livro = banco.Livros.Find(atualizar.Id);
+        var livro = banco.Livros.Find(id);
 
-        if (livro == null)
-            throw new Exception("Não encontrado.");
+        if(livro == null)
+        {
+            Console.WriteLine(Results.NotFound());            
+        }
+        if(null != atualizado.Titulo)       livro.Titulo        = atualizado.Titulo;
+        if(null != atualizado.Autor)        livro.Autor         = atualizado.Autor;
+        if(null != atualizado.Lancamento)   livro.Lancamento    = atualizado.Lancamento;
+        if(null != atualizado.Estoque)      livro.Estoque       = atualizado.Estoque;
 
-        livro.Titulo = atualizar.Livro.Titulo;
-        livro.Autor = atualizar.Livro.Autor;
-        livro.Lancamento = atualizar.Livro.Lancamento;
-
-        return banco.SaveChanges();
+        banco.SaveChanges();
+        Console.WriteLine(Results.Ok()); 
     }
-    
 }
 
 public class LivroAtualizar
 {
-    public int Id { get; set; }
-    public Livro Livro { get; set; }
+    public string Titulo { get; set; }
+    public string Autor { get; set; }
+    public string Lancamento { get; set; }
+    public int Estoque { get; set; }
 }
