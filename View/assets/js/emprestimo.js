@@ -36,8 +36,6 @@ function visualizar_emprestimo(id) {
     .then((response) => response.json())
     .then((emprestimo) => {
       const visualizarEmprestimo = document.querySelector('#visualizar-emprestimo');
-      const livroID = Number.parseFloat(emprestimo.LivroId);
-      const usuarioID = Number.parseFloat(emprestimo.usuarioID);
       console.log(emprestimo)
       let list =
         `
@@ -81,7 +79,7 @@ function visualizar_emprestimo(id) {
                 <a 
                   class="secondary-content modal-trigger"
                   href="#modal-livro"
-                  onclick="visualizar_livro(${livroID})">
+                  onclick="visualizar_livro(${emprestimo.LivroId})">
                   Consultar
                     <i id="see-1" class="material-icons">
                       launch
@@ -95,7 +93,7 @@ function visualizar_emprestimo(id) {
                   <a 
                   class="secondary-content modal-trigger"
                   href="#modal-usuario"
-                  onclick="visualizar_usuario(${usuarioID})">
+                  onclick="visualizar_usuario(${emprestimo.UsuarioId})">
                   Consultar
                   <i class="material-icons">
                   launch
@@ -135,6 +133,7 @@ function visualizarEmprestimo(id) {
 }
 */
 
+
 function cadastrarEmprestimo() {
   const body = {
     UsuarioId: Number.parseInt(
@@ -147,6 +146,7 @@ function cadastrarEmprestimo() {
       document.getElementById("novo-emprestimo-periodo").value
     )
   };
+
   console.log(body)
 
   fetch(api + "/emprestimos", {

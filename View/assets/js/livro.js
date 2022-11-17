@@ -54,7 +54,7 @@ function listar_livros() {
     fetch(api + '/livros')
         .then(response => response.json())
         .then((livros) => {
-            
+
             for (const {
                     Id,
                     Titulo
@@ -89,42 +89,42 @@ function visualizar_livro(id) {
             let list = `
             <div class="modal-content">
             <div class="row" style="padding-top: 1vh">
-            <h4 class="grey-text left-align">Livros</h4>
-            <p class="grey-text left-align">
-            Consulte as informações cadastradas do livro selecionado.
-            </p>
+                <h4 class="grey-text left-align">Livros</h4>
+                <p class="grey-text left-align">
+                Consulte as informações cadastradas do livro selecionado.
+                </p>
             </div>
             <div class="row">
-            <table class="grey-text striped">
-            <tbody>
-            <tr>
-                <td>Matrícula</td>
-                <td>${livro.Id}</td>
-            </tr>
-            <tr>
-                <td>Título:</td>
-                <td>${livro.Titulo}</td>
-            </tr>
-            <tr>
-            <td>Autor:</td>
-            <td>${livro.Autor}</td>
-            </tr>
-            <tr>
-            <td>Lançamento:</td>
-            <td>${livro.Lancamento}</td>
-            </tr>
-            <tr>
-            <td>Quantidade em estoque:</td>
-            <td>${livro.Estoque}</td>
-            </tr>
-            </tbody>
-            </table>
+                <table class="grey-text striped">
+                    <tbody>
+                        <tr>
+                            <td>Matrícula</td>
+                            <td>${livro.Id}</td>
+                        </tr>
+                        <tr>
+                            <td>Título:</td>
+                            <td>${livro.Titulo}</td>
+                        </tr>
+                        <tr>
+                            <td>Autor:</td>
+                            <td>${livro.Autor}</td>
+                        </tr>
+                        <tr>
+                            <td>Lançamento:</td>
+                            <td>${livro.Lancamento}</td>
+                        </tr>
+                        <tr>
+                            <td>Quantidade em estoque:</td>
+                            <td>${livro.Estoque}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             </div>
             <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Editar</a>
-            <a onclick="excluir_livro(${livro.Id})" class="modal-close waves-effect waves-green btn-flat">Excluir</a>
-                </div>
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Editar</a>
+                <a onclick="excluir_livro(${livro.Id})" class="modal-close waves-effect waves-green btn-flat">Excluir</a>
+            </div>
             `;
             visualizaLivro.innerHTML = list;
         });
@@ -149,7 +149,7 @@ function excluir_livro(id) {
             M.toast({
                 html: 'Usuário removido com sucesso!',
                 inDuration: 300,
-                classes:'green accent-2'
+                classes: 'green accent-2'
             });
 
         })

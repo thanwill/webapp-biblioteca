@@ -33,8 +33,7 @@ function cadastrar_usuario() {
       console.log(output);
       M.toast({
         html: `${body.Nome} cadastrado(a) com sucesso!`,
-        inDuration: 300,
-        classes: 'green accent-2'
+        inDuration: 300
       });
     })
     //trata erro
@@ -42,8 +41,7 @@ function cadastrar_usuario() {
       console.log(error);
       M.toast({
         html: `Não foi possível efetuar o cadastro! :(`,
-        inDuration: 300,
-        classes: 'red lighten-3'
+        inDuration: 300
       });
     });
 }
@@ -129,7 +127,7 @@ function visualizar_perfil(id) {
           </div>
           </div>
           <div class="modal-footer">
-          <a onclick="alterar_usuario(${usuario.Id})" href="#atualiza-usuario" class="modal-close waves-effect waves-green btn-flat">Editar</a>
+          <a onclick="editar(${usuario.Id})" class="waves-effect waves-light btn modal-trigger" href="#atualiza-usuario">Editar</a>
           <a onclick="excluir_usuario(${usuario.Id})" class="modal-close waves-effect waves-green btn-flat" >Excluir</a>
           </div>
             
@@ -138,86 +136,77 @@ function visualizar_perfil(id) {
     });
 }
 
-function editar_perfil(id, divNome, divSobrenome, divCpf, divEmail, divTelefone, divNascimento) {
-  let body = {
-    'Nome': divNome.value,
-    'Sobrenome': divSobrenome.value,
-    'CPF': divCpf.value,
-    'Email': divEmail.value,
-    'Telefone': divTelefone.value,
-    'Nascimento': divNascimento.value,
-  };
-
-  fetch(api + `/usuarios/${id}`, {
-      'method': 'PUT',
-      'redirect': 'follow',
-      'headers': {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      'body': JSON.stringify(body)
-    })
-    .then((response) => {
-      if (response.ok) {
-        return response.text()
-      } else {
-        return response.text().then((text) => {
-          throw new Error(text)
-        })
-      }
-    })
-    .then((output) => {
-      lista_usuarios();
-      console.log(output)
-      alert('Usuário atualizado! \\o/');
-    })
-    .catch((error) => {
-      console.log(error)
-      alert('Não foi possível atualizar o usuário :/');
-    })
-}
-
-function alterar_usuario(id) {
+function editar(id) {
   
-  let body = {
-    'Nome': document.getElementById('nome').value,
-    'Sobrenome': document.getElementById('sobrenome').value,
-    'CPF': document.getElementById('cpf').value,
-    'Email': document.getElementById('email').value,
-    'Telefone': document.getElementById('telefone').value,
-    'Nascimento': document.getElementById('nascimento').value,
-  };
+  fetch(api + `/usuarios/${id}`)
+    .then((response) => response.json())
+    .then((usuario) => {
 
-  fetch(api + `/usuarios/${id}`, {
-      method: "PUT",
-      redirect: "follow",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(body),
-    })
-    .then((response) => {
-      if (response.ok) {
-        return response.text();
-      } else {
-        return response.text().then((text) => {
-          throw new Error(text);
-        });
-      }
-    })
-    //trata resposta
-    .then((output) => {
-      console.log(output);
-      recarregarEmprestimos();
-      alert("Alteração efetuada! :D");
-    })
-    //trata erro
-    .catch((error) => {
-      console.log(error);
-      alert("Não foi possível alterar o usuário!");
+      console.log(usuario);      
+      const btn = document.querySelector('#btn-atualizar');
+      const list   = `
+      
+      <div class="modal-footer">        
+        <a id="btn-atualizar" onclick="atualizar(${usuario.Id})" class="modal-close waves-effect waves-green btn-flat">Atualizar</a>
+      </div>
+      `;
+      document.getElementById("editar-nome").value = usuario.Nome;
+      document.getElementById("editar-sobrenome").value = usuario.Sobrenome;
+      document.getElementById("editar-cpf").value = usuario.CPF;
+      document.getElementById("editar-email").value = usuario.Email;
+      document.getElementById("editar-telefone").value = usuario.Telefone;      
+      document.getElementById("editar-nascimento").value = usuario.Nascimento;
+
+      btn.innerHTML = list;
+           
     });
 }
+function atualizar(id){
+
+  let body = {
+    'Nome': document.getElementById('editar-nome').value,
+    'Sobrenome': document.getElementById('editar-sobrenome').value,
+    'CPF': document.getElementById('editar-cpf').value,
+    'Email': document.getElementById('editar-email').value,
+    'Telefone': document.getElementById('editar-telefone').value,
+    'Nascimento': document.getElementById('editar-nascimento').value,
+  }; 
+  fetch(api + `/usuarios/${id}`, {
+    method: "PUT",
+    redirect: "follow",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(body),
+  })
+  .then((response) => {
+    if (response.ok) {
+      return response.text();
+    } else {
+      return response.text().then((text) => {
+        throw new Error(text);
+      });
+    }
+  })
+  //trata resposta
+  .then((output) => {
+    console.log(output);
+    M.toast({
+      html: `${usuario.Nome} atualizado com sucesso!`,
+      inDuration: 300
+    });
+  })
+  //trata erro
+  .catch((error) => {
+    console.log(error);
+    M.toast({
+      html: `Não foi possível atualizar o usuário!`,
+      inDuration: 300
+    });
+  });
+}
+
 
 function excluir_usuario(id) {
   fetch(api + `/usuarios/${id}`, {

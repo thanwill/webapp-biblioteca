@@ -35,24 +35,24 @@ public class Usuario
         return banco.SaveChanges();
     }
 
-    public int Atualizar(BibliotecaContext banco, Usuario atualizado, int id)
-    {
-        bool mailExistente = ValidarAtt(banco, atualizado, id);
+    public void Atualizar(BibliotecaContext banco, UsuarioAtualizar atualizado, int id)
+    {        
+        var usuario = banco.Usuarios.Find(id);
+        if(usuario == null)
+        {
+            Console.WriteLine(Results.NotFound());            
+        }
+        if(null != atualizado.Nome)         usuario.Nome        = atualizado.Nome;
+        if(null != atualizado.Sobrenome)    usuario.Sobrenome   = atualizado.Sobrenome;
+        if(null != atualizado.CPF)          usuario.CPF         = atualizado.CPF;
+        if(null != atualizado.Email)        usuario.Email       = atualizado.Email;
+        if(null != atualizado.Telefone)     usuario.Telefone    = atualizado.Telefone;
+        if(null != atualizado.Nascimento)   usuario.Nascimento  = atualizado.Nascimento;
 
-        if (mailExistente == false)
-        {
-            var usuario = banco.Usuarios.Find(id);
-            usuario.Nome = atualizado.Nome;
-            usuario.Email = atualizado.Email;
-            usuario.Telefone = atualizado.Telefone;
-            return banco.SaveChanges();
-        }
-        else
-        {
-            throw new Exception("As alterações não foram concluidas pois já existe um email com estas informações");
-        }
+        banco.SaveChanges();
+        Console.WriteLine(Results.Ok());   
+        
     }
-
     public int Deletar(BibliotecaContext banco, int id)
     {
         var usuario = banco.Usuarios.Find(id);
@@ -106,4 +106,13 @@ public class Usuario
 public class ListarId
 {
     public int Id { get; set; }
+}
+public class UsuarioAtualizar
+{
+    public string Nome { get; set; }
+    public string Sobrenome { get; set; }
+    public string CPF { get; set; }
+    public string Email { get; set; }
+    public string Telefone { get; set; }
+    public string Nascimento { get; set; }
 }

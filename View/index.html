@@ -177,13 +177,14 @@
         <a onclick="cadastrar_livro()" class="modal-close waves-effect waves-green btn-flat">Cadastrar</a>
       </div>
     </div>
-    <!-- TABELA DE VISUALIZAÇÃO E EDIÇÃO DOS LIVROS-->
+    <!-- consulta e tem acesso as ações do livro-->
     <div id="modal-livro" class="modal">
       <div id="visualizar-livro"></div>
-
     </div>
 
-    <!-- FORM DE USUÁRIOS-->
+    <!-- USUÁRIOS-->
+
+    <!-- cadastro-->
     <div id="formulario-usuario" class="modal">
       <div class="modal-content">
         <div class="row" style="padding-top: 1vh">
@@ -224,48 +225,38 @@
         <a onclick="cadastrar_usuario()" class="modal-close waves-effect waves-green btn-flat">Cadastrar</a>
       </div>
     </div>
-    <!-- FORM DE USUÁRIOS-->
+    <!-- atualização, sem label -->
     <div id="atualiza-usuario" class="modal">
       <div class="modal-content">
         <div class="row" style="padding-top: 1vh">
-          <h4 class="grey-text left-align">Usuário</h4>
-          <p class="grey-text left-align">
-            Insira as informações para atualizar o cadastro de usuário.
-          </p>
+          <h4 class="grey-text left-align">Editar usuário</h4>          
         </div>
         <form>
           <div class="row">
             <div class="input-field col s12">
-              <input id="nome" type="text" class="validate" min="3" max="30" required />
-              <label for="nome">Nome</label>
+              <input id="editar-nome" type="text" class="validate" min="3" max="30" required />
             </div>
             <div class="input-field col s12">
-              <input id="sobrenome" type="text" class="validate" min="3" max="30" required />
-              <label for="sobrenome">Sobrenome</label>
+              <input id="editar-sobrenome" type="text" class="validate" min="3" max="30" required />
             </div>
             <div class="input-field col s12">
-              <input id="cpf" type="text" class="validate" min="3" max="30" required />
-              <label for="cpf">CPF</label>
+              <input id="editar-cpf" type="text" class="validate" min="3" max="30" required />
             </div>
             <div class="input-field col s12">
-              <input id="email" type="email" class="validate" min="3" max="30" required />
-              <label for="email">E-mail</label>
+              <input id="editar-email" type="email" class="validate" min="3" max="30" required />
             </div>
             <div class="input-field col s12">
-              <input id="telefone" type="tel" class="validate" min="10" max="30" required />
-              <label for="telefone">Telefone</label>
+              <input id="editar-telefone" type="tel" class="validate" min="10" max="30" required />
             </div>
             <div class="input-field col s12">
-              <input placeholder="Data de nascimento" type="text" id="nascimento" class="datepicker" required />
+              <input placeholder="Data de nascimento" type="text" id="editar-nascimento" class="datepicker" required />
             </div>
           </div>
         </form>
       </div>
-      <div class="modal-footer">
-        <a onclick="cadastrar_usuario()" class="modal-close waves-effect waves-green btn-flat">Cadastrar</a>
-      </div>
+      <div id="btn-atualizar"></div>
     </div>
-    <!-- TABELA DE VISUALIZAÇÃO E EDIÇÃO DOS USUÁRIOS-->
+    <!-- visualizar perfil-->
     <div id="modal-usuario" class="modal">
       <div id="visualizar-perfil"></div>
     </div>
