@@ -7,7 +7,9 @@ Análise de Sistemas/Sistemas de Informação/Engenharia de Software
 Desenvolvimento de Software Visual
 
 
-## Especificação do Trabalho
+## Fase 1: Web API Minimal
+<p>Preparamos a seguir, uma breve introdução para entender o processo de desenvolvimento deste trabalho, confira! </p>
+
 ### Diagrama de classe
 
 <p>Este é um modelo introdutório referencial, as funções, nomes de atributos e classes podem ter sido alteradas ou descartadas na execução final do projeto.</p>
@@ -72,4 +74,30 @@ Desenvolvimento de Software Visual
 ```
 
 ### Modelo de cadastro pelo Postman
-<img width="676" alt="image" src="https://user-images.githubusercontent.com/62673590/192662962-1643a1a7-ca86-4cc2-b784-cee10fd12392.png">
+<p>Não sabe como consultar uma Web API? Nós também não sabiamos! Abaixo, segue um modelo para realizar uma requisição do tipo POST.</p>
+<img width="461" alt="image" src="https://user-images.githubusercontent.com/62673590/202319206-b34d20c8-f42b-4b45-a63b-95c8073fd9b5.png">
+
+## Fase 2: Front-end
+<p>Agora, vamos realizar algumas dicas de como você pode trabalhar com este projeto através da branch <code>main</code>, sem ter que usar as requisições diretas da Web API criada na fase 1.</p>
+
+### Começando
+<p>Diminua a sua tela para ter acesso a um modelo responsivo usando https://materializecss.com/about.html</p>
+
+https://user-images.githubusercontent.com/62673590/202320303-c7677eb4-e1cd-40db-affa-7dbc2f313a8c.mp4
+
+### Conheçendo a interface
+<p>Conheça algumas das funções básicas de interação com o app.</p>
+
+https://user-images.githubusercontent.com/62673590/202321936-b360f78f-044d-41d5-a50f-299f71a331b1.mp4
+
+### Cadastrando livro
+https://user-images.githubusercontent.com/62673590/202322332-5f35ced8-2124-46ef-95f9-4eb4d86a22f9.mp4
+
+### Cadastrando usuário
+
+
+https://user-images.githubusercontent.com/62673590/202322546-ba6c9e2f-1bf2-4fe6-8a03-f2aa2855639f.mp4
+
+
+### Cadastrando empréstimo
+
