@@ -13,7 +13,9 @@ public class Usuario
 
     public string Listar(BibliotecaContext banco)
     {
-        return JsonConvert.SerializeObject(banco.Usuarios.ToList(), Formatting.Indented);
+        return JsonConvert.SerializeObject(
+            banco.Usuarios.ToList(), Formatting.Indented
+        );
     }
 
     public string Buscar(BibliotecaContext banco, int id)

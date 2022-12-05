@@ -15,12 +15,9 @@ public class Emprestimo
 
     public string Listar(BibliotecaContext banco)
     {
-        return JsonConvert.SerializeObject
-            (
-                banco.Emprestimos
-                    .ToList(),
-                    Formatting.Indented
-            );
+        return JsonConvert.SerializeObject(
+            banco.Emprestimos.ToList(), Formatting.Indented
+        );
     }
     public string Buscar(BibliotecaContext banco, int id)
     {
@@ -35,18 +32,7 @@ public class Emprestimo
             return JsonConvert.SerializeObject(emprestimo, Formatting.Indented);
         }
     }
-    /*
-    public string Buscar(BibliotecaContext banco, int id)
-    {
-        return JsonConvert.SerializeObject
-        (
-            banco.Emprestimos
-                .Find(id), Formatting.Indented
-        );
-    }
-    */
     
-
     public int Cadastrar(BibliotecaContext banco, EmprestimoCadastrar cadastrar)
     {
         Emprestimo emprestimo = new Emprestimo();

@@ -1,24 +1,27 @@
 /*  criar projeto:
-//  dotnet new webabi -minimal -o NomeDoProjeto
-//  entrar na pasta:
-//  cd NomeDoProjeto
-//  adicionar entity framework no console:
-//  dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 6.0
-//  dotnet add package Microsoft.EntityFrameworkCore.Sqlite --version 6.0
-//  dotnet add package Microsoft.EntityFrameworkCore.Design --version 6.0
-//  incluir namespace do entity framework:
-//  using Microsoft.EntityFrameworkCore;
 
-// antes de rodar o dotnet run pela PRIMEIRA vez
-// rodar os seguintes comandos para iniciar a base de dados:
-//  InitialCreate
-// obs: troque "InitialCreate" por uma descrição da alteração nas tabelas
-// toda vez que alterar `DbContext` ou classe que os `DbSet`s dependem
-// obs: rode este comando toda vez que criar uma migration
-// para aplicar as alterações em banco de dados / persistência.
+  dotnet new webabi -minimal -o NomeDoProjeto
+
+  dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 6.0
+  dotnet add package Microsoft.EntityFrameworkCore.Sqlite --version 6.0
+  dotnet add package Microsoft.EntityFrameworkCore.Design --version 6.0
+
+  incluir namespace do entity framework:
+
+  using Microsoft.EntityFrameworkCore;
+
+// antes de rodar o dotnet run pela PRIMEIRA vez rodar os seguintes comandos para iniciar a base de dados:
+ 
+   InitialCreate
+
+// obs: troque "InitialCreate" por uma descrição da alteração nas tabelas toda vez que alterar `DbContext` ou classe que os `DbSet`s dependem
+// obs: rode este comando toda vez que criar uma migration para aplicar as alterações em banco de dados / persistência.
 
     dotnet ef migrations add [nome_da_migration]
     dotnet ef database update
+
+    Caso não funcione, intale:
+    dotnet tool install --global dotnet-ef
 
 */
 using Microsoft.EntityFrameworkCore;

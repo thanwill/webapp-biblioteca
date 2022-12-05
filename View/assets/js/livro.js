@@ -29,6 +29,7 @@ function cadastrar_livro() {
         //trata resposta
         .then((output) => {
             console.log(output);
+            listar_livros()
             M.toast({
                 html: `${body.Titulo} cadastrado(a) com sucesso!`,
                 inDuration: 300,
@@ -39,15 +40,15 @@ function cadastrar_livro() {
         .catch((error) => {
             console.log(error);
             M.toast({
-                html: `Não foi possível efetuar o cadastro! :(`,
+                html: `Não foi possível efetuar o cadastro!`,
                 inDuration: 300,
-                classes: 'red lighten-3'
+                classes: 'red'
             });
         });
         listar_livros();
 }
 
-function listar_livros() {
+function listar_livros(){
     let listaLivros = document.getElementById('lista-livros');
     while (listaLivros.firstChild) {
         listaLivros.removeChild(listaLivros.firstChild);

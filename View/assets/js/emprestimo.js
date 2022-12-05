@@ -1,3 +1,54 @@
+
+function cadastrarEmprestimo() {
+  const body = {
+    UsuarioId: Number.parseInt(
+      document.getElementById("seleciona-usuario").value
+    ),
+    LivroId: Number.parseInt(
+      document.getElementById("seleciona-livro").value
+    ),
+    Periodo: Number.parseInt(
+      document.getElementById("novo-emprestimo-periodo").value
+    )
+  };
+
+  fetch(api + "/emprestimos", {
+      method: "POST",
+      redirect: "follow",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(body),
+    })
+    .then((response) => {
+      if (response.ok) {
+        return response.text();
+      } else {
+        return response.text().then((text) => {
+          throw new Error(text);
+        });
+      }
+    })
+    //trata resposta
+    .then((output) => {
+      console.log(output);
+      listarEmprestimos()
+      M.toast({
+        html: `Cadastrado com sucesso!`,
+        inDuration: 300
+      });
+    })
+    //trata erro
+    .catch((error) => {
+      console.log(error);
+      M.toast({
+        html: `Cadastrado com sucesso!`,
+        inDuration: 300
+      });
+    });
+}
+
 function listarEmprestimos() {
   const listaEmprestimos = document.getElementById("lista-emprestimos");
   while (listaEmprestimos.firstChild) {
@@ -134,54 +185,6 @@ function visualizarEmprestimo(id) {
 }
 */
 
-function cadastrarEmprestimo() {
-  const body = {
-    UsuarioId: Number.parseInt(
-      document.getElementById("seleciona-usuario").value
-    ),
-    LivroId: Number.parseInt(
-      document.getElementById("seleciona-livro").value
-    ),
-    Periodo: Number.parseInt(
-      document.getElementById("novo-emprestimo-periodo").value
-    )
-  };
-
-  fetch(api + "/emprestimos", {
-      method: "POST",
-      redirect: "follow",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(body),
-    })
-    .then((response) => {
-      if (response.ok) {
-        return response.text();
-      } else {
-        return response.text().then((text) => {
-          throw new Error(text);
-        });
-      }
-    })
-    //trata resposta
-    .then((output) => {
-      console.log(output);
-      M.toast({
-        html: `Cadastrado com sucesso!`,
-        inDuration: 300
-      });
-    })
-    //trata erro
-    .catch((error) => {
-      console.log(error);
-      M.toast({
-        html: `Cadastrado com sucesso!`,
-        inDuration: 300
-      });
-    });
-}
 
 function alterarEmprestimo() {
   const body = {

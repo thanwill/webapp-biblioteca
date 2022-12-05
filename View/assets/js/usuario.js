@@ -31,6 +31,7 @@ function cadastrar_usuario() {
     //trata resposta
     .then((output) => {
       console.log(output);
+      lista_usuarios()
       M.toast({
         html: `${body.Nome} cadastrado(a) com sucesso!`,
         inDuration: 300
