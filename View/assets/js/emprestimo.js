@@ -1,26 +1,21 @@
 
-function cadastrarEmprestimo() {
-  
-  const body = {
-    UsuarioId: Number.parseInt(
-      document.getElementById("seleciona-usuario").value
-    ),
-    LivroId: Number.parseInt(
-      document.getElementById("seleciona-livro").value
-    ),
-    Periodo: Number.parseInt(
-      document.getElementById("novo-emprestimo-periodo").value
-    )
+function cadastrar_emprestimo() {
+
+  let body = {
+    'UsuarioId': document.getElementById("seleciona-usuario").value,
+    'LivroId': document.getElementById("seleciona-livro").value,
+    'Periodo': document.getElementById("emprestimo-periodo").value
   };
+  console.log(body)
 
   fetch(api + "/emprestimos", {
-      method: "POST",
-      redirect: "follow",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(body),
+    'method': 'POST',
+    'redirect': 'follow',
+    'headers': {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+      'body': JSON.stringify(body)
     })
     .then((response) => {
       if (response.ok) {
@@ -44,7 +39,7 @@ function cadastrarEmprestimo() {
     .catch((error) => {
       console.log(error);
       M.toast({
-        html: `Cadastrado com sucesso!`,
+        html: `Cadastro não realizado!`,
         inDuration: 300
       });
     });
@@ -59,18 +54,17 @@ function listarEmprestimos() {
     .then((response) => response.json())
     .then((emprestimos) => {
       for (const {
-          id
+          Id
         } of emprestimos) {
         const itemLista = document.createElement("li");
-        itemLista.setAttribute("id", `${id}`);
         itemLista.setAttribute("class", "collection-item grey-text");
         itemLista.innerHTML = `
             <div class="exibe-titulo">
-              Registro ${id}
+              Registro ${Id}
               <a 
                 class="secondary-content modal-trigger"
                 href="#modal-emprestimo"
-                onclick="visualizar_emprestimo(${id})">
+                onclick="visualizar_emprestimo(${Id})">
                   <i id="see-1" class="material-icons">
                     launch
                   </i>
@@ -88,8 +82,6 @@ function visualizar_emprestimo(id) {
     .then((response) => response.json())
     .then((emprestimo) => {
       const visualizarEmprestimo = document.querySelector('#visualizar-emprestimo');
-      console.log(emprestimo);
-
       let list =
         `
           <div class="modal-content">
@@ -104,7 +96,7 @@ function visualizar_emprestimo(id) {
             <tbody>
             <tr>
               <td>Número de registro</td>
-              <td>${emprestimo.id}</td>
+              <td>${emprestimo.Id}</td>
             </tr>
             <tr>
               <td>Cadastrado em:</td>
@@ -120,7 +112,7 @@ function visualizar_emprestimo(id) {
             </tr>
             <tr>
               <td>Dias em atraso</td>
-              <td>${emprestimo.Atrasos}</td>
+              <td>${emprestimo.DiasAtrasados}</td>
             </tr>
             <tr>
               <td>Multa gerada</td>
@@ -146,7 +138,7 @@ function visualizar_emprestimo(id) {
                   <a 
                   class="secondary-content modal-trigger"
                   href="#modal-usuario"
-                  onclick="visualizar_usuario(${emprestimo.UsuarioId})">
+                  onclick="visualizar_perfil(${emprestimo.UsuarioId})">
                   Consultar
                   <i class="material-icons">
                   launch
@@ -235,11 +227,11 @@ function select_livros() {
       let selectLivro = document.querySelector('#seleciona-livro');
       //PREENCHE ELA COM O NOME E O ID DOS USUARIOS
       for (const {
-          Id,
+          LivroId,
           Titulo
         } of livros) {
         const itemLista = document.createElement("option");
-        itemLista.setAttribute("value", `${Id}`);
+        itemLista.setAttribute("value", `${LivroId}`);
         itemLista.innerHTML = `${Titulo}`;
         selectLivro.appendChild(itemLista);
       }
@@ -257,12 +249,12 @@ function select_usuarios() {
       let selectUsuario = document.querySelector('#seleciona-usuario');
       //PREENCHE ELA COM O NOME E O ID DOS USUARIOS
       for (const {
-          Id,
+        UsuarioId,
           Nome,
           Sobrenome
         } of usuarios) {
         const itemLista = document.createElement("option");
-        itemLista.setAttribute("value", `${Id}`);
+        itemLista.setAttribute("value", `${UsuarioId}`);
         itemLista.innerHTML = `${Nome} ${Sobrenome}`;
         selectUsuario.appendChild(itemLista);
       }

@@ -8,10 +8,26 @@ public class Emprestimo
     public DateTime Inicio { get; set; }
     public DateTime Devolucao { get; set; }
     public bool Status { get; set; } = true;
-    public int Atrasos { get; set; }
-    public double Custo { get; set; }
-    public Livro Livro { get; set; }
-    public Usuario Usuario { get; set; }
+    public double Custo { get; set; } = 0;
+    public int LivroId { get; set; } 
+    public int UsuarioId { get; set; } 
+    public Livro Livro { get; set; } 
+    public Usuario Usuario { get; set; } 
+
+    public int DiasAtrasados
+    {
+        get
+        {
+            if (Devolucao >= DateTime.Now)
+            {
+                return 0;
+            }
+            else
+            {
+                return (int)(DateTime.Now - Devolucao).TotalDays;
+            }
+        }
+    }
 
 
     public int Cadastrar(BibliotecaContext banco, EmprestimoCadastrar cadastrar)
@@ -19,18 +35,25 @@ public class Emprestimo
         Emprestimo emprestimo = new Emprestimo();
 
         emprestimo.Inicio = DateTime.Now;
-        emprestimo.Devolucao = emprestimo.Inicio.AddDays(cadastrar.Periodo);
+        emprestimo.Devolucao = emprestimo.Inicio.AddDays(DateTime.Now, cadastrar.Periodo);
         
-        if(emprestimo.Livro == null){
+        if(cadastrar.LivroId == null){
             throw new Exception("Livro não cadastrado.");
         }else{
             emprestimo.Livro = banco.Livros.Find(cadastrar.LivroId);
+            emprestimo.LivroId = emprestimo.Livro.LivroId;
         }
-        if(emprestimo.Usuario == null){
+        if(cadastrar.UsuarioId == null){
             throw new Exception("Usuário não cadastrado.");
         }else{
             emprestimo.Usuario = banco.Usuarios.Find(cadastrar.UsuarioId);
+            emprestimo.UsuarioId = emprestimo.Usuario.UsuarioId;
         }
+
+        if(DiasAtrasados > 0){
+            emprestimo.Custo = 0.5 * DiasAtrasados;
+        }
+
         banco.Emprestimos.Add(emprestimo);
         return banco.SaveChanges();
     }
@@ -53,6 +76,7 @@ public class Emprestimo
         {
             return JsonConvert.SerializeObject(emprestimo, Formatting.Indented);
         }
+    
     }
     /*
     public int Cadastrar(BibliotecaContext banco, EmprestimoCadastrar cadastrar)
