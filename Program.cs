@@ -36,10 +36,17 @@ class Program
         var builder = WebApplication.CreateBuilder(args);
         
         // adiciona database ao builder
-        builder.Services.AddSqlite<BibliotecaContext>(builder.Configuration.GetConnectionString("Biblioteca") ?? "Data Source=Biblioteca.db");
+        builder.Services.AddSqlite<BibliotecaContext>(builder.Configuration.GetConnectionString("Biblioteca") ?? 
+        "Data Source=Biblioteca.db");
         
         // adiciona politica permissiva de cross-origin ao builder
-        builder.Services.AddCors(options => options.AddDefaultPolicy(policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
+        builder.Services.AddCors(options => options.AddDefaultPolicy
+        (
+            policy => 
+            policy.AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+        ));
         
         // cria aplicação usando o builder
         var app = builder.Build();

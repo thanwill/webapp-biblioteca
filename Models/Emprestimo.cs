@@ -4,7 +4,7 @@ namespace Biblioteca;
 
 public class Emprestimo
 {
-    public int id { get; set; }
+    public int Id { get; set; }
     public DateTime Inicio { get; set; }
     public DateTime Devolucao { get; set; }
     public bool Status { get; set; } = true;
@@ -12,6 +12,28 @@ public class Emprestimo
     public double Custo { get; set; }
     public Livro Livro { get; set; }
     public Usuario Usuario { get; set; }
+
+
+    public int Cadastrar(BibliotecaContext banco, EmprestimoCadastrar cadastrar)
+    {
+        Emprestimo emprestimo = new Emprestimo();
+
+        emprestimo.Inicio = DateTime.Now;
+        emprestimo.Devolucao = emprestimo.Inicio.AddDays(cadastrar.Periodo);
+        
+        if(emprestimo.Livro == null){
+            throw new Exception("Livro não cadastrado.");
+        }else{
+            emprestimo.Livro = banco.Livros.Find(cadastrar.LivroId);
+        }
+        if(emprestimo.Usuario == null){
+            throw new Exception("Usuário não cadastrado.");
+        }else{
+            emprestimo.Usuario = banco.Usuarios.Find(cadastrar.UsuarioId);
+        }
+        banco.Emprestimos.Add(emprestimo);
+        return banco.SaveChanges();
+    }
 
     public string Listar(BibliotecaContext banco)
     {
@@ -32,7 +54,7 @@ public class Emprestimo
             return JsonConvert.SerializeObject(emprestimo, Formatting.Indented);
         }
     }
-    
+    /*
     public int Cadastrar(BibliotecaContext banco, EmprestimoCadastrar cadastrar)
     {
         Emprestimo emprestimo = new Emprestimo();
@@ -52,7 +74,7 @@ public class Emprestimo
 
         banco.Emprestimos.Add(emprestimo);
         return banco.SaveChanges();
-    }
+    }*/
 
     public int Atualizar(BibliotecaContext banco, EmprestimoAtualizar atualizar)
     {

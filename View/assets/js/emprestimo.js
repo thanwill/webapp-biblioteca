@@ -1,5 +1,6 @@
 
 function cadastrarEmprestimo() {
+  
   const body = {
     UsuarioId: Number.parseInt(
       document.getElementById("seleciona-usuario").value

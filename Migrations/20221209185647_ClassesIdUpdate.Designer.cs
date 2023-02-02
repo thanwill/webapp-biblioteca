@@ -3,6 +3,7 @@ using System;
 using Biblioteca;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Biblioteca.Migrations
 {
     [DbContext(typeof(BibliotecaContext))]
-    partial class BibliotecaContextModelSnapshot : ModelSnapshot
+    [Migration("20221209185647_ClassesIdUpdate")]
+    partial class ClassesIdUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.9");

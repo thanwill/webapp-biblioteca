@@ -58,25 +58,25 @@ function listar_livros(){
         .then((livros) => {
 
             for (const {
-                    Id,
+                    LivroId,
                     Titulo
                 } of livros) {
                 const itemLista = document.createElement("li");
-                itemLista.setAttribute("id", `${Id}`);
+                //itemLista.setAttribute("id", `${LivroId}`);
                 itemLista.setAttribute("class", "collection-item grey-text");
-                itemLista.innerHTML = `
-        <div style="text-align:left;" . id="${Id}">
-          ${Titulo}
-          <a 
-            class="secondary-content modal-trigger"
-            href="#modal-livro"
-            onclick="visualizar_livro(${Id})">
-              <i id="see-1" class="material-icons">
-              visibility
-              </i>
-          </a>
-        </div>
-      `;
+                itemLista.innerHTML = 
+                `<div style="text-align:left;">
+                ${Titulo}
+                <a 
+                    class="secondary-content modal-trigger"
+                    href="#modal-livro"
+                    onclick="visualizar_livro(${LivroId})">
+                    <i id="see-1" class="material-icons">
+                    visibility
+                    </i>
+                </a>
+                </div>
+                `;
                 listaLivros.appendChild(itemLista);
             }
         });
@@ -101,7 +101,7 @@ function visualizar_livro(id) {
                     <tbody>
                         <tr>
                             <td>Matrícula</td>
-                            <td>${livro.Id}</td>
+                            <td>${livro.LivroId}</td>
                         </tr>
                         <tr>
                             <td>Título:</td>
@@ -125,12 +125,12 @@ function visualizar_livro(id) {
             </div>
             <div class="modal-footer">
                 <a
-                    onclick="editar_livro(${livro.Id})" 
+                    onclick="editar_livro(${livro.LivroId})" 
                     class="waves-effect waves-light btn modal-trigger" 
                     href="#atualiza-livro">Editar
                 </a>
                 <a 
-                    onclick="excluir_livro(${livro.Id})"
+                    onclick="excluir_livro(${livro.LivroId})"
                     class="modal-close waves-effect waves-green btn-flat">Excluir
                 </a>
             </div>
@@ -234,7 +234,7 @@ function excluir_livro(id) {
             M.toast({
                 html: 'Não foi possível remover o usuário',
                 inDuration: 300,
-                classes: 'red lighten-3'
+                classes: 'red lighten-1'
             });
         });
 }

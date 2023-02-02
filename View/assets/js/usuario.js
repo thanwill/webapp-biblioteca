@@ -56,20 +56,20 @@ function lista_usuarios() {
     .then((response) => response.json())
     .then((usuarios) => {
       for (const {
-          Id,
+          UsuarioId,
           Nome,
           Sobrenome
         } of usuarios) {
         const itemLista = document.createElement("li");
-        itemLista.setAttribute("id", `${Id}`);
+        //itemLista.setAttribute("id", `${Id}`);
         itemLista.setAttribute("class", "collection-item grey-text");
         itemLista.innerHTML = `
-            <div style="text-align:left;" . id="${Id}">
+            <div style="text-align:left;">
               ${Nome} ${Sobrenome}
               <a 
                 class="secondary-content modal-trigger"
                 href="#modal-usuario"
-                onclick="visualizar_perfil(${Id})">
+                onclick="visualizar_perfil(${UsuarioId})">
                   <i id="see-1" class="material-icons">
                   visibility
                   </i>
@@ -101,7 +101,7 @@ function visualizar_perfil(id) {
           <tbody>
           <tr>
           <td>Matrícula</td>
-          <td>${usuario.Id}</td>
+          <td>${usuario.UsuarioId}</td>
           </tr>
           <tr>
           <td>Nome completo</td>
@@ -128,8 +128,8 @@ function visualizar_perfil(id) {
           </div>
           </div>
           <div class="modal-footer">
-          <a onclick="editar_usuario(${usuario.Id})" class="waves-effect waves-light btn green lighten-2 modal-trigger" href="#atualiza-usuario">Editar</a>
-          <a onclick="excluir_usuario(${usuario.Id})" class="waves-effect waves-red btn-flat" >Excluir</a>
+          <a onclick="editar_usuario(${usuario.UsuarioId})" class="waves-effect waves-light btn green lighten-2 modal-trigger" href="#atualiza-usuario">Editar</a>
+          <a onclick="excluir_usuario(${usuario.UsuarioId})" class="waves-effect waves-red btn-flat" >Excluir</a>
           </div>
             
             `;
@@ -148,7 +148,7 @@ function editar_usuario(id) {
       const list   = 
       `      
         <div class="modal-footer">        
-          <a onclick="atualizar_usuario(${usuario.Id})" class="modal-close waves-effect waves-green btn-flat">Atualizar</a>
+          <a onclick="atualizar_usuario(${usuario.UsuarioId})" class="modal-close waves-effect waves-green btn-flat">Atualizar</a>
         </div>
       `;
       document.getElementById("editar-nome").value = usuario.Nome;

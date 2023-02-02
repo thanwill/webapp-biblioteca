@@ -3,7 +3,7 @@ namespace Biblioteca;
 
 public class Usuario
 {
-    public int Id { get; set; }
+    public int UsuarioId { get; set; }
     public string Nome { get; set; }
     public string Sobrenome { get; set; }
     public string CPF { get; set; }
@@ -23,18 +23,25 @@ public class Usuario
         return JsonConvert.SerializeObject(banco.Usuarios.Find(id));
     }
 
-    public int Cadastrar(BibliotecaContext banco, Usuario usuario)
+    public string Cadastrar(BibliotecaContext banco, Usuario usuario)
     {
-        bool cadExistente = Validar(banco, usuario);
-        if (cadExistente == false)
+        int cadExistente = Validar(banco, usuario);
+
+        if(cadExistente == 1){
+            throw new Exception("CPF: "+usuario.CPF + " já cadastrado!");
+        }
+
+        if (cadExistente == 2)
         {
-            banco.Usuarios.Add(usuario);
+            throw new Exception("E-mail: "+usuario.Email + " já cadastrado!");
+            
         }
         else
         {
-            throw new Exception("Este usuário já foi cadastrado anteriormente");
+            banco.Usuarios.Add(usuario);
         }
-        return banco.SaveChanges();
+        banco.SaveChanges();
+        return "Cadastrado com sucesso!";
     }
 
     public void Atualizar(BibliotecaContext banco, UsuarioAtualizar atualizado, int id)
@@ -69,36 +76,21 @@ public class Usuario
         }
     }
 
-    public bool Validar(BibliotecaContext banco, Usuario usuario)
+    public int Validar(BibliotecaContext banco, Usuario usuario)
     {
-        bool cadExistente = false;
+        int cadExistente = 0;
         foreach (var busca in banco.Usuarios)
         {
-            if (busca.CPF == usuario.CPF || busca.Email == usuario.Email)
-            {
-                cadExistente = true;
+            if (busca.CPF == usuario.CPF)
+            {                
+                cadExistente = 1;
                 break;
             }
-        }
-
-        return cadExistente;
-    }
-
-    public bool ValidarAtt(BibliotecaContext banco, Usuario usuario, int id)
-    {
-        var user = banco.Usuarios.Find(id);
-        string mail = user.Email;
-        user.Email = "";
-        bool cadExistente = false;
-
-        foreach (var busca in banco.Usuarios)
-        {
-            if (busca.Email == usuario.Email)
-            {
-                user.Email = mail;
-                cadExistente = true;
+            if(busca.Email == usuario.Email){
+                
+                cadExistente = 2;
                 break;
-            }
+            }            
         }
 
         return cadExistente;

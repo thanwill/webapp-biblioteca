@@ -4,7 +4,7 @@ namespace Biblioteca;
 
 public class Livro
 {
-    public int Id { get; set; }
+    public int LivroId { get; set; }
     public string Titulo { get; set; }
     public string Autor { get; set; }
     public string Lancamento { get; set; }
@@ -33,7 +33,6 @@ public class Livro
         Versão antiga, desconsiderar mas não apagar.
         public int Cadastrar(BibliotecaContext banco, Livro novo) { banco.Livros.Add(novo); return banco.SaveChanges(); }
     */
-    
     
     public int Cadastrar(BibliotecaContext banco, Livro livro)
     {
